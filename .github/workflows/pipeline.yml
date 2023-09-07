@@ -1,6 +1,6 @@
 name: Build
 run-name: ${{ github.actor }} is testing out github actions
-permissions: read-all
+permissions: write-all
 on: [push]
 jobs:
   build:
