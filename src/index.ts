@@ -24,8 +24,8 @@ export async function run(): Promise<void> {
       console.log("Got the branch protection");
       console.log(response.data);
     }).catch((error) => {
-      console.log("Error getting branch protection");
-      console.log(error);
+      core.warning("Error getting branch protection");
+      core.warning(error.message);
     });
 
     // if(!branchProtection){
