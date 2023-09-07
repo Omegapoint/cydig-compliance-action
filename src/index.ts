@@ -15,18 +15,26 @@ export async function run(): Promise<void> {
     const { owner, repo } = github.context.repo;
     console.log(`Owner: ${owner}`);
     console.log(`Repo: ${repo}`);
+    
     const branchProtection = await octokit.rest.repos.getBranchProtection({
       owner: owner,
       repo: repo,
       branch: 'main',
+    }).then((response) => { 
+      console.log("Got the branch protection");
+      console.log(response.data);
+    }).catch((error) => {
+      console.log("Error getting branch protection");
+      console.log(error);
     });
-    if(!branchProtection){
-      console.log("Branch protection not found");
-    }
-    else{
-    console.log("Logging branch protection");
-    console.log(branchProtection.data);
-    }
+
+    // if(!branchProtection){
+    //   console.log("Branch protection not found");
+    // }
+    // else{
+    // console.log("Logging branch protection");
+    // console.log(branchProtection.data);
+    // }
 
   } catch (error) {
     // Fail the workflow run if an error occurs
