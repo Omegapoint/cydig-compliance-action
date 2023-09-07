@@ -9,12 +9,15 @@ export async function run(): Promise<void> {
     console.log('Custom task is working!');
 
     const octokit = github.getOctokit(process.env.GITHUB_TOKEN);
+    console.log("octaKit working");
+    console.log("Going to get branch protection");
     const { owner, repo } = github.context.repo;
     const branchProtection = await octokit.rest.repos.getBranchProtection({
       owner: owner,
       repo: repo,
       branch: 'main',
     });
+    console.log("Logging branch protection");
  console.log(branchProtection.data);
 
   } catch (error) {
