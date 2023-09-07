@@ -8,7 +8,7 @@ export async function run(): Promise<void> {
   try {
     console.log('Custom task is working!');
     const token = core.getInput('repo-token');
-    console.log(`Token: ${token}`);
+    console.log("Got the token");
     const octokit = github.getOctokit(token);
     console.log("octoKit authenticated");
     console.log("Going to get branch protection");
