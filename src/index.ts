@@ -20,8 +20,13 @@ export async function run(): Promise<void> {
       repo: repo,
       branch: 'main',
     });
+    if(!branchProtection){
+      console.log("Branch protection not found");
+    }
+    else{
     console.log("Logging branch protection");
- console.log(branchProtection.data);
+    console.log(branchProtection.data);
+    }
 
   } catch (error) {
     // Fail the workflow run if an error occurs
