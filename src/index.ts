@@ -11,9 +11,9 @@ import { PentestService } from './Pentest/PentestService';
 export async function run(): Promise<void> {
   try {
     const cydigConfig: CyDigConfig = getContentOfFile("src/cydigconfig.json");
+    await BranchProtectionService.getStateOfBranchProtection();
     await PentestService.getStateOfPentest(cydigConfig.pentest); 
 
-    await BranchProtectionService.getStateOfBranchProtection();
 
     
   } catch (error) {
