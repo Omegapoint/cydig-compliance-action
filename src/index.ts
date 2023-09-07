@@ -7,8 +7,10 @@ import * as github from '@actions/github';
 export async function run(): Promise<void> {
   try {
     console.log('Custom task is working!');
-
-    const octokit = github.getOctokit(process.env.GITHUB_TOKEN);
+    const token = core.getInput('token');
+    console.log(`Token: ${token}`);
+    const octokit = github.getOctokit(token);
+    
     console.log("octaKit working");
     console.log("Going to get branch protection");
     const { owner, repo } = github.context.repo;

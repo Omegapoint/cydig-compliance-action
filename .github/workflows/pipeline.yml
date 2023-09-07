@@ -32,4 +32,6 @@ jobs:
     #   run: az account show
     - name: 'Custom Task running'
       uses: ./
+      with:
+        token: ${{github.token}}
     

@@ -8,7 +8,11 @@ author: 'Jonathan'
 #     description: 'SubscriptionId to use for the connections in the custom task.'
 #     required: true
 #     default: 'Not working'
-
+inputs:
+  token:
+    description: 'SubscriptionId to use for the connections in the custom task.'
+    required: true
+    default: 'Not working'
 runs:
   using: node16
   main: dist/index.js
