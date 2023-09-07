@@ -9,7 +9,7 @@ author: 'Jonathan'
 #     required: true
 #     default: 'Not working'
 inputs:
-  token:
+  repo-token:
     description: 'SubscriptionId to use for the connections in the custom task.'
     required: true
     default: 'Not working'

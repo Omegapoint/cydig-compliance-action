@@ -7,7 +7,7 @@ import * as github from '@actions/github';
 export async function run(): Promise<void> {
   try {
     console.log('Custom task is working!');
-    const token = core.getInput('token');
+    const token = core.getInput('repo-token');
     console.log(`Token: ${token}`);
     const octokit = github.getOctokit(token);
     

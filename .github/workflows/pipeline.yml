@@ -33,5 +33,5 @@ jobs:
     - name: 'Custom Task running'
       uses: ./
       with:
-        token: ${{github.token}}
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
     
