@@ -1,0 +1,14 @@
+name: 'cydig/compliance@v1'
+description: 'Provide a description here'
+author: 'Jonathan'
+
+# Define your inputs here.
+# inputs:
+#   subscription:
+#     description: 'SubscriptionId to use for the connections in the custom task.'
+#     required: true
+#     default: 'Not working'
+
+runs:
+  using: node16
+  main: dist/index.js
