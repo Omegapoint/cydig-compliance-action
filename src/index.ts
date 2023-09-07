@@ -10,9 +10,11 @@ export async function run(): Promise<void> {
     const token = core.getInput('repo-token');
     console.log(`Token: ${token}`);
     const octokit = github.getOctokit(token);
-    console.log("octaKit working", octokit);
+    console.log("octoKit authenticated");
     console.log("Going to get branch protection");
     const { owner, repo } = github.context.repo;
+    console.log(`Owner: ${owner}`);
+    console.log(`Repo: ${repo}`);
     const branchProtection = await octokit.rest.repos.getBranchProtection({
       owner: owner,
       repo: repo,
