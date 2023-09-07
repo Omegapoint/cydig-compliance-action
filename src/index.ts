@@ -10,9 +10,9 @@ import { PentestService } from './Pentest/PentestService';
  */
 export async function run(): Promise<void> {
   try {
-    const cydigConfig: CyDigConfig = getContentOfFile("./cydigconfig.json");
+    const cydigConfig: CyDigConfig = getContentOfFile("cydigconfig.json");
     await PentestService.getStateOfPentest(cydigConfig.pentest); 
-    
+
     await BranchProtectionService.getStateOfBranchProtection();
 
     
