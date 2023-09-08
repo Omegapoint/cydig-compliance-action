@@ -25,8 +25,8 @@ export class BranchProtectionService {
         console.log(response.data);
       })
       .catch((error) => {
-        console.log('Error getting branch protection!');
-        core.warning('Error: ', error.message);
+        core.warning('Error getting branch protection!');
+        console.log('Error: ', error);
       });
   }
 }
