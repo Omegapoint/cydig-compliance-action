@@ -1,6 +1,6 @@
 import * as core from '@actions/core';
 import * as github from '@actions/github';
-export class ThreatModelingDate{
+export class ThreatModelingService{
 
     public static async getStateOfThreatModeling(threatModelingDate: { 
         date: string;

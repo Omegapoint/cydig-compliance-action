@@ -3,20 +3,20 @@ import * as github from '@actions/github';
 import { BranchProtectionService } from './branchprotection/BranchProtectionService';
 import { CyDigConfig } from './types/CyDigConfig';
 import { getContentOfFile } from './helpfunctions/JsonService';
-import { PentestService } from './Pentest/PentestService';
-import { ThreatModelingDate } from './threatmodelingdate/ThreatModelingDate';
+import { PentestService } from './pentest/PentestService';
+import { ThreatModelingService } from './threatmodeling/ThreatModelingService';
 /**
  * The main function for the action.
  * @returns {Promise<void>} Resolves when the action is complete.
  */
 export async function run(): Promise<void> {
   try {
-    const cydigConfig: CyDigConfig = getContentOfFile("src/cydigconfig.json");
+    const cydigConfig: CyDigConfig = getContentOfFile('src/cydigconfig.json');
     await BranchProtectionService.getStateOfBranchProtection();
-    await PentestService.getStateOfPentest(cydigConfig.pentest); 
-    await ThreatModelingDate.getStateOfThreatModeling(cydigConfig.threatModeling);
+    await PentestService.getStateOfPentest(cydigConfig.pentest);
+    await ThreatModelingService.getStateOfThreatModeling(cydigConfig.threatModeling);
 
-    
+    // await ThreatModelingService.getStateOfThreatModeling(cydigConfig.threatModeling);
   } catch (error) {
     // Fail the workflow run if an error occurs
     if (error instanceof Error) core.setFailed(error.message);
