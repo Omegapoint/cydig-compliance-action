@@ -1,11 +1,11 @@
 name: Build
 run-name: ${{ github.actor }} is testing out github actions
-permissions:
+# permissions:
   # actions: read
   # checks: read
   # contents: read
   # deployments: read
-  id-token: write
+  # id-token: write
   # issues: read
   # discussions: read
   # packages: read
