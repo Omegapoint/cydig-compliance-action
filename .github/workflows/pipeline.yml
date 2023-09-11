@@ -1,19 +1,19 @@
 name: Build
 run-name: ${{ github.actor }} is testing out github actions
 permissions:
-  actions: read
-  checks: read
-  contents: read
-  deployments: read
+  # actions: read
+  # checks: read
+  # contents: read
+  # deployments: read
   id-token: write
-  issues: read
-  discussions: read
-  packages: read
-  pages: read
-  pull-requests: read
-  repository-projects: read
-  security-events: read
-  statuses: read
+  # issues: read
+  # discussions: read
+  # packages: read
+  # pages: read
+  # pull-requests: read
+  # repository-projects: read
+  # security-events: read
+  # statuses: read
 
 on: [push]
 jobs:
