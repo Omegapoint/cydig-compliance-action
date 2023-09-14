@@ -9,7 +9,7 @@
         "date": "2023-09-07",
         "boardsTag": "PT"
     },
-    "githubDevOps": {
+    "github": {
         "usingRepos": true,
         "repos": {
             "username": "firstname.lastname (usually)"
