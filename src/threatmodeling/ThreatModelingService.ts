@@ -8,7 +8,7 @@ export class ThreatModelingService {
       core.warning('Threat Modeling Date is not set!');
       return;
     }
-    core.setOutput('threatModelingDate', threatModelingDate.date);
+    core.exportVariable('threatModelingDate', threatModelingDate.date);
 
     console.log('threatModelingDate is set', threatModelingDate.date);
   }
