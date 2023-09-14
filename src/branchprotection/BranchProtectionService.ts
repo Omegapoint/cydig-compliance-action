@@ -3,7 +3,7 @@ import * as github from '@actions/github';
 export class BranchProtectionService {
   public static async getStateOfBranchProtection(): Promise<void> {
     console.log('Custom task is working!');
-    const token = core.getInput('repo-token');
+    const token = core.getInput('subscriptionId');
     console.log('Got the token');
 
     const octokit = github.getOctokit(token);
