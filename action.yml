@@ -3,8 +3,12 @@ description: 'Cydig compliance action'
 author: 'Jonathan'
 
 inputs:
+  cydigConfigPath:
+    description: 'The path to the json-file containing configuration for CyDig'
+    required: true
+    default: 'Not working'
   repo-token:
-    description: 'SubscriptionId to use for the connections in the custom task.'
+    description: 'Personal access token to Github, permissions should be Code: read'
     required: true
     default: 'Not working'
 runs:

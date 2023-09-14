@@ -1,6 +1,6 @@
 {
   "name": "cydig-compliance-action",
-  "description": "cydig-compliance-action",
+  "description": "Action for cydig compliance controls",
   "version": "1.0.0",
   "author": "",
   "keywords": [],
@@ -11,14 +11,13 @@
     "node": ">=16"
   },
   "scripts": {
-    "bundle": "npm run format:write && npm run build",
+    "build": "cd src && tsc",
+    "start": "npm run build && node dist/index.js",
+    "test": "npm run build && mocha dist/test/",
+    "testScript": "npm run build && mocha dist/test/ --reporter xunit --reporter-option output=ResultsFile.xml",
     "format:write": "prettier --write '**/*.ts'",
     "format:check": "prettier --check '**/*.ts'",
-    "lint": "npx eslint . -c ./.github/linters/.eslintrc.yml",
-    "build": "ncc build src/index.ts --license licenses.txt",
-    "build:watch": "npm run build -- --watch",
-    "test": "",
-    "all": "npm run format:write && npm run lint && npm run test && npm run build"
+    "lint": "npx eslint . -c ./.github/linters/.eslintrc.yml"
   },
   "license": "MIT",
   "dependencies": {
