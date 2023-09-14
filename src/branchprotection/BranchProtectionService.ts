@@ -25,7 +25,7 @@ export class BranchProtectionService {
         console.log(response.data);
       })
       .catch((error) => {
-        console.log('Branch protections is not enabled for repository:' + repo)
+        console.log('Branch protections is not enabled for repository: ' + repo)
         //core.warning('Error getting branch protection!');
         //console.log('Error: ', error.message);
       });
