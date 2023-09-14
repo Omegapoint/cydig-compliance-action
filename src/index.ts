@@ -3,7 +3,7 @@ import * as github from '@actions/github';
 import { BranchProtectionService } from './branchprotection/BranchProtectionService';
 import { CyDigConfig } from './types/CyDigConfig';
 import { getContentOfFile } from './helpfunctions/JsonService';
-import { PentestService } from './pentest/PentestService';
+import { PentestService } from './Pentest/PentestService';
 import { ThreatModelingService } from './threatmodeling/ThreatModelingService';
 /**
  * The main function for the action.
