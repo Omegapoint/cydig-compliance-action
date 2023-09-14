@@ -20,6 +20,6 @@ jobs:
     - name: 'Run Compliance State'
       uses: ./
       with:
-        cydigConfigPath: ${{ github.workspace }}/cydigConfig.json
+        cydigConfigPath: ${{ github.workspace }}/src/cydigConfig.json
         repo-token: ${{ secrets.MY_GITHUB_PAT}}
     
