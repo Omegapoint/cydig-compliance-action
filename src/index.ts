@@ -3,7 +3,7 @@ import * as github from '@actions/github';
 import { BranchProtectionService } from './branchprotection/BranchProtectionService';
 import { CyDigConfig } from './types/CyDigConfig';
 import { getContentOfFile } from './helpfunctions/JsonService';
-import { PentestService } from './Pentest/PentestService';
+import { PentestService } from './pentest/PentestService';
 import { ThreatModelingService } from './threatmodeling/ThreatModelingService';
 /**
  * The main function for the action.
@@ -11,8 +11,11 @@ import { ThreatModelingService } from './threatmodeling/ThreatModelingService';
  */
 export async function run(): Promise<void> {
   try {
+    console.log('\n Running controls on your repository')
     const cydigConfig: CyDigConfig = getContentOfFile(core.getInput('cydigConfigPath'));
     await BranchProtectionService.getStateOfBranchProtection();
+
+    console.log('\n Running controls on your boards');
     await PentestService.getStateOfPentest(cydigConfig.pentest);
     await ThreatModelingService.getStateOfThreatModeling(cydigConfig.threatModeling);
   } catch (error) {
