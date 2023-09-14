@@ -1,13 +1,7 @@
 name: 'cydig/compliance@v1'
-description: 'Provide a description here'
+description: 'Cydig compliance action'
 author: 'Jonathan'
 
-# Define your inputs here.
-# inputs:
-#   subscription:
-#     description: 'SubscriptionId to use for the connections in the custom task.'
-#     required: true
-#     default: 'Not working'
 inputs:
   repo-token:
     description: 'SubscriptionId to use for the connections in the custom task.'

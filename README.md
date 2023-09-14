@@ -1,3 +1,3 @@
-# CyDig Pipeline Tasks
+# CyDig Compliance Action
 
-This repository contains compliance tasks.
+This repository contains a action with compliance controls.

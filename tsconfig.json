@@ -11,40 +11,8 @@
     "noImplicitAny": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    // "strict": true,
     "skipLibCheck": true,
     "newLine": "lf"
   },
   "exclude": ["./dist", "./node_modules", "./__tests__", "./coverage"]
 }
-// {
-//   "compilerOptions": {
-//     "target": "ES2021",
-//     "module": "commonjs",
-//     "outDir": "js_out",
-//     "sourceMap": true,
-//     "esModuleInterop": true,
-//     "skipLibCheck": true
-//     //"strict": true
-//   },
-//   "include": ["**/*"],
-//   "exclude": ["node_modules", "**/*.js"]
-// }
-
-//Prettier : .prettierrc.json
-// {
-//   "printWidth": 80,
-//   "tabWidth": 2,
-//   "useTabs": false,
-//   "semi": false,
-//   "singleQuote": true,
-//   "quoteProps": "as-needed",
-//   "jsxSingleQuote": false,
-//   "trailingComma": "none",
-//   "bracketSpacing": true,
-//   "bracketSameLine": true,
-//   "arrowParens": "avoid",
-//   "proseWrap": "always",
-//   "htmlWhitespaceSensitivity": "css",
-//   "endOfLine": "lf"
-// }

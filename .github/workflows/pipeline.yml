@@ -1,48 +1,23 @@
 name: Build
 run-name: ${{ github.actor }} is testing out github actions
-# permissions:
-  # actions: read
-  # checks: read
-  # contents: read
-  # deployments: read
-  # id-token: write
-  # issues: read
-  # discussions: read
-  # packages: read
-  # pages: read
-  # pull-requests: read
-  # repository-projects: read
-  # security-events: read
-  # statuses: read
+permissions:
+  contents: write
+  pages: write
+  id-token: write
 
 on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: Run a one-line script
-      run: echo Hello, world!
-    - name: Run a multi-line script
-      run: |
-        echo Add other actions to build,
-        echo test, and deploy your projectss
     - name: Setup node
       uses: actions/setup-node@v3
     - name: Install
       run: npm ci
     - name: Build 
-      run: npm run package
-    # - name: 'Az CLI login'
-    #   uses: azure/login@v1
-    #   with:
-    #       client-id: ${{ secrets.AZURE_CLIENT_ID }}
-    #       tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-    #       subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-    # - name: 'Run Azure CLI commands'
-    #   run: az account show
-    - name: 'Custom Task running'
+      run: npm run build
+    - name: 'Run Compliance State'
       uses: ./
       with:
-        repo-token: ${{ secrets.MY_GITHUB_PAT}}
+        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
     
