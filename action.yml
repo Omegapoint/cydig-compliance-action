@@ -3,7 +3,7 @@ description: 'Cydig compliance action'
 author: 'Jonathan'
 
 inputs:
-  subscriptionId:
+  repo-token:
     description: 'SubscriptionId to use for the connections in the custom task.'
     required: true
     default: 'Not working'

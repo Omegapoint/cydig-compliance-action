@@ -20,5 +20,5 @@ jobs:
     - name: 'Run Compliance State'
       uses: ./
       with:
-        subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+        repo-token: ${{ secrets.MY_GITHUB_PAT}}
     
