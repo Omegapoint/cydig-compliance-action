@@ -102,5 +102,5 @@ __tests__/runner/*
 .vscode
 *.code-workspace
 
-dist
+#dist
 ResultsFile.xml
