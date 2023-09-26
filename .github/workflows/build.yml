@@ -23,6 +23,8 @@ jobs:
         run: npm run build
       - name: 'Run Compliance State'
         uses: ./
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           cydigConfigPath: ${{ github.workspace }}/src/cydigconfig.json
           github-token: ${{ secrets.MY_GITHUB_PAT}}
