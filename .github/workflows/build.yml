@@ -1,9 +1,6 @@
 name: Build
 run-name: ${{ github.actor }} is testing out github actions
-permissions:
-  contents: write
-  pages: write
-  id-token: write
+
 
 on: [push, workflow_dispatch]
 jobs:
