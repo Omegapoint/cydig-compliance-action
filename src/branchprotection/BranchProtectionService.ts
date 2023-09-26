@@ -23,7 +23,7 @@ export class BranchProtectionService {
       })
       .catch((error: any) => {
         console.log('Branch protections is not enabled for repository: ' + repo);
-        console.log('Error: ', error?.message);
+        console.log('Error: ', error);
       });
     core.exportVariable('numberOfReviewers', numberOfReviewers);
   }
