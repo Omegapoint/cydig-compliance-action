@@ -1,10 +1,9 @@
 name: Creating release
 run-name: ${{ github.actor }} creating a release
-on: 
+on:
   pull_request:
     types: [closed]
-    
+
 jobs:
   call-release-workflow:
     uses: omegapoint/cydig-reusable-workflows/.github/workflows/release.yml@main
-   
