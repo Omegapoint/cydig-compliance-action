@@ -8,7 +8,7 @@ export class BranchProtectionService {
     //numberOfReviewers > 0, if state of branch protection changes
     const numberOfReviewers: number = 0;
 
-    const token: string = core.getInput('repo-token');
+    const token: string = core.getInput('github-token');
     const octokit: any = github.getOctokit(token);
 
     const { owner, repo }: { owner: string; repo: string } = github.context.repo;
@@ -23,7 +23,7 @@ export class BranchProtectionService {
       })
       .catch((error: any) => {
         console.log('Branch protections is not enabled for repository: ' + repo);
-        console.log('Error: ', error.message);
+        console.log('Error: ', error?.message);
       });
     core.exportVariable('numberOfReviewers', numberOfReviewers);
   }
