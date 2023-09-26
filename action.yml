@@ -1,6 +1,6 @@
 name: 'cydig/compliance@v1'
 description: 'Cydig compliance action'
-author: 'Jonathan'
+author: 'Omegapoint'
 
 inputs:
   cydigConfigPath:
