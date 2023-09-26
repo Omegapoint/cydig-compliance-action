@@ -61,6 +61,6 @@ export function validateConfig(config: unknown): void {
   });
 
   if (schema.validate(config).error) {
-    throw new Error(`${schema.validate(config).error.message} in your CyDig Config file`);
+    throw new Error(`${schema.validate(config).error?.message} in your CyDig Config file`);
   }
 }
