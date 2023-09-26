@@ -29,7 +29,7 @@ export function validateConfig(config: unknown): void {
       date: Joi.string().required(),
       boardsTag: Joi.string().required(),
     }).required(),
-    githubDevOps: Joi.object({
+    github: Joi.object({
       usingRepos: Joi.boolean().required(),
       repos: Joi.object({
         username: Joi.string().required(),
