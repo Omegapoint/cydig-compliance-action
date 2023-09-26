@@ -10,7 +10,7 @@ import { ThreatModelingService } from './threatmodeling/ThreatModelingService';
  */
 export async function run(): Promise<void> {
   try {
-    console.log('\n Running controls on your repository')
+    console.log('\n Running controls on your repository');
     const cydigConfig: CyDigConfig = getContentOfFile(core.getInput('cydigConfigPath'));
     await BranchProtectionService.getStateOfBranchProtection();
 

@@ -7,8 +7,8 @@ inputs:
     description: 'The path to the json-file containing configuration for CyDig'
     required: true
     default: 'Not working'
-  repo-token:
-    description: 'Personal access token to Github, permissions should be Code: read'
+  github-token:
+    description: 'Automatic token from Github workflow'
     required: true
     default: 'Not working'
 runs:
