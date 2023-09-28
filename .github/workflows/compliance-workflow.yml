@@ -8,4 +8,4 @@ on:
 jobs:
     CyDig-Compliance-Workflow:
       uses: Omegapoint/cydig-reusable-workflows/.github/workflows/compliance-template.yml@main
-      #secrets: inherit
+      secrets: inherit
