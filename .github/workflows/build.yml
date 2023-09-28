@@ -4,6 +4,7 @@ permissions:
   contents: write
   pages: write
   id-token: write
+  repository-projects: write
 
 on: [push, workflow_dispatch]
 jobs:
@@ -23,6 +24,8 @@ jobs:
         run: npm run build
       - name: 'Run Compliance State'
         uses: ./
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           cydigConfigPath: ${{ github.workspace }}/src/cydigconfig.json
-          github-token: ${{ secrets.GITHUB_TOKEN}}
+          github-token: ${{ secrets.MY_GITHUB_PAT}}
