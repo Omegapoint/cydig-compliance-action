@@ -39,8 +39,8 @@ export class BranchProtectionService {
         branch: 'main',
       })
       .then((response: any) => {
-        console.log('only response', response);
-        console.log('Data without json()', response.data.required_approving_review_count);
+        console.log('response data ', response.data);
+        console.log('getting review count ', response.data['required_approving_review_count']);
         console.log('only response with json()', response.json());
         const data: any = response.json();
         console.log(
