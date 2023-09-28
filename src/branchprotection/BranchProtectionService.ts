@@ -40,7 +40,7 @@ export class BranchProtectionService {
       })
       .then((response: any) => {
         console.log(
-          'Branch protection is enabled, and the numbers of reviewers are:',
+          'Branch protection is enabled, number of reviewers are:',
           response.data.required_pull_request_reviews?.['required_approving_review_count']
         );
       })
