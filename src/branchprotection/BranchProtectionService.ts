@@ -40,9 +40,12 @@ export class BranchProtectionService {
       })
       .then((response: any) => {
         console.log('response data ', response.data);
-        console.log('getting review count ', response.data['required_approving_review_count']);
-        console.log('only response with json()', response.json());
+        console.log(
+          'getting review count ',
+          response.data.required_pull_request_reviews['required_approving_review_count']
+        );
         const data: any = response.json();
+
         console.log(
           'Branch protection is enabled, and the numbers of reviewers are:',
           data.required_approving_review_count
