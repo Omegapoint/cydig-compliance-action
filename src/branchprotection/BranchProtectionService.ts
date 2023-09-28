@@ -39,9 +39,10 @@ export class BranchProtectionService {
         branch: 'main',
       })
       .then((response: any) => {
+        const data: any = response.json();
         console.log(
-          'Branch protection is enabled, and reviewers needed are:',
-          response.data.required_approving_review_count
+          'Branch protection is enabled, and the numbers of reviewers are:',
+          data.required_approving_review_count
         );
       })
       .catch((error: any) => {
