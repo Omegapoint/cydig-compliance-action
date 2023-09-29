@@ -9,6 +9,6 @@ export class ThreatModelingService {
       }
       threatModelingDate = threatModeling.date;
     }
-    core.exportVariable('threatModelingDate', threatModeling);
+    core.exportVariable('threatModelingDate', threatModelingDate);
   }
 }
