@@ -13,9 +13,8 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "ncc build src/index.ts",
-    "buildTests": "tsc",
-    "test": "npm run buildTests && mocha dist/tests/",
-    "testScript": "npm run buildTests && mocha dist/tests/ --reporter xunit --reporter-option output=ResultsFile.xml",
+    "test": "tsc && mocha dist/tests/",
+    "testScript": "tsc && mocha dist/tests/ --reporter xunit --reporter-option output=ResultsFile.xml",
     "prepare": "husky install",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --fix --ext .ts",
