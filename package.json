@@ -8,7 +8,7 @@
     ".": "./dist/index.js"
   },
   "engines": {
-    "node": ">=16"
+    "node": ">=18"
   },
   "main": "dist/index.js",
   "scripts": {
@@ -27,7 +27,8 @@
     "@actions/github": "^5.1.1",
     "@octokit/rest": "^20.0.2",
     "@vercel/ncc": "^0.36.1",
-    "joi": "^17.10.1"
+    "joi": "^17.10.1",
+    "octokit": "^3.1.1"
   },
   "devDependencies": {
     "@types/chai": "^4.3.6",
