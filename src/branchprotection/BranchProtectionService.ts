@@ -6,7 +6,6 @@ export class BranchProtectionService {
     console.log('\n Running branch protection control');
 
     const { owner, repo }: { owner: string; repo: string } = github.context.repo;
-    const numberOfReviewers: number = 0;
     const token: string = core.getInput('PAT-token');
     const octokit: any = github.getOctokit(token);
 
@@ -30,6 +29,5 @@ export class BranchProtectionService {
         console.log('Branch protections is not enabled for repository: ' + repo);
         console.log('Error:', error?.message);
       });
-    core.exportVariable('numberOfReviewers', numberOfReviewers);
   }
 }
