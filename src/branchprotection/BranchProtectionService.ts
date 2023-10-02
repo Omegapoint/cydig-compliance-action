@@ -20,10 +20,12 @@ export class BranchProtectionService {
         console.log('Branch protection can be overridden by admins and is therefore counted as not enabled');
       }
 
-      const numberOfReviewers: number =
-        response.data.required_pull_request_reviews?.required_approving_review_count || 0;
-
-      if (numberOfReviewers >= 1 && response.data.enforce_admins?.enabled === true) {
+      let numberOfReviewers: number = 0;
+      if (
+        response.data.enforce_admins?.enabled === true &&
+        response.data.required_pull_request_reviews?.required_approving_review_count
+      ) {
+        numberOfReviewers = response.data.required_pull_request_reviews?.required_approving_review_count;
         console.log('Branch protection is enabled, number of reviewers:', numberOfReviewers);
       } else {
         console.log('Branch protection is not enabled for repository:', repo);
