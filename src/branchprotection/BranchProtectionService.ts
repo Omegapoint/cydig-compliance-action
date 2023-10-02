@@ -14,13 +14,13 @@ export class BranchProtectionService {
         repo,
         branch: 'main',
       });
-      const numberOfReviewers: number =
-        response.data.required_pull_request_reviews?.required_approving_review_count || 0;
       console.log('Response', response.data);
-
       if (response.data.enforce_admins?.enabled === false) {
         console.log('Branch protection can be overridden by admins and is therefore counted as not enabled');
       }
+
+      const numberOfReviewers: number =
+        response.data.required_pull_request_reviews?.required_approving_review_count || 0;
 
       if (numberOfReviewers >= 1 && response.data.enforce_admins?.enabled === true) {
         console.log('Branch protection is enabled, number of reviewers:', numberOfReviewers);
