@@ -15,7 +15,6 @@ export class BranchProtectionService {
         repo,
         branch: 'main',
       });
-      console.log(response);
       console.log(response.data);
       // const octokit = github.getOctokit(token);
       // const response = await octokit.rest.repos.getBranchProtection({
@@ -23,20 +22,20 @@ export class BranchProtectionService {
       //   repo,
       //   branch: 'main',
       // });
-      // if (response.data.enforce_admins?.enabled === false) {
-      //   console.log('Branch protection can be overridden by admins and is therefore counted as not enabled');
-      // }
+      if (response.data.enforce_admins?.enabled === false) {
+        console.log('Branch protection can be overridden by admins and is therefore counted as not enabled');
+      }
 
-      // const numberOfReviewers: number =
-      //   response.data.required_pull_request_reviews?.required_approving_review_count || 0;
+      const numberOfReviewers: number =
+        response.data.required_pull_request_reviews?.required_approving_review_count || 0;
 
-      // if (numberOfReviewers >= 1 && response.data.enforce_admins?.enabled === true) {
-      //   console.log('Branch protection is enabled, number of reviewers:', numberOfReviewers);
-      // } else {
-      //   console.log('Branch protection is not enabled for repository:', repo);
-      // }
+      if (numberOfReviewers >= 1 && response.data.enforce_admins?.enabled === true) {
+        console.log('Branch protection is enabled, number of reviewers:', numberOfReviewers);
+      } else {
+        console.log('Branch protection is not enabled for repository:', repo);
+      }
 
-      // core.exportVariable('numberOfReviewers', numberOfReviewers);
+      core.exportVariable('numberOfReviewers', numberOfReviewers);
     } catch (error) {
       console.log('Error:', error.message);
     }
