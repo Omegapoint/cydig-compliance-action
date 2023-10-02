@@ -25,7 +25,6 @@ export class BranchProtectionService {
         method: 'GET',
         headers,
       });
-      console.log('Response:', response);
       const data = await response.json();
       console.log('Data:', data);
       if (data.enforce_admins?.enabled === false) {
