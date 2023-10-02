@@ -16,6 +16,7 @@ export class BranchProtectionService {
         branch: 'main',
       })
       .then((response: any) => {
+        console.log('Response', response);
         console.log(
           'Branch protection is enabled, number of reviewers are:',
           response.data.required_pull_request_reviews?.['required_approving_review_count']
