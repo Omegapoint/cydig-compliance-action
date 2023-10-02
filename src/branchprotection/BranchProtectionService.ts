@@ -15,6 +15,7 @@ export class BranchProtectionService {
         repo,
         branch: 'main',
       });
+    
       if (response.data.enforce_admins?.enabled === false) {
         console.log('Branch protection can be overridden by admins and is therefore counted as not enabled');
       }
