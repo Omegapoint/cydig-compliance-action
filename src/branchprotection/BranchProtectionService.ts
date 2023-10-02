@@ -21,6 +21,10 @@ export class BranchProtectionService {
           'Branch protection is enabled, number of reviewers are:',
           response.data.required_pull_request_reviews?.['required_approving_review_count']
         );
+        core.exportVariable(
+          'numberOfReviewers',
+          response.data.required_pull_request_reviews?.['required_approving_review_count']
+        );
       })
       .catch((error: any) => {
         console.log('Branch protections is not enabled for repository: ' + repo);
