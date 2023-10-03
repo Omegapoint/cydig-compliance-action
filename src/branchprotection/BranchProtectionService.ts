@@ -21,6 +21,7 @@ export class BranchProtectionService {
       }
 
       let numberOfReviewers: number = 0;
+
       if (
         response.data.enforce_admins?.enabled === true &&
         response.data.required_pull_request_reviews?.required_approving_review_count
