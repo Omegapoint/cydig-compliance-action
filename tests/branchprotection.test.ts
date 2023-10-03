@@ -38,7 +38,7 @@ describe('BranchProtectionService', () => {
 
     await BranchProtectionService.getStateOfBranchProtection();
 
-    expect(getInputStub.calledWith('PAT-token')).to.be.true;
+    expect(getInputStub.calledWith('PAT-token')).to.equal(core.getInput('PAT-token'));
     expect(warningStub.called).to.be.false;
     expect(exportVariableStub.calledWith('numberOfReviewers', 1)).to.be.true;
   });
