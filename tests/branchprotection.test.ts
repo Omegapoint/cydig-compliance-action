@@ -5,14 +5,12 @@ import { expect } from 'chai';
 import { BranchProtectionService } from '../src/branchprotection/BranchProtectionService';
 describe('BranchProtectionService', () => {
   let sandbox: SinonSandbox;
-  let getInputStub: SinonStub;
   let warningStub: SinonStub;
   let exportVariableStub: SinonStub;
   let getOctokitStub: SinonStub;
 
   beforeEach(() => {
     sandbox = sinon.createSandbox();
-    getInputStub = sandbox.stub(core, 'getInput');
     warningStub = sandbox.stub(core, 'warning');
     exportVariableStub = sandbox.stub(core, 'exportVariable');
     getOctokitStub = sandbox.stub(github, 'getOctokit');
@@ -37,8 +35,6 @@ describe('BranchProtectionService', () => {
     });
 
     await BranchProtectionService.getStateOfBranchProtection();
-
-    expect(getInputStub.returns('PAT-token')).to.not.be.empty;
     expect(warningStub.called).to.be.false;
     expect(exportVariableStub.calledWith('numberOfReviewers', 1)).to.be.true;
   });
@@ -57,7 +53,6 @@ describe('BranchProtectionService', () => {
     });
 
     await BranchProtectionService.getStateOfBranchProtection();
-
     expect(warningStub.called).to.be.true;
     expect(exportVariableStub.calledWith('numberOfReviewers', 0)).to.be.true;
   });
@@ -74,9 +69,7 @@ describe('BranchProtectionService', () => {
     });
 
     await BranchProtectionService.getStateOfBranchProtection();
-
     expect(warningStub.called).to.be.true;
     expect(exportVariableStub.calledWith('numberOfReviewers', 0)).to.be.true;
   });
-  // Add more test cases for different scenarios as needed
 });
