@@ -10,13 +10,13 @@ describe('BranchProtectionService', () => {
   let exportVariableStub: SinonStub;
   let getOctokitStub: SinonStub;
 
-beforeEach(() => {
+  beforeEach(() => {
     sandbox = sinon.createSandbox();
     getInputStub = sandbox.stub(core, 'getInput');
     warningStub = sandbox.stub(core, 'warning');
     exportVariableStub = sandbox.stub(core, 'exportVariable');
     getOctokitStub = sandbox.stub(github, 'getOctokit');
-});
+  });
 
   afterEach(() => {
     sandbox.restore();
@@ -42,6 +42,25 @@ beforeEach(() => {
     expect(getInputStub.calledWith('PAT-token')).to.be.true;
     expect(warningStub.called).to.be.false;
     expect(exportVariableStub.calledWith('numberOfReviewers', 1)).to.be.true;
+  });
+  it('should call warning when admins can byypass branch protection rules', async () => {
+    getOctokitStub.returns({
+      rest: {
+        repos: {
+          getBranchProtection: sinon.stub().resolves({
+            data: {
+              enforce_admins: { enabled: false },
+              required_pull_request_reviews: { required_approving_review_count: 1 },
+            },
+          }),
+        },
+      },
+    });
+
+    await BranchProtectionService.getStateOfBranchProtection();
+
+    expect(warningStub.called).to.be.true;
+    expect(exportVariableStub.calledWith('numberOfReviewers', 0)).to.be.true;
   });
 
   // Add more test cases for different scenarios as needed
