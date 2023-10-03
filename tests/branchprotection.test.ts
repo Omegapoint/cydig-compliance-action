@@ -66,7 +66,7 @@ describe('BranchProtectionService', () => {
     getOctokitStub.returns({
       rest: {
         repos: {
-          getBranchProtection: sinon.stub().resolves({
+          getBranchProtection: sinon.stub().rejects({
             status: 403,
           }),
         },
