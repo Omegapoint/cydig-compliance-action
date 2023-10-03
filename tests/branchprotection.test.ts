@@ -31,7 +31,7 @@ describe('BranchProtectionService', () => {
           getBranchProtection: sinon.stub().resolves({
             data: {
               enforce_admins: { enabled: true },
-              required_pull_request_reviews: { required_approving_review_count: 1 },
+              required_pull_request_reviews: { required_approving_review_count: 2 },
             },
           }),
         },
@@ -42,7 +42,7 @@ describe('BranchProtectionService', () => {
 
     expect(getInputStub.calledWith('PAT-token')).to.be.true;
     expect(warningStub.called).to.be.false;
-    expect(exportVariableStub.calledWith('numberOfReviewers', 1)).to.be.true;
+    expect(exportVariableStub.calledWith('numberOfReviewers', 2)).to.be.true;
   });
 
   // Add more test cases for different scenarios as needed
