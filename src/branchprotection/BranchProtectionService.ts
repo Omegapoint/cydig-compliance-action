@@ -17,7 +17,7 @@ export class BranchProtectionService {
       });
 
       if (response.data.enforce_admins?.enabled === false) {
-        console.log('Branch protection can be overridden by admins and is therefore counted as not enabled');
+        core.warning('Branch protection can be overridden by admins and is therefore counted as not enabled');
       }
 
       let numberOfReviewers: number = 0;
