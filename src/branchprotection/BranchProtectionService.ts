@@ -11,21 +11,21 @@ export class BranchProtectionService {
 
       const octokit: InstanceType<typeof GitHub> = github.getOctokit(token);
       type branchProtectionRepsponse = Endpoints['GET /repos/{owner}/{repo}/branches/{branch}/protection']['response'];
-      const data: branchProtectionRepsponse['data'] = await octokit.rest.repos.getBranchProtection({
+      const response: branchProtectionRepsponse = await octokit.rest.repos.getBranchProtection({
         owner,
         repo,
         branch: 'main',
       });
 
-      if (data.enforce_admins?.enabled === false) {
+      if (response.data.enforce_admins?.enabled === false) {
         core.warning('Branch protection can be overridden by admins and is therefore counted as not enabled');
       }
       let numberOfReviewers: number = 0;
       if (
-        data.enforce_admins?.enabled === true &&
-        data.required_pull_request_reviews?.required_approving_review_count
+        response.data.enforce_admins?.enabled === true &&
+        response.data.required_pull_request_reviews?.required_approving_review_count
       ) {
-        numberOfReviewers = data.required_pull_request_reviews?.required_approving_review_count;
+        numberOfReviewers = response.data.required_pull_request_reviews?.required_approving_review_count;
         console.log('Branch protection is enabled, number of reviewers:', numberOfReviewers);
       } else {
         console.log('Branch protection is not enabled for repository:', repo);
