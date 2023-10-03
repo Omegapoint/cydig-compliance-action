@@ -23,7 +23,6 @@ describe('BranchProtectionService', () => {
   });
 
   it('should handle successful branch protection retrieval', async () => {
-    getInputStub.withArgs('PAT-token').returns('your-pat-token'); // Replace with your token
     getOctokitStub.returns({
       rest: {
         repos: {
@@ -66,7 +65,7 @@ describe('BranchProtectionService', () => {
     getOctokitStub.returns({
       rest: {
         repos: {
-          getBranchProtection: sinon.stub().throws({
+          getBranchProtection: sinon.stub().rejects({
             status: 403,
             message: 'Forbidden',
           }),
