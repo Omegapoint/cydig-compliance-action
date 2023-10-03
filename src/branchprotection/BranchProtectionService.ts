@@ -1,7 +1,7 @@
-/* eslint-disable @typescript-eslint/typedef */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as core from '@actions/core';
 import * as github from '@actions/github';
+import { Endpoints } from '@octokit/types';
+import { GitHub } from '@actions/github/lib/utils';
 export class BranchProtectionService {
   public static async getStateOfBranchProtection(): Promise<void> {
     try {
@@ -9,8 +9,9 @@ export class BranchProtectionService {
       const { owner, repo }: { owner: string; repo: string } = github.context.repo;
       const token: string = core.getInput('PAT-token');
 
-      const octokit = github.getOctokit(token);
-      const response = await octokit.rest.repos.getBranchProtection({
+      const octokit: InstanceType<typeof GitHub> = github.getOctokit(token);
+      type branchProtectionRepsponse = Endpoints['GET /repos/{owner}/{repo}/branches/{branch}/protection']['response'];
+      const response: branchProtectionRepsponse = await octokit.rest.repos.getBranchProtection({
         owner,
         repo,
         branch: 'main',
@@ -19,7 +20,6 @@ export class BranchProtectionService {
       if (response.data.enforce_admins?.enabled === false) {
         core.warning('Branch protection can be overridden by admins and is therefore counted as not enabled');
       }
-
       let numberOfReviewers: number = 0;
       if (
         response.data.enforce_admins?.enabled === true &&
