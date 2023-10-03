@@ -32,7 +32,7 @@ The compliance controls that are currently available are listed below.
 npm install
 ```
 
-To enable linting and format rules if´ts not enabled. So, every time you make a commit, a pre-hook will run to validate the rules. If there are any violation you will se an error or a warning in the terminal. Read more [here](/LinitingAndFormat.md). To fix format warnings run the following command from the **root**:
+By first running npm install in the root you get the linting and format dependencies downloaded. To enable so that every time you make a commit, a pre-hook will run to validate the rules read more [here](/LinitingAndFormat.md). To fix format warnings manually run the following command from the **root**:
 
 ```bash
 npm run format:write
@@ -56,7 +56,6 @@ To generated test results in a XML-file, run the following command:  
 ```bash 
 npm run testScript 
 ```
-
 
 6. If necessary, add input parameter in ```action.yml```, if it is needed for the control.
 
