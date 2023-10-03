@@ -62,6 +62,21 @@ describe('BranchProtectionService', () => {
     expect(warningStub.called).to.be.true;
     expect(exportVariableStub.calledWith('numberOfReviewers', 0)).to.be.true;
   });
+  it('should call warning and set numberOfReviewers to 0 when github repo is private (status = 403)', async () => {
+    getOctokitStub.returns({
+      rest: {
+        repos: {
+          getBranchProtection: sinon.stub().resolves({
+            status: 403,
+          }),
+        },
+      },
+    });
 
+    await BranchProtectionService.getStateOfBranchProtection();
+
+    expect(warningStub.called).to.be.true;
+    expect(exportVariableStub.calledWith('numberOfReviewers', 0)).to.be.true;
+  });
   // Add more test cases for different scenarios as needed
 });
