@@ -21,7 +21,6 @@ export class BranchProtectionService {
       }
 
       let numberOfReviewers: number = 0;
-
       if (
         response.data.enforce_admins?.enabled === true &&
         response.data.required_pull_request_reviews?.required_approving_review_count
@@ -34,9 +33,11 @@ export class BranchProtectionService {
 
       core.exportVariable('numberOfReviewers', numberOfReviewers);
     } catch (error) {
-      console.log('error', error);
       core.warning('Error getting branch protection!');
       console.log('Error:', error.message);
+      if (error.status === 403) {
+        core.exportVariable('numberOfReviewers', 0);
+      }
     }
   }
 }
