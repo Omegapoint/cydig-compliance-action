@@ -14,6 +14,10 @@ describe('BranchProtectionService', () => {
     warningStub = sandbox.stub(core, 'warning');
     exportVariableStub = sandbox.stub(core, 'exportVariable');
     getOctokitStub = sandbox.stub(github, 'getOctokit');
+    sandbox.stub(github.context, 'repo').value({
+      owner: 'owner',
+      repo: 'repo',
+    });
   });
 
   afterEach(() => {
