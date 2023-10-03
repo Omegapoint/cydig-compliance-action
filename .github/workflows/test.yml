@@ -23,4 +23,3 @@ jobs:
         uses: ./
         with:
           cydigConfigPath: ${{ github.workspace }}/src/cydigconfig.json
-          PAT-token: ${{ secrets.MY_GITHUB_PAT}}
