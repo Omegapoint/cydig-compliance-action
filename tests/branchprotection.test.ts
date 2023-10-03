@@ -66,9 +66,9 @@ describe('BranchProtectionService', () => {
     getOctokitStub.returns({
       rest: {
         repos: {
-          getBranchProtection: sinon.stub().rejects({
+          getBranchProtection: sinon.stub().throws({
             status: 403,
-            message: 'Test: Forbidden',
+            message: 'Forbidden',
           }),
         },
       },
