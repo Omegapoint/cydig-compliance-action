@@ -68,6 +68,7 @@ describe('BranchProtectionService', () => {
         repos: {
           getBranchProtection: sinon.stub().rejects({
             status: 403,
+            message: 'Test: Forbidden',
           }),
         },
       },
