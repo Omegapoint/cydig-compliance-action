@@ -10,13 +10,13 @@ describe('BranchProtectionService', () => {
   let exportVariableStub: SinonStub;
   let getOctokitStub: SinonStub;
 
-  beforeEach(() => {
+beforeEach(() => {
     sandbox = sinon.createSandbox();
     getInputStub = sandbox.stub(core, 'getInput');
     warningStub = sandbox.stub(core, 'warning');
     exportVariableStub = sandbox.stub(core, 'exportVariable');
     getOctokitStub = sandbox.stub(github, 'getOctokit');
-  });
+});
 
   afterEach(() => {
     sandbox.restore();
@@ -24,14 +24,13 @@ describe('BranchProtectionService', () => {
 
   it('should handle successful branch protection retrieval', async () => {
     getInputStub.withArgs('PAT-token').returns('your-pat-token'); // Replace with your token
-
     getOctokitStub.returns({
       rest: {
         repos: {
           getBranchProtection: sinon.stub().resolves({
             data: {
               enforce_admins: { enabled: true },
-              required_pull_request_reviews: { required_approving_review_count: 2 },
+              required_pull_request_reviews: { required_approving_review_count: 1 },
             },
           }),
         },
@@ -42,7 +41,7 @@ describe('BranchProtectionService', () => {
 
     expect(getInputStub.calledWith('PAT-token')).to.be.true;
     expect(warningStub.called).to.be.false;
-    expect(exportVariableStub.calledWith('numberOfReviewers', 2)).to.be.true;
+    expect(exportVariableStub.calledWith('numberOfReviewers', 1)).to.be.true;
   });
 
   // Add more test cases for different scenarios as needed
