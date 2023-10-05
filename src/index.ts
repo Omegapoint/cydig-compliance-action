@@ -14,7 +14,6 @@ export async function run(): Promise<void> {
     const cydigConfig: CyDigConfig = getContentOfFile(core.getInput('cydigConfigPath'));
     await BranchProtectionService.getStateOfBranchProtection();
 
-    console.log('\n Running controls on your boards');
     await PentestService.getStateOfPentest(cydigConfig.pentest);
     await ThreatModelingService.getStateOfThreatModeling(cydigConfig.threatModeling);
   } catch (error) {
