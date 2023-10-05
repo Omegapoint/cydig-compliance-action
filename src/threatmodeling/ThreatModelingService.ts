@@ -1,6 +1,6 @@
 import * as core from '@actions/core';
 export class ThreatModelingService {
-  public static async getStateOfThreatModeling(threatModeling: { date: string; boardsTag: string }): Promise<void> {
+  public static async getStateOfThreatModeling(threatModeling: { date: string; boardsTag?: string }): Promise<void> {
     if (process.env.threatModelingDate) {
       core.exportVariable('threatModelingDate', process.env.threatModelingDate);
     } else {

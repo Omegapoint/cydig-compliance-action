@@ -20,41 +20,41 @@ export function getContentOfFile(jsonPath: string): CyDigConfig {
 export function validateConfig(config: unknown): void {
   const schema: Joi.ObjectSchema<CyDigConfig> = Joi.object({
     teamName: Joi.string().required(),
-    usingAzure: Joi.boolean().required(),
+    usingAzure: Joi.boolean(),
     threatModeling: Joi.object({
-      date: Joi.string().required(),
-      boardsTag: Joi.string().required(),
-    }).required(),
+      date: Joi.string(),
+      boardsTag: Joi.string(),
+    }),
     pentest: Joi.object({
-      date: Joi.string().required(),
-      boardsTag: Joi.string().required(),
-    }).required(),
+      date: Joi.string(),
+      boardsTag: Joi.string(),
+    }),
     github: Joi.object({
-      usingRepos: Joi.boolean().required(),
+      usingRepos: Joi.boolean(),
       repos: Joi.object({
-        username: Joi.string().required(),
-      }).required(),
-      usingBoards: Joi.boolean().required(),
+        username: Joi.string(),
+      }),
+      usingBoards: Joi.boolean(),
       boards: Joi.object({
-        nameOfBoard: Joi.string().required(),
-      }).required(),
-    }).required(),
+        nameOfBoard: Joi.string(),
+      }),
+    }),
     scaTool: Joi.object({
-      nameOfTool: Joi.string().required(),
+      nameOfTool: Joi.string(),
       owaspDependencyCheck: Joi.object({
-        reportPath: Joi.string().required(),
+        reportPath: Joi.string(),
         csvPath: Joi.string().optional(),
       }),
-    }).required(),
+    }),
     sastTool: Joi.object({
-      nameOfTool: Joi.string().required(),
+      nameOfTool: Joi.string(),
       semgrep: Joi.object({
-        reportPath: Joi.string().required(),
-      }).required(),
-    }).required(),
+        reportPath: Joi.string(),
+      }),
+    }),
     codeQualityTool: Joi.object({
-      nameOfTool: Joi.string().required(),
-    }).required(),
+      nameOfTool: Joi.string(),
+    }),
     reposToExclude: Joi.object({
       nameOfRepos: Joi.string().optional(),
     }),
