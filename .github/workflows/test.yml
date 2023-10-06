@@ -22,5 +22,5 @@ jobs:
       - name: 'Run Compliance State Action'
         uses: ./
         with:
-          cydigConfigPath: ${{ github.workspace }}/src/cydigconfig.json
+          cydigConfigPath: ${{ github.workspace }}/src/cydigConfig.json
           PAT-token: ${{ secrets.MY_GITHUB_PAT}}
