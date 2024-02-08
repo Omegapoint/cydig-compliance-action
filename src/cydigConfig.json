@@ -2,7 +2,7 @@
   "teamName": "Test-GitHub",
   "usingAzure": true,
   "threatModeling": {
-    "date": "date-of-threat-modeling",
+    "date": "2023-09-07",
     "boardsTag": "TM"
   },
   "pentest": {
