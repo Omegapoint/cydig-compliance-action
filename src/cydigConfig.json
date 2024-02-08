@@ -10,14 +10,19 @@
     "boardsTag": "PT"
   },
   "github": {
-    "usingRepos": true,
+    "usingRepos": true
+  },
+  "azureDevOps": {
+    "usingRepos": false,
     "repos": {
       "username": "firstname.lastname (usually)"
     },
     "usingBoards": true,
     "boards": {
-      "nameOfBoard": "name-of-boards (use 'not specified' for all boards in project)"
-    }
+      "nameOfBoard": "not specified"
+    },
+    "organizationName": "CyDig",
+    "projectName": "CyDig"
   },
   "scaTool": {
     "nameOfTool": "name-of-tool",

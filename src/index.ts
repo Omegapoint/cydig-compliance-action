@@ -4,6 +4,7 @@ import { CyDigConfig } from './types/CyDigConfig';
 import { getContentOfFile } from './helpfunctions/JsonService';
 import { PentestService } from './Pentest/PentestService';
 import { ThreatModelingService } from './threatmodeling/ThreatModelingService';
+import { AzureDevOpsBoardService } from './azuredevopsboard/AzureDevOpsBoardService';
 /**
  * The main function for the action.
  * @returns {Promise<void>} Resolves when the action is complete.
@@ -12,10 +13,13 @@ export async function run(): Promise<void> {
   try {
     console.log('\n Running controls on your repository');
     const cydigConfig: CyDigConfig = getContentOfFile(core.getInput('cydigConfigPath'));
+
     await BranchProtectionService.getStateOfBranchProtection();
 
     await PentestService.getStateOfPentest(cydigConfig.pentest);
     await ThreatModelingService.getStateOfThreatModeling(cydigConfig.threatModeling);
+
+    await AzureDevOpsBoardService.getStateOfAzureDevOpsBoards(cydigConfig);
   } catch (error) {
     // Fail the workflow run if an error occurs
     if (error instanceof Error) core.setFailed(error.message);

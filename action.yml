@@ -11,6 +11,10 @@ inputs:
     description: 'Automatic token from Github workflow'
     required: true
     default: 'Not working'
+  accessTokenAzureDevOps:
+    description: 'Personal access token for Azure DevOps with scope Work Items:read'
+    required: false
+    default: 'Not working'
 runs:
   using: node16
   main: dist/index.js
