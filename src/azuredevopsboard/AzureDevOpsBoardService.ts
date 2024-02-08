@@ -7,7 +7,7 @@ import { ThreatModelingTickets } from './ThreatModelingTickets';
 
 export class AzureDevOpsBoardService {
   public static async getStateOfAzureDevOpsBoards(cydigConfig: CyDigConfig): Promise<void> {
-    if (!cydigConfig.azureDevOps.boards) {
+    if (cydigConfig.azureDevOps.boards) {
       try {
         console.log('\n Running Azure DevOps Boards control');
 
