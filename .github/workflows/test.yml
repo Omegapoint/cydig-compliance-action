@@ -1,4 +1,4 @@
-name: test action 
+name: test action
 run-name: ${{ github.actor }} is running tests
 permissions:
   contents: read
@@ -24,3 +24,4 @@ jobs:
         with:
           cydigConfigPath: ${{ github.workspace }}/src/cydigConfig.json
           PAT-token: ${{ secrets.MY_GITHUB_PAT}}
+          accessTokenAzureDevOps: ${{ secrets.DEVOPS_TOKEN_WORK_ITEMS }}

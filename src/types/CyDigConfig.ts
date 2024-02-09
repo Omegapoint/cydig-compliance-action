@@ -11,6 +11,9 @@ export type CyDigConfig = {
   };
   github: {
     usingRepos: boolean;
+  };
+  azureDevOps: {
+    usingRepos: boolean;
     repos: {
       username: string;
     };
@@ -18,6 +21,8 @@ export type CyDigConfig = {
     boards: {
       nameOfBoard: string;
     };
+    organizationName: string;
+    projectName: string;
   };
   scaTool: {
     nameOfTool: string;

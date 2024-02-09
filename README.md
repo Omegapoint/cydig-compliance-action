@@ -39,22 +39,22 @@ npm run format:write
 ```
 
 3. If you are developing a new control, create a new folder for your control in the ```src``` folder.
-4. Start developing. To compile your code, run the following command:  
+4. Start developing. To compile your code, run the following command:
 
 ```bash
 npm run build
 ```
 
-5. To run the tests, run the following command:   
+5. To run the tests, run the following command:
 
-```bash 
+```bash
 npm run test
 ```
 
-To generated test results in a XML-file, run the following command:  
+To generated test results in a XML-file, run the following command:
 
-```bash 
-npm run testScript 
+```bash
+npm run testScript
 ```
 
 6. If necessary, add input parameter in ```action.yml```, if it is needed for the control.

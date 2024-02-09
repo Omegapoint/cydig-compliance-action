@@ -31,6 +31,9 @@ export function validateConfig(config: unknown): void {
     }),
     github: Joi.object({
       usingRepos: Joi.boolean(),
+    }),
+    azureDevOps: {
+      usingRepos: Joi.boolean(),
       repos: Joi.object({
         username: Joi.string(),
       }),
@@ -38,7 +41,9 @@ export function validateConfig(config: unknown): void {
       boards: Joi.object({
         nameOfBoard: Joi.string(),
       }),
-    }),
+      organizationName: Joi.string(),
+      projectName: Joi.string(),
+    },
     scaTool: Joi.object({
       nameOfTool: Joi.string(),
       owaspDependencyCheck: Joi.object({
