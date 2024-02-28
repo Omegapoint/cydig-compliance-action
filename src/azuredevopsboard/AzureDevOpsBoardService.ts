@@ -12,7 +12,7 @@ export class AzureDevOpsBoardService {
         console.log('\n Running Azure DevOps Boards control');
 
         const azureDevOpsConnection: AzureDevOpsConnection = new AzureDevOpsConnection(
-          cydigConfig.azureDevOps.organizationName,
+          cydigConfig.azureDevOps.boards.organizationName,
           core.getInput('accessTokenAzureDevOps')
         );
 
@@ -33,7 +33,7 @@ export class AzureDevOpsBoardService {
           nameOfBoards: cydigConfig.azureDevOps.boards.nameOfBoard,
           pentestTag: pentestTag,
           threatModelingTag: threatModelingTag,
-          projectId: cydigConfig.azureDevOps.projectName,
+          projectId: cydigConfig.azureDevOps.boards.projectName,
         };
 
         if (process.env.pentestDate && process.env.pentestDate != 'not specified') {
