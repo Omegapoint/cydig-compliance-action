@@ -9,38 +9,15 @@ export type CyDigConfig = {
     date: string;
     boardsTag: string;
   };
-  github: {
-    usingRepos: boolean;
-  };
   azureDevOps: {
-    usingRepos: boolean;
-    repos: {
-      username: string;
-    };
-    usingBoards: boolean;
+    usingBoards: boolean
     boards: {
+      organizationName: string;
+      projectName: string;
       nameOfBoard: string;
-    };
-    organizationName: string;
-    projectName: string;
-  };
-  scaTool: {
-    nameOfTool: string;
-    owaspDependencyCheck: {
-      reportPath: string;
-      csvPath: string;
-    };
-  };
-  sastTool: {
-    nameOfTool: string;
-    semgrep: {
-      reportPath: string;
-    };
-  };
-  codeQualityTool: {
-    nameOfTool: string;
-  };
-  reposToExclude: {
-    nameOfRepos: string;
-  };
+    }
+  }
+  scaTool: string;
+  sastTool: string;
+  codeQualityTool: string;
 };

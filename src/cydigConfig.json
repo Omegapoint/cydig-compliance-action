@@ -1,46 +1,29 @@
 {
-  "teamName": "Test-GitHub",
+  "teamName": "CyDig",
   "usingAzure": true,
   "threatModeling": {
-    "date": "2023-09-07",
-    "boardsTag": "TM"
+      "date": "2024-01-01",
+      "boardsTag": "TM"
   },
   "pentest": {
-    "date": "2023-09-07",
-    "boardsTag": "PT"
-  },
-  "github": {
-    "usingRepos": true
+      "date": "2023-01-01",
+      "boardsTag": "PT"
   },
   "azureDevOps": {
-    "usingRepos": false,
-    "repos": {
-      "username": "firstname.lastname (usually)"
-    },
-    "usingBoards": true,
-    "boards": {
-      "nameOfBoard": "not specified"
-    },
-    "organizationName": "CyDig",
-    "projectName": "CyDig"
+      "usingBoards": true,
+      "boards": {
+          "organizationName": "CyDig",
+          "projectName": "CyDig",
+          "nameOfBoard": "not specified"
+      }
   },
   "scaTool": {
-    "nameOfTool": "name-of-tool",
-    "owaspDependencyCheck": {
-      "reportPath": "Reports/dependency-check-report.csv",
-      "csvPath": "not specified"
-    }
+      "nameOfTool": "OWASP"
   },
   "sastTool": {
-    "nameOfTool": "name-of-tool",
-    "semgrep": {
-      "reportPath": "semgrep-json.json"
-    }
+      "nameOfTool": "SEMGREP"
   },
   "codeQualityTool": {
-    "nameOfTool": "name-of-tool"
-  },
-  "reposToExclude": {
-    "nameOfRepos": "not-specified"
+      "nameOfTool": "not specified"
   }
 }
