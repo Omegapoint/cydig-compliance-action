@@ -5,7 +5,7 @@ export class SastService {
     if (process.env.sastTool) {
       core.exportVariable('sastTool', process.env.sastTool);
     } else {
-      if (sastTool === 'name-of-tool') {
+      if (!sastTool || sastTool === 'name-of-tool') {
         core.warning('Sast Tool is not set!');
         return;
       }

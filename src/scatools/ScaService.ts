@@ -5,7 +5,7 @@ export class ScaService {
     if (process.env.scaTool) {
       core.exportVariable('scaTool', process.env.scaTool);
     } else {
-      if (scaTool === 'name-of-tool') {
+      if (!scaTool || scaTool === 'name-of-tool') {
         core.warning('Sca Tool is not set!');
         return;
       }

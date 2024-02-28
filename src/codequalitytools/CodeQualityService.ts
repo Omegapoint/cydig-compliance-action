@@ -5,7 +5,7 @@ export class CodeQualityService {
     if (process.env.codeQualityTool) {
       core.exportVariable('codeQualityTool', process.env.codeQualityTool);
     } else {
-      if (codeQualityTool === 'name-of-tool') {
+      if (!codeQualityTool || codeQualityTool === 'name-of-tool') {
         core.warning('Code Quality Tool is not set!');
         return;
       }
