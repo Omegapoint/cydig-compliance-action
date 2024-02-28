@@ -1,7 +1,7 @@
 import * as core from '@actions/core';
 
 export class ScaService {
-  public static async getStateOfScaTool(scaTool: {nameOfTool: string}): Promise<void> {
+  public static async getStateOfScaTool(scaTool: { nameOfTool: string }): Promise<void> {
     console.log('\n Running SCA control');
     if (process.env.scaTool) {
       console.log(`SCA Tool: ${process.env.scaTool}`);

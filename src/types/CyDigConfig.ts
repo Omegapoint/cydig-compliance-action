@@ -17,7 +17,13 @@ export type CyDigConfig = {
       nameOfBoard: string;
     };
   };
-  scaTool: string;
-  sastTool: string;
-  codeQualityTool: string;
+  scaTool: {
+    nameOfTool: string;
+  },
+  sastTool: {
+    nameOfTool: string;
+  },
+  codeQualityTool: {
+    nameOfTool: string;
+  }
 };
