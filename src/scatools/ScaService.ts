@@ -4,19 +4,22 @@ import { DependabotService } from './DependabotService';
 export class ScaService {
   public static async getStateOfScaTool(scaTool: { nameOfTool: string }): Promise<void> {
     console.log('\n Running SCA control');
-    console.log("Test log");
     if (process.env.scaTool) {
       console.log(`SCA Tool: ${process.env.scaTool}`);
-      console.log(`test: ${process.env}`);
-      if(process.env.scaTool === "dependabot"){
-        DependabotService.setDependabotFindings()
-      }
       core.exportVariable('scaTool', process.env.scaTool);
     } else {
       if (!scaTool.nameOfTool || scaTool.nameOfTool === 'name-of-tool') {
         core.warning('SCA Tool is not set!');
         return;
       }
+
+      console.log(`lite test:`);
+      console.log(`test: ${process.env}`);
+      
+      if(scaTool.nameOfTool === "dependabot"){
+        DependabotService.setDependabotFindings()
+      }
+
       console.log(`SCA Tool: ${scaTool.nameOfTool}`);
       core.exportVariable('scaTool', scaTool.nameOfTool);
     }
