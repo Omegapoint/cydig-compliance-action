@@ -5,6 +5,7 @@ import { Endpoints } from '@octokit/types';
 
 export class DependabotService {
     public static async setDependabotFindings(): Promise<void> {
+
         const { owner, repo }: { owner: string; repo: string } = github.context.repo;
         const token: string = core.getInput('PAT-token');
 
@@ -39,7 +40,6 @@ export class DependabotService {
                         break
                 }
             }
-
 
             console.log('\n scaNumberOfSeverity1: ' + scaNumberOfSeverity1);
             console.log('\n scaNumberOfSeverity2: ' + scaNumberOfSeverity2);

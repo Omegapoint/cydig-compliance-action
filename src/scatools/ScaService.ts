@@ -6,6 +6,7 @@ export class ScaService {
     console.log('\n Running SCA control');
     if (process.env.scaTool) {
       console.log(`SCA Tool: ${process.env.scaTool}`);
+      console.log(`test: ${process.env}`);
       if(process.env.scaTool === "dependabot"){
         DependabotService.setDependabotFindings()
       }
