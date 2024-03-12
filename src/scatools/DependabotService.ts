@@ -1,7 +1,5 @@
-import * as github from '@actions/github';
-import { GitHub } from '@actions/github/lib/utils';
 import * as core from '@actions/core';
-import { Endpoints } from '@octokit/types';
+import * as github from '@actions/github';
 import { Octokit } from '@octokit/rest';
 
 export class DependabotService {
@@ -75,6 +73,12 @@ export class DependabotService {
         //             break
         //     }
         // }
+        
+        console.log(scaNumberOfSeverity1);
+        console.log(scaNumberOfSeverity2);
+        console.log(scaNumberOfSeverity3);
+        console.log(scaNumberOfSeverity4);
+        
 
         core.exportVariable('scaNumberOfSeverity1', scaNumberOfSeverity1);
         core.exportVariable('scaNumberOfSeverity2', scaNumberOfSeverity2);
