@@ -27,7 +27,8 @@
     "@actions/github": "^5.1.1",
     "@octokit/rest": "^20.0.2",
     "@vercel/ncc": "^0.36.1",
-    "azure-devops-node-api": "^12.4.0"
+    "azure-devops-node-api": "^12.4.0",
+    "node-fetch": "^3.3.2"
   },
   "devDependencies": {
     "@octokit/types": "^12.0.0",
