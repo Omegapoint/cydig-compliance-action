@@ -19,11 +19,11 @@ export type CyDigConfig = {
   };
   scaTool: {
     nameOfTool: string;
-  },
+  };
   sastTool: {
     nameOfTool: string;
-  },
+  };
   codeQualityTool: {
     nameOfTool: string;
-  }
+  };
 };

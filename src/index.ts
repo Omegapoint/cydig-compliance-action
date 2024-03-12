@@ -25,7 +25,7 @@ export async function run(): Promise<void> {
 
     await PentestService.getStateOfPentest(cydigConfig.pentest);
     await ThreatModelingService.getStateOfThreatModeling(cydigConfig.threatModeling);
-  
+
     await AzureDevOpsBoardService.getStateOfAzureDevOpsBoards(cydigConfig);
   } catch (error) {
     // Fail the workflow run if an error occurs
