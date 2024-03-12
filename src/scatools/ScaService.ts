@@ -6,17 +6,18 @@ export class ScaService {
     console.log('\n Running SCA control');
     if (process.env.scaTool) {
       console.log(`SCA Tool: ${process.env.scaTool}`);
+      if(process.env.scaTool.toLowerCase() === "dependabot"){
+        DependabotService.setDependabotFindings()
+      }
       core.exportVariable('scaTool', process.env.scaTool);
     } else {
       if (!scaTool.nameOfTool || scaTool.nameOfTool === 'name-of-tool') {
         core.warning('SCA Tool is not set!');
         return;
       }
-
-      if(scaTool.nameOfTool === "dependabot"){
+      if(scaTool.nameOfTool.toLowerCase() === "dependabot"){
         DependabotService.setDependabotFindings()
       }
-
       console.log(`SCA Tool: ${scaTool.nameOfTool}`);
       core.exportVariable('scaTool', scaTool.nameOfTool);
     }
