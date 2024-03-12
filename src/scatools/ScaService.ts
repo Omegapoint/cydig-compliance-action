@@ -16,7 +16,7 @@ export class ScaService {
       return;
     }
 
-    if(sca === "dependabot"){
+    if(sca.toLowerCase() === "dependabot"){
       DependabotService.setDependabotFindings()
     }
   }
