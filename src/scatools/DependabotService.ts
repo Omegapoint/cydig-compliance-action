@@ -11,6 +11,7 @@ export class DependabotService {
             auth: token
         });
         
+        // https://www.npmjs.com/package/octokit#pagination
         const iterator = octokit.paginate.iterator(
             octokit.dependabot.listAlertsForRepo,
             {
