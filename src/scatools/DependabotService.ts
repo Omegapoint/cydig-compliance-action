@@ -3,7 +3,6 @@ import { GitHub } from '@actions/github/lib/utils';
 import * as core from '@actions/core';
 import { Endpoints } from '@octokit/types';
 import { Octokit } from '@octokit/rest';
-import("node-fetch")
 
 export class DependabotService {
     public static async setDependabotFindings(): Promise<void> {
@@ -13,10 +12,7 @@ export class DependabotService {
         // type dependabotAlertType = Endpoints['GET /repos/{owner}/{repo}/dependabot/alerts']['response'];
         // const octokit: InstanceType<typeof GitHub> = github.getOctokit(token);
         const octokit = new Octokit({
-            auth: token,
-            request: {
-                fetch: fetch
-            }
+            auth: token
         });
         
         const iterator = octokit.paginate.iterator(
