@@ -19,7 +19,7 @@ export class DependabotService {
                 owner: owner,
                 repo: repo,
                 per_page: 100,
-                state: "open"
+                // state: "open"
             }
         )
         
