@@ -53,17 +53,17 @@ export class DependabotService {
             console.log(scaNumberOfSeverity4);
             
 
-            core.exportVariable('scaNumberOfSeverity1', scaNumberOfSeverity1);
-            core.exportVariable('scaNumberOfSeverity2', scaNumberOfSeverity2);
-            core.exportVariable('scaNumberOfSeverity3', scaNumberOfSeverity3);
-            core.exportVariable('scaNumberOfSeverity4', scaNumberOfSeverity4);
+            core.exportVariable('SCAnumberOfSeverity1', scaNumberOfSeverity1);
+            core.exportVariable('SCAnumberOfSeverity2', scaNumberOfSeverity2);
+            core.exportVariable('SCAnumberOfSeverity3', scaNumberOfSeverity3);
+            core.exportVariable('SCAnumberOfSeverity4', scaNumberOfSeverity4);
         }
         catch(error){
             core.warning("Could not set Dependabot severities")
-            core.exportVariable('scaNumberOfSeverity1', 0);
-            core.exportVariable('scaNumberOfSeverity2', 0);
-            core.exportVariable('scaNumberOfSeverity3', 0);
-            core.exportVariable('scaNumberOfSeverity4', 0);
+            core.exportVariable('SCAnumberOfSeverity1', 0);
+            core.exportVariable('SCAnumberOfSeverity2', 0);
+            core.exportVariable('SCAnumberOfSeverity3', 0);
+            core.exportVariable('SCAnumberOfSeverity4', 0);
         }
         
     }
