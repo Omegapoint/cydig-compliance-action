@@ -13,9 +13,6 @@ export class ScaService {
         return;
       }
 
-      console.log(`lite test:`);
-      console.log(`test: ${process.env}`);
-      
       if(scaTool.nameOfTool === "dependabot"){
         DependabotService.setDependabotFindings()
       }
