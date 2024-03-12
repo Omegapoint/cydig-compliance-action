@@ -19,7 +19,7 @@ export class DependabotService {
         per_page: 100,
         state: 'open',
       });
-
+      
       let scaNumberOfSeverity1: number = 0;
       let scaNumberOfSeverity2: number = 0;
       let scaNumberOfSeverity3: number = 0;
@@ -44,21 +44,21 @@ export class DependabotService {
         }
       }
 
-      console.log('scaNumberOfSeverityLow: ' + scaNumberOfSeverity1);
-      console.log('scaNumberOfSeverityMedium: ' + scaNumberOfSeverity2);
-      console.log('scaNumberOfSeverityHigh: ' + scaNumberOfSeverity3);
-      console.log('scaNumberOfSeverityCritical: ' + scaNumberOfSeverity4);
+      console.log('SCAnumberOfSeverityLow: ' + scaNumberOfSeverity1);
+      console.log('SCAnumberOfSeverityMedium: ' + scaNumberOfSeverity2);
+      console.log('SCAnumberOfSeverityHigh: ' + scaNumberOfSeverity3);
+      console.log('SCAnumberOfSeverityCritical: ' + scaNumberOfSeverity4);
 
-      core.exportVariable('scaNumberOfSeverity1', scaNumberOfSeverity1);
-      core.exportVariable('scaNumberOfSeverity2', scaNumberOfSeverity2);
-      core.exportVariable('scaNumberOfSeverity3', scaNumberOfSeverity3);
-      core.exportVariable('scaNumberOfSeverity4', scaNumberOfSeverity4);
+      core.exportVariable('SCAnumberOfSeverity1', scaNumberOfSeverity1);
+      core.exportVariable('SCAnumberOfSeverity2', scaNumberOfSeverity2);
+      core.exportVariable('SCAnumberOfSeverity3', scaNumberOfSeverity3);
+      core.exportVariable('SCAnumberOfSeverity4', scaNumberOfSeverity4);
     } catch (error) {
-      core.warning('Could not set Dependabot severities');
-      core.exportVariable('scaNumberOfSeverity1', 0);
-      core.exportVariable('scaNumberOfSeverity2', 0);
-      core.exportVariable('scaNumberOfSeverity3', 0);
-      core.exportVariable('scaNumberOfSeverity4', 0);
+      core.warning("Could not set Dependabot severities")
+      core.exportVariable('SCAnumberOfSeverity1', 0);
+      core.exportVariable('SCAnumberOfSeverity2', 0);
+      core.exportVariable('SCAnumberOfSeverity3', 0);
+      core.exportVariable('SCAnumberOfSeverity4', 0);
     }
   }
 }
