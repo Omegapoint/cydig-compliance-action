@@ -3,7 +3,7 @@ import { GitHub } from '@actions/github/lib/utils';
 import * as core from '@actions/core';
 import { Endpoints } from '@octokit/types';
 import { Octokit } from '@octokit/rest';
-import fetch from 'node-fetch';
+import("node-fetch")
 
 export class DependabotService {
     public static async setDependabotFindings(): Promise<void> {
