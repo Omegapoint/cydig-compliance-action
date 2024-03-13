@@ -1,6 +1,7 @@
 import * as core from '@actions/core';
 import * as github from '@actions/github';
 import { Octokit } from '@octokit/rest';
+import { OctokitResponse } from '@octokit/types';
 
 export class DependabotService {
   public static async setDependabotFindings(): Promise<void> {
@@ -8,18 +9,21 @@ export class DependabotService {
       const { owner, repo }: { owner: string; repo: string } = github.context.repo;
       const token: string = core.getInput('PAT-token');
 
-      const octokit = new Octokit({
+      const octokit: Octokit = new Octokit({
         auth: token,
       });
 
       // https://www.npmjs.com/package/octokit#pagination
-      const iterator = octokit.paginate.iterator(octokit.dependabot.listAlertsForRepo, {
-        owner: owner,
-        repo: repo,
-        per_page: 100,
-        state: 'open',
-      });
-      
+      const iterator: AsyncIterableIterator<OctokitResponse<any>> = octokit.paginate.iterator(
+        octokit.dependabot.listAlertsForRepo,
+        {
+          owner: owner,
+          repo: repo,
+          per_page: 100,
+          state: 'open',
+        }
+      );
+
       let scaNumberOfSeverity1: number = 0;
       let scaNumberOfSeverity2: number = 0;
       let scaNumberOfSeverity3: number = 0;
@@ -54,7 +58,7 @@ export class DependabotService {
       core.exportVariable('SCAnumberOfSeverity3', scaNumberOfSeverity3);
       core.exportVariable('SCAnumberOfSeverity4', scaNumberOfSeverity4);
     } catch (error) {
-      core.warning("Could not set Dependabot severities")
+      core.warning('Could not set Dependabot severities');
       core.exportVariable('SCAnumberOfSeverity1', 0);
       core.exportVariable('SCAnumberOfSeverity2', 0);
       core.exportVariable('SCAnumberOfSeverity3', 0);
