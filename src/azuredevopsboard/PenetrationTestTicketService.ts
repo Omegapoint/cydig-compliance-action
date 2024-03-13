@@ -1,5 +1,9 @@
 import { WebApi } from 'azure-devops-node-api';
-import { WorkItem, WorkItemQueryResult, WorkItemReference } from 'azure-devops-node-api/interfaces/WorkItemTrackingInterfaces';
+import {
+  WorkItem,
+  WorkItemQueryResult,
+  WorkItemReference,
+} from 'azure-devops-node-api/interfaces/WorkItemTrackingInterfaces';
 import { IWorkItemTrackingApi } from 'azure-devops-node-api/WorkItemTrackingApi';
 
 export class PenetrationTestTicketService {
