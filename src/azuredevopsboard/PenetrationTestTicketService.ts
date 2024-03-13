@@ -1,5 +1,5 @@
 import { WebApi } from 'azure-devops-node-api';
-import { WorkItemQueryResult, WorkItemReference } from 'azure-devops-node-api/interfaces/WorkItemTrackingInterfaces';
+import { WorkItem, WorkItemQueryResult, WorkItemReference } from 'azure-devops-node-api/interfaces/WorkItemTrackingInterfaces';
 import { IWorkItemTrackingApi } from 'azure-devops-node-api/WorkItemTrackingApi';
 
 export class PenetrationTestTicketService {
@@ -105,7 +105,7 @@ export class PenetrationTestTicketService {
     let numberOfActiveTickets: number = 0;
 
     for (const workItem of workItems) {
-      const workItemFetched = await witApi.getWorkItem(workItem.id!);
+      const workItemFetched: WorkItem = await witApi.getWorkItem(workItem.id!);
       const state: string = await workItemFetched.fields!['System.State'];
       if (state === 'Closed' || state === 'Done') {
         numberOfClosedTickets++;

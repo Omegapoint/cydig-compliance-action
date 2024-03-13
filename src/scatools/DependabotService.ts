@@ -1,6 +1,7 @@
 import * as core from '@actions/core';
 import * as github from '@actions/github';
 import { Octokit } from '@octokit/rest';
+import { OctokitResponse } from '@octokit/types';
 
 export class DependabotService {
   public static async setDependabotFindings(): Promise<void> {
@@ -8,12 +9,12 @@ export class DependabotService {
       const { owner, repo }: { owner: string; repo: string } = github.context.repo;
       const token: string = core.getInput('PAT-token');
 
-      const octokit = new Octokit({
+      const octokit: Octokit = new Octokit({
         auth: token,
       });
 
       // https://www.npmjs.com/package/octokit#pagination
-      const iterator = octokit.paginate.iterator(octokit.dependabot.listAlertsForRepo, {
+      const iterator: AsyncIterableIterator<OctokitResponse<any>> = octokit.paginate.iterator(octokit.dependabot.listAlertsForRepo, {
         owner: owner,
         repo: repo,
         per_page: 100,
