@@ -10,7 +10,7 @@ export class SastService {
       sast = process.env.sastTool;
     }
     console.log(`SAST Tool: ${sast}`);
-    core.exportVariable('sastTool', process.env.sastTool);
+    core.exportVariable('sastTool', sast);
 
     if (!sast || sast === '' || sast === 'name-of-tool') {
       core.warning('SAST Tool is not set!');
