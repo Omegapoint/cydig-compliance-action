@@ -3,7 +3,6 @@ import { CodeQLService } from './CodeQLService';
 
 export class SastService {
   public static async getStateOfSastTool(sastTool: { nameOfTool: string }): Promise<void> {
-
     console.log('\n Running SAST control');
     let sast = sastTool.nameOfTool;
     if (process.env.sastTool) {
@@ -18,8 +17,7 @@ export class SastService {
     }
 
     if (sast.toLowerCase() === 'codeql') {
-      CodeQLService.setCodeQLFindings()
+      CodeQLService.setCodeQLFindings();
     }
   }
-
 }
