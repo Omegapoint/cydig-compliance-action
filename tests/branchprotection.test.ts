@@ -66,14 +66,14 @@ describe('BranchProtectionService', () => {
         repos: {
           getBranchProtection: sinon.stub().rejects({
             status: 404,
-            message: 'Forbidden',
+            message: 'Branch not protected',
           }),
         },
       },
     });
 
     await BranchProtectionService.getStateOfBranchProtection();
-    expect(warningStub.called).to.be.true;
+    expect(warningStub.called).to.be.false;
     expect(exportVariableStub.calledWith('numberOfReviewers', 0)).to.be.true;
   });
 });
