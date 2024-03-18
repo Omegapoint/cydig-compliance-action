@@ -34,7 +34,8 @@ export class BranchProtectionService {
       core.exportVariable('numberOfReviewers', numberOfReviewers);
     } catch (error) {
       core.warning('Error getting branch protection!');
-      console.log('Error:', error.message);
+      console.log('ERROR STATUS:', error.status);
+      console.log(error);
       if (error.status === 403) {
         core.exportVariable('numberOfReviewers', 0);
       }
