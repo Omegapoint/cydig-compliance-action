@@ -2,6 +2,7 @@ import * as core from '@actions/core';
 import * as github from '@actions/github';
 import { Octokit } from '@octokit/rest';
 import GITHUB_TOOL_SEVERITY_LEVEL from '../types/GithubToolSeverityLevel';
+import { OctokitResponse } from '@octokit/types';
 
 export class DependabotService {
   public static async setDependabotFindings(): Promise<void> {
@@ -9,17 +10,20 @@ export class DependabotService {
       const { owner, repo }: { owner: string; repo: string } = github.context.repo;
       const token: string = core.getInput('PAT-token');
 
-      const octokit = new Octokit({
+      const octokit: Octokit = new Octokit({
         auth: token,
       });
 
       // https://www.npmjs.com/package/octokit#pagination
-      const iterator = octokit.paginate.iterator(octokit.dependabot.listAlertsForRepo, {
-        owner: owner,
-        repo: repo,
-        per_page: 100,
-        state: 'open',
-      });
+      const iterator: AsyncIterableIterator<OctokitResponse<any>> = octokit.paginate.iterator(
+        octokit.dependabot.listAlertsForRepo,
+        {
+          owner: owner,
+          repo: repo,
+          per_page: 100,
+          state: 'open',
+        }
+      );
 
       let scaNumberOfSeverity1: number = 0;
       let scaNumberOfSeverity2: number = 0;
@@ -45,21 +49,21 @@ export class DependabotService {
         }
       }
 
-      console.log('scaNumberOfSeverityLow: ' + scaNumberOfSeverity1);
-      console.log('scaNumberOfSeverityMedium: ' + scaNumberOfSeverity2);
-      console.log('scaNumberOfSeverityHigh: ' + scaNumberOfSeverity3);
-      console.log('scaNumberOfSeverityCritical: ' + scaNumberOfSeverity4);
+      console.log('SCAnumberOfSeverityLow: ' + scaNumberOfSeverity1);
+      console.log('SCAnumberOfSeverityMedium: ' + scaNumberOfSeverity2);
+      console.log('SCAnumberOfSeverityHigh: ' + scaNumberOfSeverity3);
+      console.log('SCAnumberOfSeverityCritical: ' + scaNumberOfSeverity4);
 
-      core.exportVariable('scaNumberOfSeverity1', scaNumberOfSeverity1);
-      core.exportVariable('scaNumberOfSeverity2', scaNumberOfSeverity2);
-      core.exportVariable('scaNumberOfSeverity3', scaNumberOfSeverity3);
-      core.exportVariable('scaNumberOfSeverity4', scaNumberOfSeverity4);
+      core.exportVariable('SCAnumberOfSeverity1', scaNumberOfSeverity1);
+      core.exportVariable('SCAnumberOfSeverity2', scaNumberOfSeverity2);
+      core.exportVariable('SCAnumberOfSeverity3', scaNumberOfSeverity3);
+      core.exportVariable('SCAnumberOfSeverity4', scaNumberOfSeverity4);
     } catch (error) {
       core.warning('Could not set Dependabot severities');
-      core.exportVariable('scaNumberOfSeverity1', 0);
-      core.exportVariable('scaNumberOfSeverity2', 0);
-      core.exportVariable('scaNumberOfSeverity3', 0);
-      core.exportVariable('scaNumberOfSeverity4', 0);
+      core.exportVariable('SCAnumberOfSeverity1', 0);
+      core.exportVariable('SCAnumberOfSeverity2', 0);
+      core.exportVariable('SCAnumberOfSeverity3', 0);
+      core.exportVariable('SCAnumberOfSeverity4', 0);
     }
   }
 }

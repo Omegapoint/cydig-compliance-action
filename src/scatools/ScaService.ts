@@ -4,7 +4,7 @@ import { DependabotService } from './DependabotService';
 export class ScaService {
   public static async getStateOfScaTool(scaTool: { nameOfTool: string }): Promise<void> {
     console.log('\n Running SCA control');
-    let sca = scaTool.nameOfTool;
+    let sca: string = scaTool.nameOfTool;
     if (process.env.scaTool) {
       sca = process.env.scaTool;
     }
