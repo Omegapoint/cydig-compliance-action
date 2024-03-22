@@ -1,5 +1,6 @@
 import * as core from '@actions/core';
 import * as github from '@actions/github';
+import { RequestError } from '@octokit/request-error';
 import { Octokit } from '@octokit/rest';
 import { OctokitResponse, GetResponseDataTypeFromEndpointMethod } from '@octokit/types';
 
@@ -34,15 +35,13 @@ export class SecretScanningService {
       }
 
       console.log('Number of exposed secrets:', numberOfExposedSecrets);
-
       core.exportVariable('numberOfExposedSecrets', numberOfExposedSecrets);
     } catch (error) {
-      console.log('Error status:', error.status);
-      console.log(error);
-      if (error.status === 404) {
-        core.warning('Secret scanning is disabled or repository is public');
+      if (error instanceof RequestError) {
+        core.warning(error.message);
+        console.log('Error status:', error.status);
       } else {
-        core.warning('Error getting number of exposed secrets');
+        core.warning('Failed to get number of exposed secrets');
       }
       core.exportVariable('numberOfExposedSecrets', 0);
     }
