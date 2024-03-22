@@ -4,7 +4,7 @@ import { CodeQLService } from './CodeQLService';
 export class SastService {
   public static async getStateOfSastTool(sastTool: { nameOfTool: string }): Promise<void> {
     console.log('\n Running SAST control');
-    let sast = sastTool.nameOfTool;
+    let sast: string = sastTool.nameOfTool;
     if (process.env.sastTool) {
       sast = process.env.sastTool;
     }
