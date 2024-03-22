@@ -15,13 +15,16 @@ export class CodeQLService {
       });
 
       // https://www.npmjs.com/package/octokit#pagination
-      const iterator: AsyncIterableIterator<OctokitResponse<any>> = octokit.paginate.iterator(octokit.codeScanning.listAlertsForRepo, {
-        owner: owner,
-        repo: repo,
-        per_page: 100,
-        state: 'open',
-        tool_name: 'CodeQL',
-      });
+      const iterator: AsyncIterableIterator<OctokitResponse<any>> = octokit.paginate.iterator(
+        octokit.codeScanning.listAlertsForRepo,
+        {
+          owner: owner,
+          repo: repo,
+          per_page: 100,
+          state: 'open',
+          tool_name: 'CodeQL',
+        }
+      );
 
       let sastNumberOfSeverity1: number = 0;
       let sastNumberOfSeverity2: number = 0;
