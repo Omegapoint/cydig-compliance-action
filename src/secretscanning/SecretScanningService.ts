@@ -1,11 +1,7 @@
 import * as core from '@actions/core';
 import * as github from '@actions/github';
 import { Octokit } from '@octokit/rest';
-import {
-  OctokitResponse,
-  GetResponseTypeFromEndpointMethod,
-  GetResponseDataTypeFromEndpointMethod,
-} from '@octokit/types';
+import { OctokitResponse, GetResponseDataTypeFromEndpointMethod } from '@octokit/types';
 
 export class SecretScanningService {
   public static async getStateOfExposedSecrets(): Promise<void> {
