@@ -18,6 +18,7 @@ export class SecretScanningService {
         typeof octokit.secretScanning.listAlertsForRepo
       >;
 
+      // https://www.npmjs.com/package/octokit#pagination
       const iterator: AsyncIterableIterator<OctokitResponse<SecretAlertsForRepoResponseDataType>> =
         octokit.paginate.iterator(octokit.secretScanning.listAlertsForRepo, {
           owner: owner,
@@ -31,6 +32,19 @@ export class SecretScanningService {
       for await (const { data: alerts } of iterator) {
         numberOfExposedSecrets += alerts.length;
       }
-    } catch (error) {}
+
+      console.log('Number of exposed secrets:', numberOfExposedSecrets);
+
+      core.exportVariable('numberOfExposedSecrets', numberOfExposedSecrets);
+    } catch (error) {
+      console.log('Error status:', error.status);
+      console.log(error);
+      if (error.status === 404) {
+        core.warning('Secret scanning is disabled or repository is public');
+      } else {
+        core.warning('Error getting number of exposed secrets');
+      }
+      core.exportVariable('numberOfExposedSecrets', 0);
+    }
   }
 }
