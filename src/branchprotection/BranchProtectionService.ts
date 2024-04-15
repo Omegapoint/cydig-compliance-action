@@ -35,12 +35,12 @@ export class BranchProtectionService {
     } catch (error) {
       // Status code '404' means 'Branch not protected'
       if (error.status === 404) {
-        console.log('Branch protection is not enabled for this repository');
+        core.warning('Branch protection is not enabled for this repository');
         core.exportVariable('numberOfReviewers', 0);
       } else {
         core.warning('Error getting branch protection!');
-        console.log('ERROR STATUS:', error.status);
-        console.log(error);
+        core.warning('Error status:', error.status);
+        core.warning(error.message);
       }
     }
   }

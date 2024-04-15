@@ -37,7 +37,7 @@ export class SecretScanningService {
       core.exportVariable('numberOfExposedSecrets', numberOfExposedSecrets);
     } catch (error) {
       core.warning('Failed to get number of exposed secrets');
-      console.log('Error status:', error.status);
+      core.warning('Error status:', error.status);
       core.warning(error.message);
       core.exportVariable('numberOfExposedSecrets', 0);
     }

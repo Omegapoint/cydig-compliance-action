@@ -61,7 +61,9 @@ export class DependabotService {
       core.exportVariable('SCAnumberOfSeverity3', scaNumberOfSeverity3);
       core.exportVariable('SCAnumberOfSeverity4', scaNumberOfSeverity4);
     } catch (error) {
-      core.warning('Could not set Dependabot severities');
+      core.warning('Failed to get Dependabot severities');
+      core.warning('Error status:', error.status);
+      core.warning(error.message);
       core.exportVariable('SCAnumberOfSeverity1', 0);
       core.exportVariable('SCAnumberOfSeverity2', 0);
       core.exportVariable('SCAnumberOfSeverity3', 0);
