@@ -19,8 +19,11 @@ This repository contains a action with compliance controls.
 The compliance controls that are currently available are listed below.
 
 * Number of reviewers on a pull request
+* Number of exposed secrets
 * Date of latest threat modeling
 * Date of latest penetration test
+* Implemented SCA tool
+* Implemented SAST tool
 
 ## Development on already existing or new control.
 
