@@ -65,7 +65,6 @@ export class CodeQLService {
       core.exportVariable('SASTnumberOfSeverity4', sastNumberOfSeverity4);
     } catch (error) {
       core.warning('Failed to get CodeQL severities');
-      core.warning('Error status:', error.status);
       core.warning(error.message);
       core.exportVariable('SASTnumberOfSeverity1', 0);
       core.exportVariable('SASTnumberOfSeverity2', 0);
