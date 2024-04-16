@@ -14,6 +14,6 @@ export class CodeQualityService {
       console.log(`Tool:`, `${codeQualityTool.nameOfTool}`);
       core.exportVariable('codeQualityTool', codeQualityTool.nameOfTool);
     }
-    console.log();
+    console.log('');
   }
 }

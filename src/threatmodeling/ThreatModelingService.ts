@@ -11,6 +11,6 @@ export class ThreatModelingService {
       }
       core.exportVariable('threatModelingDate', threatModeling.date);
     }
-    console.log();
+    console.log('');
   }
 }

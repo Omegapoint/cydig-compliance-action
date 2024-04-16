@@ -47,7 +47,7 @@ export class AzureDevOpsBoardService {
         core.warning('Error getting tickets for Azure DevOps Board!');
         console.log('Error:', error.message);
       }
-      console.log();
+      console.log('');
     }
   }
 }

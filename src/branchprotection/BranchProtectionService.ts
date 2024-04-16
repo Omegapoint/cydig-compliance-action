@@ -43,6 +43,6 @@ export class BranchProtectionService {
         core.warning(error.message);
       }
     }
-    console.log();
+    console.log('');
   }
 }
