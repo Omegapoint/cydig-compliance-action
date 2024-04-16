@@ -17,7 +17,7 @@ export class SastService {
     }
 
     if (sast.toLowerCase() === 'codeql') {
-      CodeQLService.setCodeQLFindings();
+      await CodeQLService.setCodeQLFindings();
     }
   }
 }

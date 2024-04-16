@@ -17,7 +17,7 @@ export class ScaService {
     }
 
     if (sca.toLowerCase() === 'dependabot') {
-      DependabotService.setDependabotFindings();
+      await DependabotService.setDependabotFindings();
     }
   }
 }
