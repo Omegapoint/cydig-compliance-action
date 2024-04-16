@@ -54,10 +54,10 @@ export class CodeQLService {
         }
       }
 
-      console.log('SASTNumberOfSeveritylow: ' + sastNumberOfSeverity1);
-      console.log('SASTNumberOfSeverityMedium: ' + sastNumberOfSeverity2);
-      console.log('SASTNumberOfSeverityHigh: ' + sastNumberOfSeverity3);
-      console.log('SASTNumberOfSeverityCritical: ' + sastNumberOfSeverity4);
+      console.log('Low: ' + sastNumberOfSeverity1);
+      console.log('Medium: ' + sastNumberOfSeverity2);
+      console.log('High: ' + sastNumberOfSeverity3);
+      console.log('Critical: ' + sastNumberOfSeverity4);
 
       core.exportVariable('SASTnumberOfSeverity1', sastNumberOfSeverity1);
       core.exportVariable('SASTnumberOfSeverity2', sastNumberOfSeverity2);

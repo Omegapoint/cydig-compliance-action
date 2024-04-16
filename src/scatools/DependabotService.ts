@@ -51,10 +51,10 @@ export class DependabotService {
         }
       }
 
-      console.log('SCAnumberOfSeverityLow: ' + scaNumberOfSeverity1);
-      console.log('SCAnumberOfSeverityMedium: ' + scaNumberOfSeverity2);
-      console.log('SCAnumberOfSeverityHigh: ' + scaNumberOfSeverity3);
-      console.log('SCAnumberOfSeverityCritical: ' + scaNumberOfSeverity4);
+      console.log('Low: ' + scaNumberOfSeverity1);
+      console.log('Medium: ' + scaNumberOfSeverity2);
+      console.log('High: ' + scaNumberOfSeverity3);
+      console.log('Critical: ' + scaNumberOfSeverity4);
 
       core.exportVariable('SCAnumberOfSeverity1', scaNumberOfSeverity1);
       core.exportVariable('SCAnumberOfSeverity2', scaNumberOfSeverity2);

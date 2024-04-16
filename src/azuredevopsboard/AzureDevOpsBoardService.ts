@@ -9,7 +9,7 @@ export class AzureDevOpsBoardService {
   public static async getStateOfAzureDevOpsBoards(cydigConfig: CyDigConfig): Promise<void> {
     if (cydigConfig.azureDevOps.boards) {
       try {
-        console.log('\n Running Azure DevOps Boards control');
+        console.log('--- Azure DevOps Boards control ---');
 
         const azureDevOpsConnection: AzureDevOpsConnection = new AzureDevOpsConnection(
           cydigConfig.azureDevOps.boards.organizationName,
@@ -47,6 +47,7 @@ export class AzureDevOpsBoardService {
         core.warning('Error getting tickets for Azure DevOps Board!');
         console.log('Error:', error.message);
       }
+      console.log();
     }
   }
 }

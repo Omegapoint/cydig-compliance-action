@@ -5,7 +5,7 @@ import { GitHub } from '@actions/github/lib/utils';
 export class BranchProtectionService {
   public static async getStateOfBranchProtection(): Promise<void> {
     try {
-      console.log('\n Running branch protection control');
+      console.log('--- Branch protection control ---');
       const { owner, repo }: { owner: string; repo: string } = github.context.repo;
       const token: string = core.getInput('PAT-token');
 
@@ -43,5 +43,6 @@ export class BranchProtectionService {
         core.warning(error.message);
       }
     }
+    console.log();
   }
 }

@@ -6,7 +6,7 @@ import { GetResponseDataTypeFromEndpointMethod, OctokitResponse } from '@octokit
 export class SecretScanningService {
   public static async getStateOfExposedSecrets(): Promise<void> {
     try {
-      console.log('\n Running exposed secrets control');
+      console.log('--- Exposed secrets control ---');
       const { owner, repo }: { owner: string; repo: string } = github.context.repo;
       const token: string = core.getInput('PAT-token');
 
@@ -33,7 +33,7 @@ export class SecretScanningService {
         numberOfExposedSecrets += alerts.length;
       }
 
-      console.log('Number of exposed secrets:', numberOfExposedSecrets);
+      console.log('Exposed secrets:', numberOfExposedSecrets);
       core.exportVariable('numberOfExposedSecrets', numberOfExposedSecrets);
     } catch (error) {
       core.warning('Failed to get number of exposed secrets');
@@ -41,5 +41,6 @@ export class SecretScanningService {
       core.warning(error.message);
       core.exportVariable('numberOfExposedSecrets', 0);
     }
+    console.log();
   }
 }

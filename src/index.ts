@@ -15,7 +15,7 @@ import { SecretScanningService } from './secretscanning/SecretScanningService';
  */
 export async function run(): Promise<void> {
   try {
-    console.log('\n Running controls on your repository');
+    console.log('Running compliance controls \n');
     const cydigConfig: CyDigConfig = getContentOfFile(core.getInput('cydigConfigPath'));
 
     await CodeQualityService.getStateOfCodeQualityTool(cydigConfig.codeQualityTool);
