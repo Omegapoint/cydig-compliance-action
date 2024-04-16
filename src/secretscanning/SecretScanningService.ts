@@ -40,6 +40,6 @@ export class SecretScanningService {
       core.warning(error.message);
       core.exportVariable('numberOfExposedSecrets', 0);
     }
-    console.log('\n');
+    console.log();
   }
 }

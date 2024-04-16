@@ -42,6 +42,6 @@ export class BranchProtectionService {
         core.warning(error.message);
       }
     }
-    console.log('\n');
+    console.log();
   }
 }
