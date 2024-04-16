@@ -13,6 +13,6 @@ export class ThreatModelingService {
       console.log('Threat Modeling date was found');
       core.exportVariable('threatModelingDate', threatModeling.date);
     }
-    console.log('\n');
+    console.log();
   }
 }

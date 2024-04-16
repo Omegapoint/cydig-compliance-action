@@ -19,6 +19,6 @@ export class ScaService {
     if (sca.toLowerCase() === 'dependabot') {
       await DependabotService.setDependabotFindings();
     }
-    console.log('\n');
+    console.log();
   }
 }
