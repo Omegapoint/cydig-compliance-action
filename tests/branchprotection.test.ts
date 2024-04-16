@@ -42,7 +42,7 @@ describe('BranchProtectionService', () => {
     expect(warningStub.called).to.be.false;
     expect(exportVariableStub.calledWith('numberOfReviewers', 1)).to.be.true;
   });
-  it('should call warning when admins can byypass branch protection rules', async () => {
+  it('should call warning when admins can bypass branch protection rules', async () => {
     getOctokitStub.returns({
       rest: {
         repos: {
@@ -73,7 +73,7 @@ describe('BranchProtectionService', () => {
     });
 
     await BranchProtectionService.getStateOfBranchProtection();
-    expect(warningStub.called).to.be.false;
+    expect(warningStub.called).to.be.true;
     expect(exportVariableStub.calledWith('numberOfReviewers', 0)).to.be.true;
   });
 });

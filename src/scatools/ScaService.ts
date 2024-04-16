@@ -3,12 +3,12 @@ import { DependabotService } from './DependabotService';
 
 export class ScaService {
   public static async getStateOfScaTool(scaTool: { nameOfTool: string }): Promise<void> {
-    console.log('\n Running SCA control');
+    console.log('--- SCA control ---');
     let sca: string = scaTool.nameOfTool;
     if (process.env.scaTool) {
       sca = process.env.scaTool;
     }
-    console.log(`SCA Tool: ${sca}`);
+    console.log(`Tool:`, `${sca}`);
     core.exportVariable('scaTool', sca);
 
     if (!sca || sca === '' || sca === 'name-of-tool') {
@@ -17,7 +17,8 @@ export class ScaService {
     }
 
     if (sca.toLowerCase() === 'dependabot') {
-      DependabotService.setDependabotFindings();
+      await DependabotService.setDependabotFindings();
     }
+    console.log('\n');
   }
 }

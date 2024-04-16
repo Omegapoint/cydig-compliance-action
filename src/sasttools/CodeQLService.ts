@@ -54,17 +54,19 @@ export class CodeQLService {
         }
       }
 
-      console.log('SASTNumberOfSeveritylow: ' + sastNumberOfSeverity1);
-      console.log('SASTNumberOfSeverityMedium: ' + sastNumberOfSeverity2);
-      console.log('SASTNumberOfSeverityHigh: ' + sastNumberOfSeverity3);
-      console.log('SASTNumberOfSeverityCritical: ' + sastNumberOfSeverity4);
+      console.log('Low: ' + sastNumberOfSeverity1);
+      console.log('Medium: ' + sastNumberOfSeverity2);
+      console.log('High: ' + sastNumberOfSeverity3);
+      console.log('Critical: ' + sastNumberOfSeverity4);
 
       core.exportVariable('SASTnumberOfSeverity1', sastNumberOfSeverity1);
       core.exportVariable('SASTnumberOfSeverity2', sastNumberOfSeverity2);
       core.exportVariable('SASTnumberOfSeverity3', sastNumberOfSeverity3);
       core.exportVariable('SASTnumberOfSeverity4', sastNumberOfSeverity4);
     } catch (error) {
-      core.warning('Could not set CodeQL severities');
+      core.warning('Failed to get CodeQL severities');
+      core.warning('Error status:', error.status);
+      core.warning(error.message);
       core.exportVariable('SASTnumberOfSeverity1', 0);
       core.exportVariable('SASTnumberOfSeverity2', 0);
       core.exportVariable('SASTnumberOfSeverity3', 0);

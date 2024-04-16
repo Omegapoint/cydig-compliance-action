@@ -8,18 +8,20 @@ import { AzureDevOpsBoardService } from './azuredevopsboard/AzureDevOpsBoardServ
 import { CodeQualityService } from './codequalitytools/CodeQualityService';
 import { SastService } from './sasttools/SastService';
 import { ScaService } from './scatools/ScaService';
+import { SecretScanningService } from './secretscanning/SecretScanningService';
 /**
  * The main function for the action.
  * @returns {Promise<void>} Resolves when the action is complete.
  */
 export async function run(): Promise<void> {
   try {
-    console.log('\n Running controls on your repository');
+    console.log('Running compliance controls \n');
     const cydigConfig: CyDigConfig = getContentOfFile(core.getInput('cydigConfigPath'));
 
     await CodeQualityService.getStateOfCodeQualityTool(cydigConfig.codeQualityTool);
     await SastService.getStateOfSastTool(cydigConfig.sastTool);
     await ScaService.getStateOfScaTool(cydigConfig.scaTool);
+    await SecretScanningService.getStateOfExposedSecrets();
 
     await BranchProtectionService.getStateOfBranchProtection();
 

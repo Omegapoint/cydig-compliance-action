@@ -5,7 +5,7 @@ import { GitHub } from '@actions/github/lib/utils';
 export class BranchProtectionService {
   public static async getStateOfBranchProtection(): Promise<void> {
     try {
-      console.log('\n Running branch protection control');
+      console.log('--- Branch protection control ---');
       const { owner, repo }: { owner: string; repo: string } = github.context.repo;
       const token: string = core.getInput('PAT-token');
 
@@ -35,13 +35,14 @@ export class BranchProtectionService {
     } catch (error) {
       // Status code '404' means 'Branch not protected'
       if (error.status === 404) {
-        console.log('Branch protection is not enabled for this repository');
+        core.warning('Branch protection is not enabled for this repository');
         core.exportVariable('numberOfReviewers', 0);
       } else {
         core.warning('Error getting branch protection!');
-        console.log('ERROR STATUS:', error.status);
-        console.log(error);
+        core.warning('Error status:', error.status);
+        core.warning(error.message);
       }
     }
+    console.log('\n');
   }
 }
