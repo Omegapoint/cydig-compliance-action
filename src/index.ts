@@ -9,7 +9,7 @@ import { CodeQualityService } from './codequalitytools/CodeQualityService';
 import { SastService } from './sasttools/SastService';
 import { ScaService } from './scatools/ScaService';
 import { SecretScanningService } from './secretscanning/SecretScanningService';
-import { IdentitiesInRepoService } from './identitiesInRepo/identitiesInRepoService'
+import { IdentitiesInRepoService } from './identitiesInRepo/identitiesInRepoService';
 /**
  * The main function for the action.
  * @returns {Promise<void>} Resolves when the action is complete.
