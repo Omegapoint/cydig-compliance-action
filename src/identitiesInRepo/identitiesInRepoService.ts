@@ -24,6 +24,7 @@ export class IdentitiesInRepoService {
         for (const user of page) {
           console.log('---');
           console.log(user.type);
+          console.log(user);
         }
       }
     } catch (error) {
