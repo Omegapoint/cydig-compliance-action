@@ -1,6 +1,7 @@
 import * as core from '@actions/core';
 import * as github from '@actions/github';
 import { Octokit } from '@octokit/rest';
+import {OctokitResponse} from '@octokit/types';
 
 export class IdentitiesInRepoService {
   public static async setIdentitiesInRepoFindings(): Promise<void> {
@@ -12,9 +13,9 @@ export class IdentitiesInRepoService {
       const octokit: Octokit = new Octokit({
         auth: token,
       });
-
+      
       // https://www.npmjs.com/package/octokit#pagination
-      const iterator =
+      const iterator: any =
         octokit.paginate.iterator(octokit.repos.listContributors, {
           owner: owner,
           repo: repo,
