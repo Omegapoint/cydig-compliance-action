@@ -20,12 +20,28 @@ export class IdentitiesInRepoService {
         per_page: 100,
       });
 
+      let numberOfAdmins = 0;
+      let numberOfWriters = 0;
+      let numberOfReaders = 0;
+
       for await (const { data: page } of iterator) {
         for (const user of page) {
-          console.log('---');
-          console.log(user);
+          if (user.permissions!.admin) {
+            numberOfAdmins++;
+          } else if (user.permissions!.maintain!) {
+            numberOfWriters++;
+          } else if (user.permissions!.push!) {
+            numberOfWriters++;
+          } else if (user.permissions!.triage!) {
+            numberOfReaders++;
+          } else if (user.permissions!.pull!) {
+            numberOfReaders++;
+          }
         }
       }
+      console.log('numberOfAdmins: ' + numberOfAdmins);
+      console.log('numberOfWriters: ' + numberOfWriters);
+      console.log('numberOfReaders: ' + numberOfReaders);
     } catch (error) {
       core.warning('Failed to fetch identities for repo');
       core.warning(error.message);
