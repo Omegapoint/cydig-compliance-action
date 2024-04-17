@@ -14,7 +14,7 @@ export class IdentitiesInRepoService {
       });
 
       // https://www.npmjs.com/package/octokit#pagination
-      const iterator: any = octokit.paginate.iterator(octokit.repos.listContributors, {
+      const iterator: any = octokit.paginate.iterator(octokit.repos.listCollaborators, {
         owner: owner,
         repo: repo,
         per_page: 100,
@@ -23,7 +23,6 @@ export class IdentitiesInRepoService {
       for await (const { data: page } of iterator) {
         for (const user of page) {
           console.log('---');
-          console.log(user.type);
           console.log(user);
         }
       }
