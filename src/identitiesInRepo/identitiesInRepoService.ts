@@ -18,7 +18,7 @@ export class IdentitiesInRepoService {
         owner: owner,
         repo: repo,
         per_page: 100,
-        affiliation: 'direct' //Look over this
+        affiliation: 'direct', //Look over this
       });
 
       let numberOfAdmins: number = 0;
