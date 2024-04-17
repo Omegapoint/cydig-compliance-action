@@ -20,9 +20,9 @@ export class IdentitiesInRepoService {
         per_page: 100,
       });
 
-      let numberOfAdmins = 0;
-      let numberOfWriters = 0;
-      let numberOfReaders = 0;
+      let numberOfAdmins: number = 0;
+      let numberOfWriters: number = 0;
+      let numberOfReaders: number = 0;
 
       for await (const { data: page } of iterator) {
         for (const user of page) {
