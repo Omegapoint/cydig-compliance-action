@@ -9,6 +9,7 @@ import { CodeQualityService } from './codequalitytools/CodeQualityService';
 import { SastService } from './sasttools/SastService';
 import { ScaService } from './scatools/ScaService';
 import { SecretScanningService } from './secretscanning/SecretScanningService';
+import { IdentitiesInRepoService } from './identitiesInRepo/identitiesInRepoService'
 /**
  * The main function for the action.
  * @returns {Promise<void>} Resolves when the action is complete.
@@ -24,6 +25,7 @@ export async function run(): Promise<void> {
     await SecretScanningService.getStateOfExposedSecrets();
 
     await BranchProtectionService.getStateOfBranchProtection();
+    await IdentitiesInRepoService.setIdentitiesInRepoFindings();
 
     await PentestService.getStateOfPentest(cydigConfig.pentest);
     await ThreatModelingService.getStateOfThreatModeling(cydigConfig.threatModeling);
