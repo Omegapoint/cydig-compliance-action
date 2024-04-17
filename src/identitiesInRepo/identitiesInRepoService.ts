@@ -27,7 +27,6 @@ export class IdentitiesInRepoService {
 
       for await (const { data: page } of iterator) {
         for (const user of page) {
-          console.log(user);
           if (user.permissions!.admin) {
             numberOfAdmins++;
           } else if (user.permissions!.maintain!) {
