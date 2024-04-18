@@ -61,12 +61,16 @@ export class DependabotService {
       core.exportVariable('SCAnumberOfSeverity3', scaNumberOfSeverity3);
       core.exportVariable('SCAnumberOfSeverity4', scaNumberOfSeverity4);
     } catch (error) {
-      core.info(error.status);
-
       core.info('Failed to get Dependabot severities');
-      core.warning(error.message, {
-        title: 'SCA tool control failed',
-      });
+      if (error.status === 401 || error.status === 403 || error.status === 404) {
+        core.warning(error.message, {
+          title: 'SCA tool control failed',
+        });
+      } else {
+        core.notice(error.message, {
+          title: 'SCA tool control failed',
+        });
+      }
       core.exportVariable('SCAnumberOfSeverity1', 0);
       core.exportVariable('SCAnumberOfSeverity2', 0);
       core.exportVariable('SCAnumberOfSeverity3', 0);

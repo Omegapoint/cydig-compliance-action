@@ -11,16 +11,11 @@ export class BranchProtectionService {
 
       const octokit: InstanceType<typeof GitHub> = github.getOctokit(token);
       type branchProtectionRepsponse = Endpoints['GET /repos/{owner}/{repo}/branches/{branch}/protection']['response'];
-      const response: branchProtectionRepsponse | any = await octokit.rest.repos
-        .getBranchProtection({
-          owner,
-          repo,
-          branch: 'main',
-        })
-        .catch((x: RequestError) => {
-          core.info(JSON.stringify(x));
-          return {};
-        });
+      const response: branchProtectionRepsponse | any = await octokit.rest.repos.getBranchProtection({
+        owner,
+        repo,
+        branch: 'main',
+      });
 
       if (response.data.enforce_admins?.enabled === false) {
         core.warning('Branch protection can be overridden by admins and is therefore counted as not enabled');
@@ -44,9 +39,6 @@ export class BranchProtectionService {
           title: 'Branch protection control failed',
         });
       } else if (error.status === 404) {
-        core.info(error.status);
-        core.info(error.errors);
-
         // Status code '404' means 'Branch not protected'
         core.notice('Branch protection is not enabled for this repository or credentials lack permissions', {
           title: 'Branch protection control',
