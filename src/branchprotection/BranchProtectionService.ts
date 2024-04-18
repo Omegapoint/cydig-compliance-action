@@ -1,6 +1,6 @@
 import * as core from '@actions/core';
 import * as github from '@actions/github';
-import { Endpoints } from '@octokit/types';
+import { Endpoints, RequestError } from '@octokit/types';
 import { GitHub } from '@actions/github/lib/utils';
 export class BranchProtectionService {
   public static async getStateOfBranchProtection(): Promise<void> {
@@ -11,11 +11,16 @@ export class BranchProtectionService {
 
       const octokit: InstanceType<typeof GitHub> = github.getOctokit(token);
       type branchProtectionRepsponse = Endpoints['GET /repos/{owner}/{repo}/branches/{branch}/protection']['response'];
-      const response: branchProtectionRepsponse = await octokit.rest.repos.getBranchProtection({
-        owner,
-        repo,
-        branch: 'main',
-      });
+      const response: branchProtectionRepsponse | any = await octokit.rest.repos
+        .getBranchProtection({
+          owner,
+          repo,
+          branch: 'main',
+        })
+        .catch((x: RequestError) => {
+          core.info(JSON.stringify(x));
+          return {};
+        });
 
       if (response.data.enforce_admins?.enabled === false) {
         core.warning('Branch protection can be overridden by admins and is therefore counted as not enabled');

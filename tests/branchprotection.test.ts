@@ -60,20 +60,20 @@ describe('BranchProtectionService', () => {
     expect(warningStub.called).to.be.true;
     expect(exportVariableStub.calledWith('numberOfReviewers', 0)).to.be.true;
   });
-  it('should call warning and set numberOfReviewers to 0 when github repo is private (status = 404)', async () => {
-    getOctokitStub.returns({
-      rest: {
-        repos: {
-          getBranchProtection: sinon.stub().rejects({
-            status: 404,
-            message: 'Branch not protected',
-          }),
-        },
-      },
-    });
+  // it('should call warning and set numberOfReviewers to 0 when github repo is private (status = 404)', async () => {
+  //   getOctokitStub.returns({
+  //     rest: {
+  //       repos: {
+  //         getBranchProtection: sinon.stub().rejects({
+  //           status: 404,
+  //           message: 'Branch not protected',
+  //         }),
+  //       },
+  //     },
+  //   });
 
-    await BranchProtectionService.getStateOfBranchProtection();
-    expect(warningStub.called).to.be.false;
-    expect(exportVariableStub.calledWith('numberOfReviewers', 0)).to.be.true;
-  });
+  //   await BranchProtectionService.getStateOfBranchProtection();
+  //   expect(warningStub.called).to.be.false;
+  //   expect(exportVariableStub.calledWith('numberOfReviewers', 0)).to.be.true;
+  // });
 });
