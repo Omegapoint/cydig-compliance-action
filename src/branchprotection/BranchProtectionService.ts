@@ -33,13 +33,15 @@ export class BranchProtectionService {
 
       core.exportVariable('numberOfReviewers', numberOfReviewers);
     } catch (error) {
-      // Status code '404' means 'Branch not protected'
-      if (error.status === 404) {
-        core.warning('Branch protection is not enabled for this repository');
+      core.info('Failed to get branch protection');
+      if (error.status === 401) {
+        core.warning(error.message);
+      } else if (error.status === 404) {
+        // Status code '404' means 'Branch not protected'
+        core.notice('Branch protection is not enabled for this repository');
         core.exportVariable('numberOfReviewers', 0);
       } else {
-        core.warning('Error getting branch protection!');
-        core.warning(error.message);
+        core.info(error.message);
       }
     }
     console.log();

@@ -36,11 +36,12 @@ export class SecretScanningService {
       console.log('Exposed secrets:', numberOfExposedSecrets);
       core.exportVariable('numberOfExposedSecrets', numberOfExposedSecrets);
     } catch (error) {
-      if (error.status === 401) {
-        core.warning(error.message);
-      }
       core.notice('Failed to get number of exposed secrets');
-      core.info(error.message);
+      if (error.status === 401 || error.status === 404) {
+        core.warning(error.message);
+      } else {
+        core.info(error.message);
+      }
     }
     console.log();
   }
