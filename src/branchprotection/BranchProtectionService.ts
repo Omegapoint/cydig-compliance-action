@@ -39,6 +39,8 @@ export class BranchProtectionService {
           title: 'Branch protection control failed',
         });
       } else if (error.status === 404) {
+        core.info(error.status);
+
         // Status code '404' means 'Branch not protected'
         core.notice('Branch protection is not enabled for this repository', {
           title: 'Branch protection control',
