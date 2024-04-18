@@ -36,13 +36,14 @@ export class SecretScanningService {
       console.log('Exposed secrets:', numberOfExposedSecrets);
       core.exportVariable('numberOfExposedSecrets', numberOfExposedSecrets);
     } catch (error) {
-      core.info('Failed to get number of exposed secrets');
       if (error.status === 401 || error.status === 404) {
         core.warning(error.message, {
           title: 'Number of exposed secrets control failed',
         });
       } else {
-        core.info(error.message);
+        core.notice(error.message, {
+          title: 'Number of exposed secrets control failed',
+        });
       }
     }
     console.log();

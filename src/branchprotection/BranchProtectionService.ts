@@ -33,17 +33,20 @@ export class BranchProtectionService {
 
       core.exportVariable('numberOfReviewers', numberOfReviewers);
     } catch (error) {
-      core.info('Failed to get branch protection');
       if (error.status === 401) {
         core.warning(error.message, {
           title: 'Branch protection control failed',
         });
       } else if (error.status === 404) {
         // Status code '404' means 'Branch not protected'
-        core.notice('Branch protection is not enabled for this repository');
+        core.notice('Branch protection is not enabled for this repository', {
+          title: 'Branch protection control failed',
+        });
         core.exportVariable('numberOfReviewers', 0);
       } else {
-        core.info(error.message);
+        core.notice(error.message, {
+          title: 'Branch protection control failed',
+        });
       }
     }
     console.log();
