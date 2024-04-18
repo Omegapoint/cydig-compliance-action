@@ -38,8 +38,12 @@ export class SecretScanningService {
     } catch (error) {
       core.info(error.status);
       core.info('Failed to get number of exposed secrets');
-      if (error.status === 401 || error.status === 404) {
+      if (error.status === 401) {
         core.warning(error.message, {
+          title: 'Number of exposed secrets control failed',
+        });
+      } else if (error.status === 404) {
+        core.warning('Secret scanning is not enabled for this repository or credentials lack permissions', {
           title: 'Number of exposed secrets control failed',
         });
       } else {
