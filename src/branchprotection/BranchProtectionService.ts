@@ -33,6 +33,7 @@ export class BranchProtectionService {
 
       core.exportVariable('numberOfReviewers', numberOfReviewers);
     } catch (error) {
+      core.info('Failed to get branch protection');
       if (error.status === 401) {
         core.warning(error.message, {
           title: 'Branch protection control failed',

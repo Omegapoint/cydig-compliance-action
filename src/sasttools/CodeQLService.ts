@@ -64,8 +64,10 @@ export class CodeQLService {
       core.exportVariable('SASTnumberOfSeverity3', sastNumberOfSeverity3);
       core.exportVariable('SASTnumberOfSeverity4', sastNumberOfSeverity4);
     } catch (error) {
-      core.warning('Failed to get CodeQL severities');
-      core.warning(error.message);
+      core.info('Failed to get CodeQL severities');
+      core.warning(error.message, {
+        title: 'SAST tool control failed',
+      });
       core.exportVariable('SASTnumberOfSeverity1', 0);
       core.exportVariable('SASTnumberOfSeverity2', 0);
       core.exportVariable('SASTnumberOfSeverity3', 0);
