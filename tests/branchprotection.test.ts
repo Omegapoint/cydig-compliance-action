@@ -73,7 +73,7 @@ describe('BranchProtectionService', () => {
     });
 
     await BranchProtectionService.getStateOfBranchProtection();
-    expect(warningStub.called).to.be.true;
+    expect(warningStub.called).to.be.false;
     expect(exportVariableStub.calledWith('numberOfReviewers', 0)).to.be.true;
   });
 });
