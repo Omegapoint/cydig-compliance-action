@@ -49,6 +49,9 @@ export class IdentitiesInRepoService {
       console.log('numberOfAdmins: ' + numberOfAdmins);
       console.log('numberOfWriters: ' + numberOfWriters);
       console.log('numberOfReaders: ' + numberOfReaders);
+      core.exportVariable('numberOfCodeAdmins', numberOfAdmins);
+      core.exportVariable('numberOfCodeWriters', numberOfWriters);
+      core.exportVariable('numberOfCodeReaders', numberOfReaders);
     } catch (error) {
       core.warning('Failed to fetch identities for repo');
       core.warning(error.message);
