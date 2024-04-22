@@ -67,7 +67,7 @@ export class CodeQLService {
       core.info('Failed to get CodeQL severities');
       if (error.status === 401 || error.status === 403 || error.status === 404) {
         // Removes link to REST API endpoint
-        const errorMessage = error.message.split('.')[0];
+        const errorMessage: string = error.message.split('.')[0];
         core.warning(errorMessage, {
           title: 'SAST tool control failed',
         });
