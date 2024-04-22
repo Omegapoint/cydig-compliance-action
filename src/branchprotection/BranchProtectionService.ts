@@ -35,12 +35,13 @@ export class BranchProtectionService {
     } catch (error) {
       if (error.status === 401) {
         core.info('Failed to get branch protection');
-        core.warning(error.message, {
+        // Removes link to REST API endpoint
+        const errorMessage = error.message.split('.')[0];
+        core.warning(errorMessage, {
           title: 'Branch protection control failed',
         });
       } else if (error.status === 404) {
         if (error.message === 'Branch not protected') {
-          // Status code '404' means 'Branch not protected'
           core.notice(error.message, {
             title: 'Branch protection control',
           });
