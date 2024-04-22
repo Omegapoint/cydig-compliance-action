@@ -33,8 +33,8 @@ export class BranchProtectionService {
 
       core.exportVariable('numberOfReviewers', numberOfReviewers);
     } catch (error) {
-      core.info('Failed to get branch protection');
       if (error.status === 401) {
+        core.info('Failed to get branch protection');
         core.warning(error.message, {
           title: 'Branch protection control failed',
         });
@@ -46,11 +46,13 @@ export class BranchProtectionService {
           });
           core.exportVariable('numberOfReviewers', 0);
         } else {
+          core.info('Failed to get branch protection');
           core.warning('Credentials probably lack necessary permissions', {
             title: 'Branch protection control failed',
           });
         }
       } else {
+        core.info('Failed to get branch protection');
         core.notice(error.message, {
           title: 'Branch protection control failed',
         });
