@@ -17,8 +17,6 @@ export class BranchProtectionService {
         branch: 'main',
       });
 
-      console.log(response);
-
       if (response.data.enforce_admins?.enabled === false) {
         core.warning('Branch protection can be overridden by admins and is therefore counted as not enabled');
       }
@@ -41,6 +39,7 @@ export class BranchProtectionService {
           title: 'Branch protection control failed',
         });
       } else if (error.status === 404) {
+        core.info(error);
         // Status code '404' means 'Branch not protected'
         core.notice('Branch protection is not enabled for this repository or credentials lack permissions', {
           title: 'Branch protection control',
