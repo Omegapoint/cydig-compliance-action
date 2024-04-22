@@ -39,12 +39,17 @@ export class BranchProtectionService {
           title: 'Branch protection control failed',
         });
       } else if (error.status === 404) {
-        console.log(error);
-        // Status code '404' means 'Branch not protected'
-        core.notice('Branch protection is not enabled for this repository or credentials lack permissions', {
-          title: 'Branch protection control',
-        });
-        core.exportVariable('numberOfReviewers', 0);
+        if (error.message === 'Branch not protected') {
+          // Status code '404' means 'Branch not protected'
+          core.notice(error.message, {
+            title: 'Branch protection control',
+          });
+          core.exportVariable('numberOfReviewers', 0);
+        } else {
+          core.warning('Credentials probably lack necessary permissions', {
+            title: 'Branch protection control failed',
+          });
+        }
       } else {
         core.notice(error.message, {
           title: 'Branch protection control failed',
