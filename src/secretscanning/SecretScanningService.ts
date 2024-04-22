@@ -42,7 +42,7 @@ export class SecretScanningService {
           title: 'Number of exposed secrets control failed',
         });
       } else if (error.status === 404) {
-        if (error.message.splt('.')[0] === 'Secret scanning is disabled on this repository') {
+        if (error.message.split('.')[0] === 'Secret scanning is disabled on this repository') {
           core.warning(error.message, {
             title: 'Number of exposed secrets control failed',
           });
