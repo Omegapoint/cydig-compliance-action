@@ -1,7 +1,7 @@
 import * as core from '@actions/core';
 import * as github from '@actions/github';
-import { Endpoints } from '@octokit/types';
 import { GitHub } from '@actions/github/lib/utils';
+import { Endpoints } from '@octokit/types';
 export class BranchProtectionService {
   public static async getStateOfBranchProtection(): Promise<void> {
     try {
@@ -33,13 +33,30 @@ export class BranchProtectionService {
 
       core.exportVariable('numberOfReviewers', numberOfReviewers);
     } catch (error) {
-      // Status code '404' means 'Branch not protected'
-      if (error.status === 404) {
-        core.warning('Branch protection is not enabled for this repository');
-        core.exportVariable('numberOfReviewers', 0);
+      if (error.status === 401) {
+        core.info('Failed to get branch protection');
+        // Removes link to REST API endpoint
+        const errorMessage: string = error.message.split('.')[0];
+        core.warning(errorMessage, {
+          title: 'Branch protection control failed',
+        });
+      } else if (error.status === 404) {
+        if (error.message === 'Branch not protected') {
+          core.notice(error.message, {
+            title: 'Branch protection control',
+          });
+          core.exportVariable('numberOfReviewers', 0);
+        } else {
+          core.info('Failed to get branch protection');
+          core.warning('Credentials probably lack necessary permissions', {
+            title: 'Branch protection control failed',
+          });
+        }
       } else {
-        core.warning('Error getting branch protection!');
-        core.warning(error.message);
+        core.info('Failed to get branch protection');
+        core.notice(error.message, {
+          title: 'Branch protection control failed',
+        });
       }
     }
     console.log();

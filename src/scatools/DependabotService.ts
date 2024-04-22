@@ -61,8 +61,18 @@ export class DependabotService {
       core.exportVariable('SCAnumberOfSeverity3', scaNumberOfSeverity3);
       core.exportVariable('SCAnumberOfSeverity4', scaNumberOfSeverity4);
     } catch (error) {
-      core.warning('Failed to get Dependabot severities');
-      core.warning(error.message);
+      core.info('Failed to get Dependabot severities');
+      if (error.status === 401 || error.status === 403 || error.status === 404) {
+        // Removes link to REST API endpoint
+        const errorMessage: string = error.message.split('.')[0];
+        core.warning(errorMessage, {
+          title: 'SCA tool control failed',
+        });
+      } else {
+        core.notice(error.message, {
+          title: 'SCA tool control failed',
+        });
+      }
       core.exportVariable('SCAnumberOfSeverity1', 0);
       core.exportVariable('SCAnumberOfSeverity2', 0);
       core.exportVariable('SCAnumberOfSeverity3', 0);

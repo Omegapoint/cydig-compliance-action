@@ -64,8 +64,18 @@ export class CodeQLService {
       core.exportVariable('SASTnumberOfSeverity3', sastNumberOfSeverity3);
       core.exportVariable('SASTnumberOfSeverity4', sastNumberOfSeverity4);
     } catch (error) {
-      core.warning('Failed to get CodeQL severities');
-      core.warning(error.message);
+      core.info('Failed to get CodeQL severities');
+      if (error.status === 401 || error.status === 403 || error.status === 404) {
+        // Removes link to REST API endpoint
+        const errorMessage: string = error.message.split('.')[0];
+        core.warning(errorMessage, {
+          title: 'SAST tool control failed',
+        });
+      } else {
+        core.notice(error.message, {
+          title: 'SAST tool control failed',
+        });
+      }
       core.exportVariable('SASTnumberOfSeverity1', 0);
       core.exportVariable('SASTnumberOfSeverity2', 0);
       core.exportVariable('SASTnumberOfSeverity3', 0);

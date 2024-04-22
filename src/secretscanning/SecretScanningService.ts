@@ -36,9 +36,30 @@ export class SecretScanningService {
       console.log('Exposed secrets:', numberOfExposedSecrets);
       core.exportVariable('numberOfExposedSecrets', numberOfExposedSecrets);
     } catch (error) {
-      core.warning('Failed to get number of exposed secrets');
-      core.warning(error.message);
-      core.exportVariable('numberOfExposedSecrets', 0);
+      core.info('Failed to get number of exposed secrets');
+      if (error.status === 401) {
+        // Removes link to REST API endpoint
+        const errorMessage: string = error.message.split('.')[0];
+        core.warning(errorMessage, {
+          title: 'Number of exposed secrets control failed',
+        });
+      } else if (error.status === 404) {
+        // Removes link to REST API endpoint
+        const errorMessage: string = error.message.split('.')[0];
+        if (errorMessage === 'Secret scanning is disabled on this repository') {
+          core.warning(errorMessage, {
+            title: 'Number of exposed secrets control failed',
+          });
+        } else {
+          core.warning('Credentials probably lack necessary permissions', {
+            title: 'Number of exposed secrets control failed',
+          });
+        }
+      } else {
+        core.notice(error.message, {
+          title: 'Number of exposed secrets control failed',
+        });
+      }
     }
     console.log();
   }
