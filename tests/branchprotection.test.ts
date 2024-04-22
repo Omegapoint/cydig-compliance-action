@@ -6,14 +6,20 @@ import { BranchProtectionService } from '../src/branchprotection/BranchProtectio
 describe('BranchProtectionService', () => {
   let sandbox: SinonSandbox;
   let warningStub: SinonStub;
+  let noticeStub: SinonStub;
+  let infoStub: SinonStub;
   let exportVariableStub: SinonStub;
   let getOctokitStub: SinonStub;
+  let logStub: SinonStub;
 
   beforeEach(() => {
     sandbox = sinon.createSandbox();
     warningStub = sandbox.stub(core, 'warning');
+    noticeStub = sandbox.stub(core, 'notice');
+    infoStub = sandbox.stub(core, 'info');
     exportVariableStub = sandbox.stub(core, 'exportVariable');
     getOctokitStub = sandbox.stub(github, 'getOctokit');
+    logStub = sandbox.stub(console, 'log');
     sandbox.stub(github.context, 'repo').value({
       owner: 'owner',
       repo: 'repo',
@@ -60,7 +66,7 @@ describe('BranchProtectionService', () => {
     expect(warningStub.called).to.be.true;
     expect(exportVariableStub.calledWith('numberOfReviewers', 0)).to.be.true;
   });
-  it('should call warning and set numberOfReviewers to 0 when github repo is private (status = 404)', async () => {
+  it('should call notice and set numberOfReviewers to 0 when branch protection is not enabled (status = 404)', async () => {
     getOctokitStub.returns({
       rest: {
         repos: {
@@ -73,7 +79,23 @@ describe('BranchProtectionService', () => {
     });
 
     await BranchProtectionService.getStateOfBranchProtection();
-    expect(warningStub.called).to.be.false;
+    expect(noticeStub.called).to.be.true;
     expect(exportVariableStub.calledWith('numberOfReviewers', 0)).to.be.true;
+  });
+  it('should call warning when branch protection is enabled but receives 404 (status = 404)', async () => {
+    getOctokitStub.returns({
+      rest: {
+        repos: {
+          getBranchProtection: sinon.stub().rejects({
+            status: 404,
+            message: 'Not Found',
+          }),
+        },
+      },
+    });
+
+    await BranchProtectionService.getStateOfBranchProtection();
+    expect(warningStub.called).to.be.true;
+    expect(exportVariableStub.called).to.be.false;
   });
 });
