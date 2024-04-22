@@ -1,7 +1,7 @@
 import * as core from '@actions/core';
 import * as github from '@actions/github';
-import { Endpoints, RequestError } from '@octokit/types';
 import { GitHub } from '@actions/github/lib/utils';
+import { Endpoints } from '@octokit/types';
 export class BranchProtectionService {
   public static async getStateOfBranchProtection(): Promise<void> {
     try {
@@ -11,7 +11,7 @@ export class BranchProtectionService {
 
       const octokit: InstanceType<typeof GitHub> = github.getOctokit(token);
       type branchProtectionRepsponse = Endpoints['GET /repos/{owner}/{repo}/branches/{branch}/protection']['response'];
-      const response: branchProtectionRepsponse | any = await octokit.rest.repos.getBranchProtection({
+      const response: branchProtectionRepsponse = await octokit.rest.repos.getBranchProtection({
         owner,
         repo,
         branch: 'main',
