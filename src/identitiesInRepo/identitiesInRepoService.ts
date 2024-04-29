@@ -53,8 +53,17 @@ export class IdentitiesInRepoService {
       core.exportVariable('numberOfCodeWriters', numberOfWriters);
       core.exportVariable('numberOfCodeReaders', numberOfReaders);
     } catch (error) {
-      core.warning('Failed to fetch identities for repo');
-      core.warning(error.message);
+      core.info('Failed to fetch identities for repo');
+      if (error.status === 401 || error.status === 403) {
+        // Removes link to REST API endpoint
+        const errorMessage: string = error.message.split('.')[0];
+        core.warning(errorMessage, {
+          title: 'Failed to fetch identities for repo',
+        });
+      }
+      else {
+        core.info(error.message);
+      }
     }
     console.log();
   }
