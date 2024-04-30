@@ -1,6 +1,6 @@
 import * as core from '@actions/core';
-import { CodeQLService } from './CodeQLService';
 import { Octokit } from '@octokit/rest';
+import { CodeQLService } from './CodeQLService';
 
 export class SastService {
   public static async getStateOfSastTool(

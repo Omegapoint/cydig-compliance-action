@@ -1,16 +1,16 @@
+import { getInput, setFailed } from '@actions/core';
+import { context } from '@actions/github';
+import { Octokit } from '@octokit/rest';
+import { AzureDevOpsBoardService } from './azuredevopsboard/AzureDevOpsBoardService';
 import { BranchProtectionService } from './branchprotection/BranchProtectionService';
-import { CyDigConfig } from './types/CyDigConfig';
+import { CodeQualityService } from './codequalitytools/CodeQualityService';
 import { getContentOfFile } from './helpfunctions/JsonService';
 import { PentestService } from './pentest/PentestService';
-import { ThreatModelingService } from './threatmodeling/ThreatModelingService';
-import { AzureDevOpsBoardService } from './azuredevopsboard/AzureDevOpsBoardService';
-import { CodeQualityService } from './codequalitytools/CodeQualityService';
 import { SastService } from './sasttools/SastService';
 import { ScaService } from './scatools/ScaService';
 import { SecretScanningService } from './secretscanning/SecretScanningService';
-import { context } from '@actions/github';
-import { getInput, setFailed } from '@actions/core';
-import { Octokit } from '@octokit/rest';
+import { ThreatModelingService } from './threatmodeling/ThreatModelingService';
+import { CyDigConfig } from './types/CyDigConfig';
 /**
  * The main function for the action.
  * @returns {Promise<void>} Resolves when the action is complete.

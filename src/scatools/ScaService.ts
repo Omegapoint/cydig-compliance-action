@@ -1,6 +1,6 @@
 import * as core from '@actions/core';
-import { DependabotService } from './DependabotService';
 import { Octokit } from '@octokit/rest';
+import { DependabotService } from './DependabotService';
 
 export class ScaService {
   public static async getStateOfScaTool(

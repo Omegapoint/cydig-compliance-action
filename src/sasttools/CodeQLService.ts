@@ -1,8 +1,6 @@
 import * as core from '@actions/core';
-import * as github from '@actions/github';
 import { Octokit } from '@octokit/rest';
 import GITHUB_TOOL_SEVERITY_LEVEL from '../types/GithubToolSeverityLevel';
-import { Endpoints, GetResponseDataTypeFromEndpointMethod, OctokitResponse } from '@octokit/types';
 import { CodeScanningAlertsForRepoResponseDataType } from '../types/OctokitResponses';
 
 export class CodeQLService {

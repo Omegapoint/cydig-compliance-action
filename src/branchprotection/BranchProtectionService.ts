@@ -1,8 +1,5 @@
 import * as core from '@actions/core';
-import * as github from '@actions/github';
-import { GitHub } from '@actions/github/lib/utils';
 import { Octokit } from '@octokit/rest';
-import { Endpoints, OctokitResponse } from '@octokit/types';
 import { branchProtectionResponse } from '../types/OctokitResponses';
 
 export class BranchProtectionService {

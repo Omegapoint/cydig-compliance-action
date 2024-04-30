@@ -1,7 +1,5 @@
 import * as core from '@actions/core';
-import * as github from '@actions/github';
 import { Octokit } from '@octokit/rest';
-import { GetResponseDataTypeFromEndpointMethod, OctokitResponse } from '@octokit/types';
 import { SecretAlertsForRepoResponseDataType } from '../types/OctokitResponses';
 
 export class SecretScanningService {

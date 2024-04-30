@@ -1,9 +1,6 @@
 import * as core from '@actions/core';
-import * as github from '@actions/github';
 import { Octokit } from '@octokit/rest';
 import GITHUB_TOOL_SEVERITY_LEVEL from '../types/GithubToolSeverityLevel';
-import { GetResponseDataTypeFromEndpointMethod, OctokitResponse } from '@octokit/types';
-import { Endpoints } from '@octokit/types';
 import { DependabotAlertsForRepoResponseDataType } from '../types/OctokitResponses';
 
 export class DependabotService {
