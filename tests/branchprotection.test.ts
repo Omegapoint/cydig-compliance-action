@@ -12,7 +12,9 @@ describe('BranchProtectionService', () => {
   const octokitMock: any = {
     rest: {
       repos: {
-        getBranchProtection() {},
+        getBranchProtection() {
+          return;
+        },
       },
     },
   };
