@@ -23,6 +23,7 @@ export async function run(): Promise<void> {
     const cydigConfig: CyDigConfig = getContentOfFile(getInput('cydigConfigPath'));
     const { owner, repo }: { owner: string; repo: string } = context.repo;
     const token: string = getInput('PAT-token');
+    // eslint-disable-next-line
     const OctokitRetry = Octokit.plugin(retry);
     const octokit: Octokit = new OctokitRetry({
       auth: token,
