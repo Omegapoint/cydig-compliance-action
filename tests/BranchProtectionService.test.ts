@@ -42,6 +42,7 @@ describe('BranchProtectionService', () => {
 
     await BranchProtectionService.getStateOfBranchProtection(octokitMock, 'owner', 'repo');
     sinon.assert.calledOnceWithExactly(exportVariableStub, 'numberOfReviewers', 1);
+    sinon.assert.notCalled(warningStub);
   });
 
   it('should warn when admins can bypass branch protection rules', async () => {
