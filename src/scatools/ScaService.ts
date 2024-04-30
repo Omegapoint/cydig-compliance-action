@@ -1,10 +1,16 @@
 import * as core from '@actions/core';
 import { DependabotService } from './DependabotService';
+import { Octokit } from '@octokit/rest';
 
 export class ScaService {
-  public static async getStateOfScaTool(scaTool: { nameOfTool: string }): Promise<void> {
+  public static async getStateOfScaTool(
+    nameOfTool: string,
+    octokit: Octokit,
+    owner: string,
+    repo: string
+  ): Promise<void> {
     console.log('--- SCA control ---');
-    let sca: string = scaTool.nameOfTool;
+    let sca: string = nameOfTool;
     if (process.env.scaTool) {
       sca = process.env.scaTool;
     }
@@ -17,7 +23,7 @@ export class ScaService {
     }
 
     if (sca.toLowerCase() === 'dependabot') {
-      await DependabotService.setDependabotFindings();
+      await DependabotService.setDependabotFindings(octokit, owner, repo);
     }
     console.log();
   }
