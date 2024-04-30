@@ -1,13 +1,13 @@
 import * as core from '@actions/core';
 import { Octokit } from '@octokit/rest';
-import { branchProtectionResponse } from '../types/OctokitResponses';
+import { BranchProtectionForRepoResponseDataType } from '../types/OctokitResponses';
 
 export class BranchProtectionService {
   public static async getStateOfBranchProtection(octokit: Octokit, owner: string, repo: string): Promise<void> {
     try {
       console.log('--- Branch protection control ---');
 
-      const response: branchProtectionResponse = await octokit.rest.repos.getBranchProtection({
+      const response: BranchProtectionForRepoResponseDataType = await octokit.rest.repos.getBranchProtection({
         owner,
         repo,
         branch: 'main',

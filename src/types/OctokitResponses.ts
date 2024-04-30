@@ -9,4 +9,5 @@ export type CodeScanningAlertsForRepoResponseDataType =
 export type SecretAlertsForRepoResponseDataType =
   Endpoints['GET /repos/{owner}/{repo}/secret-scanning/alerts']['response'];
 
-export type branchProtectionResponse = Endpoints['GET /repos/{owner}/{repo}/branches/{branch}/protection']['response'];
+export type BranchProtectionForRepoResponseDataType =
+  Endpoints['GET /repos/{owner}/{repo}/branches/{branch}/protection']['response'];

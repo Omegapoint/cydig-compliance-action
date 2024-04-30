@@ -1,8 +1,8 @@
-enum GITHUB_TOOL_SEVERITY_LEVEL {
+enum GitHub_Tool_Severity_Level {
   LOW = 'low',
   MEDIUM = 'medium',
   HIGH = 'high',
   CRITICAL = 'critical',
 }
 
-export default GITHUB_TOOL_SEVERITY_LEVEL;
+export default GitHub_Tool_Severity_Level;

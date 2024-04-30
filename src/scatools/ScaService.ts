@@ -1,6 +1,7 @@
 import * as core from '@actions/core';
 import { Octokit } from '@octokit/rest';
 import { DependabotService } from './DependabotService';
+import GitHub_Tools from '../types/GitHubTools';
 
 export class ScaService {
   public static async getStateOfScaTool(
@@ -22,7 +23,7 @@ export class ScaService {
       return;
     }
 
-    if (sca.toLowerCase() === 'dependabot') {
+    if (sca.toLowerCase() === GitHub_Tools.DEPENDABOT.toLowerCase()) {
       await DependabotService.setDependabotFindings(octokit, owner, repo);
     }
     console.log();

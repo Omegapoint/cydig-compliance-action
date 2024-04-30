@@ -1,6 +1,7 @@
 import * as core from '@actions/core';
 import { Octokit } from '@octokit/rest';
 import { CodeQLService } from './CodeQLService';
+import GitHub_Tools from '../types/GitHubTools';
 
 export class SastService {
   public static async getStateOfSastTool(
@@ -22,7 +23,7 @@ export class SastService {
       return;
     }
 
-    if (sast.toLowerCase() === 'codeql') {
+    if (sast.toLowerCase() === GitHub_Tools.CODEQL.toLowerCase()) {
       await CodeQLService.setCodeQLFindings(octokit, owner, repo);
     }
     console.log();

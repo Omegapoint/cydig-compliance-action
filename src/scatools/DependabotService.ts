@@ -1,6 +1,6 @@
 import * as core from '@actions/core';
 import { Octokit } from '@octokit/rest';
-import GITHUB_TOOL_SEVERITY_LEVEL from '../types/GithubToolSeverityLevel';
+import GitHub_Tool_Severity_Level from '../types/GithubToolSeverityLevel';
 import { DependabotAlertsForRepoResponseDataType } from '../types/OctokitResponses';
 
 export class DependabotService {
@@ -25,16 +25,16 @@ export class DependabotService {
       for await (const { data: alerts } of iterator) {
         for (const alert of alerts) {
           switch (alert.security_vulnerability.severity) {
-            case GITHUB_TOOL_SEVERITY_LEVEL.LOW:
+            case GitHub_Tool_Severity_Level.LOW:
               scaNumberOfSeverity1++;
               break;
-            case GITHUB_TOOL_SEVERITY_LEVEL.MEDIUM:
+            case GitHub_Tool_Severity_Level.MEDIUM:
               scaNumberOfSeverity2++;
               break;
-            case GITHUB_TOOL_SEVERITY_LEVEL.HIGH:
+            case GitHub_Tool_Severity_Level.HIGH:
               scaNumberOfSeverity3++;
               break;
-            case GITHUB_TOOL_SEVERITY_LEVEL.CRITICAL:
+            case GitHub_Tool_Severity_Level.CRITICAL:
               scaNumberOfSeverity4++;
               break;
           }
