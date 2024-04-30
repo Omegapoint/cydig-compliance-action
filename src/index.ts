@@ -31,7 +31,7 @@ export async function run(): Promise<void> {
     await ScaService.getStateOfScaTool(cydigConfig.scaTool.nameOfTool, octokit, owner, repo);
     await SecretScanningService.getStateOfExposedSecrets(octokit, owner, repo);
 
-    await BranchProtectionService.getStateOfBranchProtection();
+    await BranchProtectionService.getStateOfBranchProtection(octokit, owner, repo);
 
     await PentestService.getStateOfPentest(cydigConfig.pentest);
     await ThreatModelingService.getStateOfThreatModeling(cydigConfig.threatModeling);
