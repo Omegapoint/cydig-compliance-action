@@ -1,5 +1,6 @@
 import { getInput, setFailed } from '@actions/core';
 import { context } from '@actions/github';
+import { retry } from '@octokit/plugin-retry';
 import { Octokit } from '@octokit/rest';
 import { AzureDevOpsBoardService } from './azuredevopsboard/AzureDevOpsBoardService';
 import { BranchProtectionService } from './branchprotection/BranchProtectionService';
@@ -11,6 +12,7 @@ import { ScaService } from './scatools/ScaService';
 import { SecretScanningService } from './secretscanning/SecretScanningService';
 import { ThreatModelingService } from './threatmodeling/ThreatModelingService';
 import { CyDigConfig } from './types/CyDigConfig';
+
 /**
  * The main function for the action.
  * @returns {Promise<void>} Resolves when the action is complete.
@@ -21,7 +23,8 @@ export async function run(): Promise<void> {
     const cydigConfig: CyDigConfig = getContentOfFile(getInput('cydigConfigPath'));
     const { owner, repo }: { owner: string; repo: string } = context.repo;
     const token: string = getInput('PAT-token');
-    const octokit: Octokit = new Octokit({
+    const OctokitRetry = Octokit.plugin(retry);
+    const octokit: Octokit = new OctokitRetry({
       auth: token,
     });
 
