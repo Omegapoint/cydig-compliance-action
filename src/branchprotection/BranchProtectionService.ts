@@ -2,15 +2,15 @@ import * as core from '@actions/core';
 import * as github from '@actions/github';
 import { GitHub } from '@actions/github/lib/utils';
 import { Octokit } from '@octokit/rest';
-import { Endpoints } from '@octokit/types';
+import { Endpoints, OctokitResponse } from '@octokit/types';
+import { branchProtectionResponse } from '../types/OctokitResponses';
+
 export class BranchProtectionService {
   public static async getStateOfBranchProtection(octokit: Octokit, owner: string, repo: string): Promise<void> {
     try {
       console.log('--- Branch protection control ---');
 
-      type branchProtectionRepsponse = Endpoints['GET /repos/{owner}/{repo}/branches/{branch}/protection']['response'];
-
-      const response: branchProtectionRepsponse = await octokit.rest.repos.getBranchProtection({
+      const response: branchProtectionResponse = await octokit.rest.repos.getBranchProtection({
         owner,
         repo,
         branch: 'main',

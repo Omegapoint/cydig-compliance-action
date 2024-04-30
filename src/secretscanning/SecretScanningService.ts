@@ -2,24 +2,23 @@ import * as core from '@actions/core';
 import * as github from '@actions/github';
 import { Octokit } from '@octokit/rest';
 import { GetResponseDataTypeFromEndpointMethod, OctokitResponse } from '@octokit/types';
+import { SecretAlertsForRepoResponseDataType } from '../types/OctokitResponses';
 
 export class SecretScanningService {
   public static async getStateOfExposedSecrets(octokit: Octokit, owner: string, repo: string): Promise<void> {
     try {
       console.log('--- Exposed secrets control ---');
 
-      type SecretAlertsForRepoResponseDataType = GetResponseDataTypeFromEndpointMethod<
-        typeof octokit.secretScanning.listAlertsForRepo
-      >;
-
       // https://www.npmjs.com/package/octokit#pagination
-      const iterator: AsyncIterableIterator<OctokitResponse<SecretAlertsForRepoResponseDataType>> =
-        octokit.paginate.iterator(octokit.secretScanning.listAlertsForRepo, {
+      const iterator: AsyncIterableIterator<SecretAlertsForRepoResponseDataType> = octokit.paginate.iterator(
+        octokit.secretScanning.listAlertsForRepo,
+        {
           owner: owner,
           repo: repo,
           per_page: 100,
           state: 'open',
-        });
+        }
+      );
 
       let numberOfExposedSecrets: number = 0;
 

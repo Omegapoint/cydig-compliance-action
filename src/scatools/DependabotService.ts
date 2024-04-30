@@ -3,22 +3,22 @@ import * as github from '@actions/github';
 import { Octokit } from '@octokit/rest';
 import GITHUB_TOOL_SEVERITY_LEVEL from '../types/GithubToolSeverityLevel';
 import { GetResponseDataTypeFromEndpointMethod, OctokitResponse } from '@octokit/types';
+import { Endpoints } from '@octokit/types';
+import { DependabotAlertsForRepoResponseDataType } from '../types/OctokitResponses';
 
 export class DependabotService {
   public static async setDependabotFindings(octokit: Octokit, owner: string, repo: string): Promise<void> {
     try {
-      type DependabotAlertsForRepoResponseDataType = GetResponseDataTypeFromEndpointMethod<
-        typeof octokit.dependabot.listAlertsForRepo
-      >;
-
       // https://www.npmjs.com/package/octokit#pagination
-      const iterator: AsyncIterableIterator<OctokitResponse<DependabotAlertsForRepoResponseDataType>> =
-        octokit.paginate.iterator(octokit.dependabot.listAlertsForRepo, {
+      const iterator: AsyncIterableIterator<DependabotAlertsForRepoResponseDataType> = octokit.paginate.iterator(
+        octokit.dependabot.listAlertsForRepo,
+        {
           owner: owner,
           repo: repo,
           per_page: 100,
           state: 'open',
-        });
+        }
+      );
 
       let scaNumberOfSeverity1: number = 0;
       let scaNumberOfSeverity2: number = 0;

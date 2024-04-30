@@ -2,24 +2,23 @@ import * as core from '@actions/core';
 import * as github from '@actions/github';
 import { Octokit } from '@octokit/rest';
 import GITHUB_TOOL_SEVERITY_LEVEL from '../types/GithubToolSeverityLevel';
-import { GetResponseDataTypeFromEndpointMethod, OctokitResponse } from '@octokit/types';
+import { Endpoints, GetResponseDataTypeFromEndpointMethod, OctokitResponse } from '@octokit/types';
+import { CodeScanningAlertsForRepoResponseDataType } from '../types/OctokitResponses';
 
 export class CodeQLService {
   public static async setCodeQLFindings(octokit: Octokit, owner: string, repo: string): Promise<void> {
     try {
-      type CodeScanningAlertsForRepoResponseDataType = GetResponseDataTypeFromEndpointMethod<
-        typeof octokit.codeScanning.listAlertsForRepo
-      >;
-
       // https://www.npmjs.com/package/octokit#pagination
-      const iterator: AsyncIterableIterator<OctokitResponse<CodeScanningAlertsForRepoResponseDataType>> =
-        octokit.paginate.iterator(octokit.codeScanning.listAlertsForRepo, {
+      const iterator: AsyncIterableIterator<CodeScanningAlertsForRepoResponseDataType> = octokit.paginate.iterator(
+        octokit.codeScanning.listAlertsForRepo,
+        {
           owner: owner,
           repo: repo,
           per_page: 100,
           state: 'open',
           tool_name: 'CodeQL',
-        });
+        }
+      );
 
       let sastNumberOfSeverity1: number = 0;
       let sastNumberOfSeverity2: number = 0;
