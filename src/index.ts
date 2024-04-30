@@ -29,7 +29,7 @@ export async function run(): Promise<void> {
     await CodeQualityService.getStateOfCodeQualityTool(cydigConfig.codeQualityTool);
     await SastService.getStateOfSastTool(cydigConfig.sastTool.nameOfTool, octokit, owner, repo);
     await ScaService.getStateOfScaTool(cydigConfig.scaTool.nameOfTool, octokit, owner, repo);
-    await SecretScanningService.getStateOfExposedSecrets();
+    await SecretScanningService.getStateOfExposedSecrets(octokit, owner, repo);
 
     await BranchProtectionService.getStateOfBranchProtection();
 

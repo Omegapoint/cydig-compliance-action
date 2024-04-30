@@ -4,15 +4,9 @@ import { Octokit } from '@octokit/rest';
 import { GetResponseDataTypeFromEndpointMethod, OctokitResponse } from '@octokit/types';
 
 export class SecretScanningService {
-  public static async getStateOfExposedSecrets(): Promise<void> {
+  public static async getStateOfExposedSecrets(octokit: Octokit, owner: string, repo: string): Promise<void> {
     try {
       console.log('--- Exposed secrets control ---');
-      const { owner, repo }: { owner: string; repo: string } = github.context.repo;
-      const token: string = core.getInput('PAT-token');
-
-      const octokit: Octokit = new Octokit({
-        auth: token,
-      });
 
       type SecretAlertsForRepoResponseDataType = GetResponseDataTypeFromEndpointMethod<
         typeof octokit.secretScanning.listAlertsForRepo
