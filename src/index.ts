@@ -21,7 +21,6 @@ export async function run(): Promise<void> {
     const cydigConfig: CyDigConfig = getContentOfFile(getInput('cydigConfigPath'));
     const { owner, repo }: { owner: string; repo: string } = context.repo;
     const token: string = getInput('PAT-token');
-
     const octokit: Octokit = new Octokit({
       auth: token,
     });
@@ -30,12 +29,9 @@ export async function run(): Promise<void> {
     await SastService.getStateOfSastTool(cydigConfig.sastTool.nameOfTool, octokit, owner, repo);
     await ScaService.getStateOfScaTool(cydigConfig.scaTool.nameOfTool, octokit, owner, repo);
     await SecretScanningService.getStateOfExposedSecrets(octokit, owner, repo);
-
     await BranchProtectionService.getStateOfBranchProtection(octokit, owner, repo);
-
     await PentestService.getStateOfPentest(cydigConfig.pentest);
     await ThreatModelingService.getStateOfThreatModeling(cydigConfig.threatModeling);
-
     await AzureDevOpsBoardService.getStateOfAzureDevOpsBoards(cydigConfig);
   } catch (error) {
     // Fail the workflow run if an error occurs
