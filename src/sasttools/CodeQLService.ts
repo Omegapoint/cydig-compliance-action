@@ -5,15 +5,8 @@ import GITHUB_TOOL_SEVERITY_LEVEL from '../types/GithubToolSeverityLevel';
 import { GetResponseDataTypeFromEndpointMethod, OctokitResponse } from '@octokit/types';
 
 export class CodeQLService {
-  public static async setCodeQLFindings(): Promise<void> {
+  public static async setCodeQLFindings(octokit: Octokit, owner: string, repo: string): Promise<void> {
     try {
-      const { owner, repo }: { owner: string; repo: string } = github.context.repo;
-      const token: string = core.getInput('PAT-token');
-
-      const octokit: Octokit = new Octokit({
-        auth: token,
-      });
-
       type CodeScanningAlertsForRepoResponseDataType = GetResponseDataTypeFromEndpointMethod<
         typeof octokit.codeScanning.listAlertsForRepo
       >;
