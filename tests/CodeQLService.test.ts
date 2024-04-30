@@ -100,7 +100,7 @@ describe('CodeQLService', () => {
     sinon.assert.calledWithExactly(exportVariableStub, 'SASTnumberOfSeverity4', 0);
   });
 
-  it('should handle a normal 404 error', async () => {
+  it('should handle a 404 error', async () => {
     iteratorStub.throws({
       status: 404,
       message: '404 error message',
