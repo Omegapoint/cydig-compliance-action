@@ -8,7 +8,7 @@ describe('BranchProtectionService', () => {
   let infoStub: SinonStub;
   let exportVariableStub: SinonStub;
   let logStub: SinonStub;
-  let getBranhcProtectionStub: SinonStub;
+  let getBranchProtectionStub: SinonStub;
   const octokitMock: any = {
     rest: {
       repos: {
@@ -25,7 +25,7 @@ describe('BranchProtectionService', () => {
     infoStub = sinon.stub(core, 'info');
     exportVariableStub = sinon.stub(core, 'exportVariable');
     logStub = sinon.stub(console, 'log');
-    getBranhcProtectionStub = sinon.stub(octokitMock.rest.repos, 'getBranchProtection');
+    getBranchProtectionStub = sinon.stub(octokitMock.rest.repos, 'getBranchProtection');
   });
 
   afterEach(() => {
@@ -33,7 +33,7 @@ describe('BranchProtectionService', () => {
   });
 
   it('should handle successful branch protection retrieval', async () => {
-    getBranhcProtectionStub.returns({
+    getBranchProtectionStub.returns({
       data: {
         enforce_admins: { enabled: true },
         required_pull_request_reviews: { required_approving_review_count: 1 },
@@ -45,7 +45,7 @@ describe('BranchProtectionService', () => {
   });
 
   it('should warn when admins can bypass branch protection rules', async () => {
-    getBranhcProtectionStub.returns({
+    getBranchProtectionStub.returns({
       data: {
         enforce_admins: { enabled: false },
         required_pull_request_reviews: { required_approving_review_count: 1 },
@@ -58,7 +58,7 @@ describe('BranchProtectionService', () => {
   });
 
   it('should handle a 401 error', async () => {
-    getBranhcProtectionStub.rejects({
+    getBranchProtectionStub.rejects({
       status: 401,
       message: '401 error message',
     });
@@ -69,7 +69,7 @@ describe('BranchProtectionService', () => {
   });
 
   it('should handle a 404 error (caused by branch protection not enabled)', async () => {
-    getBranhcProtectionStub.rejects({
+    getBranchProtectionStub.rejects({
       status: 404,
       message: 'Branch not protected',
     });
@@ -80,7 +80,7 @@ describe('BranchProtectionService', () => {
   });
 
   it('should handle a normal 404 error', async () => {
-    getBranhcProtectionStub.rejects({
+    getBranchProtectionStub.rejects({
       status: 404,
       message: 'Regular 404 error message',
     });
@@ -91,7 +91,7 @@ describe('BranchProtectionService', () => {
   });
 
   it('should call warning when branch protection is enabled but receives 404 (status = 404)', async () => {
-    getBranhcProtectionStub.rejects({
+    getBranchProtectionStub.rejects({
       status: 500,
       message: 'Default error case',
     });
