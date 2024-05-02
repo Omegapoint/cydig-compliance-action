@@ -1,31 +1,21 @@
 import * as core from '@actions/core';
-import * as github from '@actions/github';
 import { Octokit } from '@octokit/rest';
-import GITHUB_TOOL_SEVERITY_LEVEL from '../types/GithubToolSeverityLevel';
-import { GetResponseDataTypeFromEndpointMethod, OctokitResponse } from '@octokit/types';
+import GitHub_Tool_Severity_Level from '../types/GithubToolSeverityLevel';
+import { DependabotAlertsForRepoResponseDataType } from '../types/OctokitResponses';
 
 export class DependabotService {
-  public static async setDependabotFindings(): Promise<void> {
+  public static async setDependabotFindings(octokit: Octokit, owner: string, repo: string): Promise<void> {
     try {
-      const { owner, repo }: { owner: string; repo: string } = github.context.repo;
-      const token: string = core.getInput('PAT-token');
-
-      const octokit: Octokit = new Octokit({
-        auth: token,
-      });
-
-      type DependabotAlertsForRepoResponseDataType = GetResponseDataTypeFromEndpointMethod<
-        typeof octokit.dependabot.listAlertsForRepo
-      >;
-
       // https://www.npmjs.com/package/octokit#pagination
-      const iterator: AsyncIterableIterator<OctokitResponse<DependabotAlertsForRepoResponseDataType>> =
-        octokit.paginate.iterator(octokit.dependabot.listAlertsForRepo, {
+      const iterator: AsyncIterableIterator<DependabotAlertsForRepoResponseDataType> = octokit.paginate.iterator(
+        octokit.dependabot.listAlertsForRepo,
+        {
           owner: owner,
           repo: repo,
           per_page: 100,
           state: 'open',
-        });
+        }
+      );
 
       let scaNumberOfSeverity1: number = 0;
       let scaNumberOfSeverity2: number = 0;
@@ -35,16 +25,16 @@ export class DependabotService {
       for await (const { data: alerts } of iterator) {
         for (const alert of alerts) {
           switch (alert.security_vulnerability.severity) {
-            case GITHUB_TOOL_SEVERITY_LEVEL.LOW:
+            case GitHub_Tool_Severity_Level.LOW:
               scaNumberOfSeverity1++;
               break;
-            case GITHUB_TOOL_SEVERITY_LEVEL.MEDIUM:
+            case GitHub_Tool_Severity_Level.MEDIUM:
               scaNumberOfSeverity2++;
               break;
-            case GITHUB_TOOL_SEVERITY_LEVEL.HIGH:
+            case GitHub_Tool_Severity_Level.HIGH:
               scaNumberOfSeverity3++;
               break;
-            case GITHUB_TOOL_SEVERITY_LEVEL.CRITICAL:
+            case GitHub_Tool_Severity_Level.CRITICAL:
               scaNumberOfSeverity4++;
               break;
           }

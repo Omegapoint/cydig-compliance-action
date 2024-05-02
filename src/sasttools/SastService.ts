@@ -1,10 +1,17 @@
 import * as core from '@actions/core';
+import { Octokit } from '@octokit/rest';
 import { CodeQLService } from './CodeQLService';
+import GitHub_Tools from '../types/GitHubTools';
 
 export class SastService {
-  public static async getStateOfSastTool(sastTool: { nameOfTool: string }): Promise<void> {
+  public static async getStateOfSastTool(
+    nameOfTool: string,
+    octokit: Octokit,
+    owner: string,
+    repo: string
+  ): Promise<void> {
     console.log('--- SAST control ---');
-    let sast: string = sastTool.nameOfTool;
+    let sast: string = nameOfTool;
     if (process.env.sastTool) {
       sast = process.env.sastTool;
     }
@@ -16,8 +23,8 @@ export class SastService {
       return;
     }
 
-    if (sast.toLowerCase() === 'codeql') {
-      await CodeQLService.setCodeQLFindings();
+    if (sast.toLowerCase() === GitHub_Tools.CODEQL.toLowerCase()) {
+      await CodeQLService.setCodeQLFindings(octokit, owner, repo);
     }
     console.log();
   }
