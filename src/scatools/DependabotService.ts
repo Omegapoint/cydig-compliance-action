@@ -54,7 +54,7 @@ export class DependabotService {
       core.info('Failed to get Dependabot severities');
       if (error.status === 401 || error.status === 403 || error.status === 404) {
         // Removes link to REST API endpoint
-        const errorMessage: string = error.message.split('.')[0];
+        const errorMessage: string = error.message.split('-')[0];
         core.warning(errorMessage, {
           title: 'SCA tool control failed',
         });

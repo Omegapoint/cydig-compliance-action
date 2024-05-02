@@ -32,7 +32,7 @@ export class BranchProtectionService {
       if (error.status === 401) {
         core.info('Failed to get branch protection');
         // Removes link to REST API endpoint
-        const errorMessage: string = error.message.split('.')[0];
+        const errorMessage: string = error.message.split('-')[0];
         core.warning(errorMessage, {
           title: 'Branch protection control failed',
         });
