@@ -60,8 +60,7 @@ export class IdentitiesInRepoService {
         core.warning(errorMessage, {
           title: 'Failed to fetch identities for repo',
         });
-      }
-      else {
+      } else {
         core.info(error.message);
       }
     }

@@ -14,7 +14,6 @@ import { IdentitiesInRepoService } from './identitiesInRepo/identitiesInRepoServ
 import { ThreatModelingService } from './threatmodeling/ThreatModelingService';
 import { CyDigConfig } from './types/CyDigConfig';
 
-
 /**
  * The main function for the action.
  * @returns {Promise<void>} Resolves when the action is complete.
