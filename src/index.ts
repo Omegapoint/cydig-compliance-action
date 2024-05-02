@@ -36,7 +36,7 @@ export async function run(): Promise<void> {
     await ScaService.getStateOfScaTool(cydigConfig.scaTool.nameOfTool, octokit, owner, repo);
     await SecretScanningService.getStateOfExposedSecrets(octokit, owner, repo);
     await BranchProtectionService.getStateOfBranchProtection(octokit, owner, repo);
-    await IdentitiesInRepoService.setIdentitiesInRepoFindings();
+    await IdentitiesInRepoService.setIdentitiesInRepoFindings(); //refactor
     await PentestService.getStateOfPentest(cydigConfig.pentest);
     await ThreatModelingService.getStateOfThreatModeling(cydigConfig.threatModeling);
     await AzureDevOpsBoardService.getStateOfAzureDevOpsBoards(cydigConfig);
