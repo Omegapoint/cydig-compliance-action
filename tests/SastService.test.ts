@@ -28,7 +28,6 @@ describe('SastService', () => {
 
   it('should run CodeQL suite if toolName is "CodeQl"', async () => {
     await SastService.getStateOfSastTool(GitHub_Tools.CODEQL, octokitMock, 'owner', 'repo');
-    sinon.assert.alwaysCalledWithExactly(exportVariableStub, 'sastTool', GitHub_Tools.CODEQL);
     sinon.assert.calledOnce(setCodeQLFindingsStub);
   });
 });

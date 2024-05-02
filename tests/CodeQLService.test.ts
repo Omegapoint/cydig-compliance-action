@@ -1,6 +1,7 @@
 import * as core from '@actions/core';
 import sinon, { SinonStub } from 'sinon';
 import { CodeQLService } from '../src/sasttools/CodeQLService';
+import GitHub_Tools from '../src/types/GitHubTools';
 
 describe('CodeQLService', () => {
   let warningStub: SinonStub;
@@ -61,8 +62,9 @@ describe('CodeQLService', () => {
       },
     ]);
 
-    await CodeQLService.setCodeQLFindings(octokitMock, 'owner', 'repo');
-    sinon.assert.callCount(exportVariableStub, 4);
+    await CodeQLService.setCodeQLFindings(GitHub_Tools.CODEQL, octokitMock, 'owner', 'repo');
+    sinon.assert.callCount(exportVariableStub, 5);
+    sinon.assert.calledWithExactly(exportVariableStub, 'sastTool', GitHub_Tools.CODEQL);
     sinon.assert.calledWithExactly(exportVariableStub, 'SASTnumberOfSeverity1', 1);
     sinon.assert.calledWithExactly(exportVariableStub, 'SASTnumberOfSeverity2', 1);
     sinon.assert.calledWithExactly(exportVariableStub, 'SASTnumberOfSeverity3', 1);
@@ -76,13 +78,8 @@ describe('CodeQLService', () => {
       message: '401 error message',
     });
 
-    await CodeQLService.setCodeQLFindings(octokitMock, 'owner', 'repo');
+    await CodeQLService.setCodeQLFindings(GitHub_Tools.CODEQL, octokitMock, 'owner', 'repo');
     sinon.assert.calledOnce(warningStub);
-    sinon.assert.callCount(exportVariableStub, 4);
-    sinon.assert.calledWithExactly(exportVariableStub, 'SASTnumberOfSeverity1', 0);
-    sinon.assert.calledWithExactly(exportVariableStub, 'SASTnumberOfSeverity2', 0);
-    sinon.assert.calledWithExactly(exportVariableStub, 'SASTnumberOfSeverity3', 0);
-    sinon.assert.calledWithExactly(exportVariableStub, 'SASTnumberOfSeverity4', 0);
   });
 
   it('should handle a 403 error', async () => {
@@ -91,13 +88,8 @@ describe('CodeQLService', () => {
       message: '403 error message',
     });
 
-    await CodeQLService.setCodeQLFindings(octokitMock, 'owner', 'repo');
+    await CodeQLService.setCodeQLFindings(GitHub_Tools.CODEQL, octokitMock, 'owner', 'repo');
     sinon.assert.calledOnce(warningStub);
-    sinon.assert.callCount(exportVariableStub, 4);
-    sinon.assert.calledWithExactly(exportVariableStub, 'SASTnumberOfSeverity1', 0);
-    sinon.assert.calledWithExactly(exportVariableStub, 'SASTnumberOfSeverity2', 0);
-    sinon.assert.calledWithExactly(exportVariableStub, 'SASTnumberOfSeverity3', 0);
-    sinon.assert.calledWithExactly(exportVariableStub, 'SASTnumberOfSeverity4', 0);
   });
 
   it('should handle a 404 error', async () => {
@@ -106,13 +98,8 @@ describe('CodeQLService', () => {
       message: '404 error message',
     });
 
-    await CodeQLService.setCodeQLFindings(octokitMock, 'owner', 'repo');
+    await CodeQLService.setCodeQLFindings(GitHub_Tools.CODEQL, octokitMock, 'owner', 'repo');
     sinon.assert.calledOnce(warningStub);
-    sinon.assert.callCount(exportVariableStub, 4);
-    sinon.assert.calledWithExactly(exportVariableStub, 'SASTnumberOfSeverity1', 0);
-    sinon.assert.calledWithExactly(exportVariableStub, 'SASTnumberOfSeverity2', 0);
-    sinon.assert.calledWithExactly(exportVariableStub, 'SASTnumberOfSeverity3', 0);
-    sinon.assert.calledWithExactly(exportVariableStub, 'SASTnumberOfSeverity4', 0);
   });
 
   it('should handle error other than 401, 403, 404', async () => {
@@ -121,13 +108,8 @@ describe('CodeQLService', () => {
       message: 'Default error case',
     });
 
-    await CodeQLService.setCodeQLFindings(octokitMock, 'owner', 'repo');
+    await CodeQLService.setCodeQLFindings(GitHub_Tools.CODEQL, octokitMock, 'owner', 'repo');
     sinon.assert.calledOnce(noticeStub);
-    sinon.assert.callCount(exportVariableStub, 4);
-    sinon.assert.calledWithExactly(exportVariableStub, 'SASTnumberOfSeverity1', 0);
-    sinon.assert.calledWithExactly(exportVariableStub, 'SASTnumberOfSeverity2', 0);
-    sinon.assert.calledWithExactly(exportVariableStub, 'SASTnumberOfSeverity3', 0);
-    sinon.assert.calledWithExactly(exportVariableStub, 'SASTnumberOfSeverity4', 0);
     sinon.assert.notCalled(warningStub);
   });
 });

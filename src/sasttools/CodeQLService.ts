@@ -4,7 +4,12 @@ import GitHub_Tool_Severity_Level from '../types/GithubToolSeverityLevel';
 import { CodeScanningAlertsForRepoResponseDataType } from '../types/OctokitResponses';
 
 export class CodeQLService {
-  public static async setCodeQLFindings(octokit: Octokit, owner: string, repo: string): Promise<void> {
+  public static async setCodeQLFindings(
+    nameOfTool: string,
+    octokit: Octokit,
+    owner: string,
+    repo: string
+  ): Promise<void> {
     try {
       // https://www.npmjs.com/package/octokit#pagination
       const iterator: AsyncIterableIterator<CodeScanningAlertsForRepoResponseDataType> = octokit.paginate.iterator(
@@ -49,6 +54,7 @@ export class CodeQLService {
       console.log('High: ' + sastNumberOfSeverity3);
       console.log('Critical: ' + sastNumberOfSeverity4);
 
+      core.exportVariable('sastTool', nameOfTool);
       core.exportVariable('SASTnumberOfSeverity1', sastNumberOfSeverity1);
       core.exportVariable('SASTnumberOfSeverity2', sastNumberOfSeverity2);
       core.exportVariable('SASTnumberOfSeverity3', sastNumberOfSeverity3);
@@ -66,10 +72,6 @@ export class CodeQLService {
           title: 'SAST tool control failed',
         });
       }
-      core.exportVariable('SASTnumberOfSeverity1', 0);
-      core.exportVariable('SASTnumberOfSeverity2', 0);
-      core.exportVariable('SASTnumberOfSeverity3', 0);
-      core.exportVariable('SASTnumberOfSeverity4', 0);
     }
   }
 }
