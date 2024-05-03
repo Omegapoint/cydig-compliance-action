@@ -3,7 +3,7 @@ import sinon, { SinonStub } from 'sinon';
 import { CodeQLService } from '../src/sasttools/CodeQLService';
 import GitHub_Tools from '../src/types/GitHubTools';
 
-describe('CodeQLService', () => {
+describe('CodeQLService', function () {
   let warningStub: SinonStub;
   let noticeStub: SinonStub;
   let infoStub: SinonStub;
@@ -34,7 +34,7 @@ describe('CodeQLService', () => {
     sinon.restore();
   });
 
-  it('should handle successful code scanning retrieval', async () => {
+  it('should handle successful code scanning retrieval', async function () {
     iteratorStub.returns([
       {
         data: [
@@ -72,7 +72,7 @@ describe('CodeQLService', () => {
     sinon.assert.notCalled(warningStub);
   });
 
-  it('should handle a 401 error', async () => {
+  it('should handle a 401 error', async function () {
     iteratorStub.throws({
       status: 401,
       message: '401 error message',
@@ -82,7 +82,7 @@ describe('CodeQLService', () => {
     sinon.assert.calledOnce(warningStub);
   });
 
-  it('should handle a 403 error', async () => {
+  it('should handle a 403 error', async function () {
     iteratorStub.throws({
       status: 403,
       message: '403 error message',
@@ -92,7 +92,7 @@ describe('CodeQLService', () => {
     sinon.assert.calledOnce(warningStub);
   });
 
-  it('should handle a 404 error', async () => {
+  it('should handle a 404 error', async function () {
     iteratorStub.throws({
       status: 404,
       message: '404 error message',
@@ -102,7 +102,7 @@ describe('CodeQLService', () => {
     sinon.assert.calledOnce(warningStub);
   });
 
-  it('should handle error other than 401, 403, 404', async () => {
+  it('should handle error other than 401, 403, 404', async function () {
     iteratorStub.throws({
       status: 500,
       message: 'Default error case',

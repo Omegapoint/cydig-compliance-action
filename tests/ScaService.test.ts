@@ -13,7 +13,7 @@ describe('DependabotService', function () {
   let setDependabotFindingsStub: SinonStub;
   const octokitMock: any = {};
 
-  beforeEach(() => {
+  beforeEach(function () {
     warningStub = sinon.stub(core, 'warning');
     noticeStub = sinon.stub(core, 'notice');
     infoStub = sinon.stub(core, 'info');
@@ -22,7 +22,7 @@ describe('DependabotService', function () {
     setDependabotFindingsStub = sinon.stub(DependabotService, 'setDependabotFindings');
   });
 
-  afterEach(() => {
+  afterEach(function () {
     sinon.restore();
   });
 
