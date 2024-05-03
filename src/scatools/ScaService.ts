@@ -15,16 +15,18 @@ export class ScaService {
     if (process.env.scaTool) {
       sca = process.env.scaTool;
     }
-    console.log(`Tool:`, `${sca}`);
-    core.exportVariable('scaTool', sca);
-
     if (!sca || sca === '' || sca === 'name-of-tool') {
       core.warning('SCA Tool is not set!');
       return;
     }
-
-    if (sca.toLowerCase() === GitHub_Tools.DEPENDABOT.toLowerCase()) {
-      await DependabotService.setDependabotFindings(octokit, owner, repo);
+    console.log(`Tool:`, `${sca}`);
+    switch (sca.toLowerCase()) {
+      case GitHub_Tools.DEPENDABOT.toLowerCase():
+        await DependabotService.setDependabotFindings(sca, octokit, owner, repo);
+        break;
+      default:
+        core.exportVariable('scaTool', sca);
+        break;
     }
     console.log();
   }

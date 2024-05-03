@@ -15,16 +15,18 @@ export class SastService {
     if (process.env.sastTool) {
       sast = process.env.sastTool;
     }
-    console.log(`Tool:`, `${sast}`);
-    core.exportVariable('sastTool', sast);
-
     if (!sast || sast === '' || sast === 'name-of-tool') {
       core.warning('SAST Tool is not set!');
       return;
     }
-
-    if (sast.toLowerCase() === GitHub_Tools.CODEQL.toLowerCase()) {
-      await CodeQLService.setCodeQLFindings(octokit, owner, repo);
+    console.log(`Tool:`, `${sast}`);
+    switch (sast.toLowerCase()) {
+      case GitHub_Tools.CODEQL.toLowerCase():
+        await CodeQLService.setCodeQLFindings(sast, octokit, owner, repo);
+        break;
+      default:
+        core.exportVariable('sastTool', sast);
+        break;
     }
     console.log();
   }

@@ -4,7 +4,12 @@ import GitHub_Tool_Severity_Level from '../types/GithubToolSeverityLevel';
 import { DependabotAlertsForRepoResponseDataType } from '../types/OctokitResponses';
 
 export class DependabotService {
-  public static async setDependabotFindings(octokit: Octokit, owner: string, repo: string): Promise<void> {
+  public static async setDependabotFindings(
+    nameOfTool: string,
+    octokit: Octokit,
+    owner: string,
+    repo: string
+  ): Promise<void> {
     try {
       // https://www.npmjs.com/package/octokit#pagination
       const iterator: AsyncIterableIterator<DependabotAlertsForRepoResponseDataType> = octokit.paginate.iterator(
@@ -46,6 +51,7 @@ export class DependabotService {
       console.log('High: ' + scaNumberOfSeverity3);
       console.log('Critical: ' + scaNumberOfSeverity4);
 
+      core.exportVariable('scaTool', nameOfTool);
       core.exportVariable('SCAnumberOfSeverity1', scaNumberOfSeverity1);
       core.exportVariable('SCAnumberOfSeverity2', scaNumberOfSeverity2);
       core.exportVariable('SCAnumberOfSeverity3', scaNumberOfSeverity3);
@@ -54,7 +60,7 @@ export class DependabotService {
       core.info('Failed to get Dependabot severities');
       if (error.status === 401 || error.status === 403 || error.status === 404) {
         // Removes link to REST API endpoint
-        const errorMessage: string = error.message.split('.')[0];
+        const errorMessage: string = error.message.split('-')[0];
         core.warning(errorMessage, {
           title: 'SCA tool control failed',
         });
@@ -63,10 +69,6 @@ export class DependabotService {
           title: 'SCA tool control failed',
         });
       }
-      core.exportVariable('SCAnumberOfSeverity1', 0);
-      core.exportVariable('SCAnumberOfSeverity2', 0);
-      core.exportVariable('SCAnumberOfSeverity3', 0);
-      core.exportVariable('SCAnumberOfSeverity4', 0);
     }
   }
 }

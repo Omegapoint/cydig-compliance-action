@@ -1,6 +1,6 @@
 import * as core from '@actions/core';
 import sinon, { SinonStub } from 'sinon';
-import { CodeQLService } from '../src/sasttools/CodeQLService';
+import { DependabotService } from '../src/scatools/DependabotService';
 import GitHub_Tools from '../src/types/GitHubTools';
 
 describe('CodeQLService', function () {
@@ -16,12 +16,12 @@ describe('CodeQLService', function () {
         return;
       },
     },
-    codeScanning: {
+    dependabot: {
       listAlertsForRepo: '',
     },
   };
 
-  beforeEach(() => {
+  beforeEach(function () {
     warningStub = sinon.stub(core, 'warning');
     noticeStub = sinon.stub(core, 'notice');
     infoStub = sinon.stub(core, 'info');
@@ -30,45 +30,45 @@ describe('CodeQLService', function () {
     iteratorStub = sinon.stub(octokitMock.paginate, 'iterator');
   });
 
-  afterEach(() => {
+  afterEach(function () {
     sinon.restore();
   });
 
-  it('should handle successful code scanning retrieval', async function () {
+  it('should handle successful Dependabot alerts retrieval', async function () {
     iteratorStub.returns([
       {
         data: [
           {
-            rule: {
-              security_severity_level: 'low',
+            security_vulnerability: {
+              severity: 'low',
             },
           },
           {
-            rule: {
-              security_severity_level: 'medium',
+            security_vulnerability: {
+              severity: 'medium',
             },
           },
           {
-            rule: {
-              security_severity_level: 'high',
+            security_vulnerability: {
+              severity: 'high',
             },
           },
           {
-            rule: {
-              security_severity_level: 'critical',
+            security_vulnerability: {
+              severity: 'critical',
             },
           },
         ],
       },
     ]);
 
-    await CodeQLService.setCodeQLFindings(GitHub_Tools.CODEQL, octokitMock, 'owner', 'repo');
+    await DependabotService.setDependabotFindings(GitHub_Tools.DEPENDABOT, octokitMock, 'owner', 'repo');
     sinon.assert.callCount(exportVariableStub, 5);
-    sinon.assert.calledWithExactly(exportVariableStub, 'sastTool', GitHub_Tools.CODEQL);
-    sinon.assert.calledWithExactly(exportVariableStub, 'SASTnumberOfSeverity1', 1);
-    sinon.assert.calledWithExactly(exportVariableStub, 'SASTnumberOfSeverity2', 1);
-    sinon.assert.calledWithExactly(exportVariableStub, 'SASTnumberOfSeverity3', 1);
-    sinon.assert.calledWithExactly(exportVariableStub, 'SASTnumberOfSeverity4', 1);
+    sinon.assert.calledWithExactly(exportVariableStub, 'scaTool', GitHub_Tools.DEPENDABOT);
+    sinon.assert.calledWithExactly(exportVariableStub, 'SCAnumberOfSeverity1', 1);
+    sinon.assert.calledWithExactly(exportVariableStub, 'SCAnumberOfSeverity1', 1);
+    sinon.assert.calledWithExactly(exportVariableStub, 'SCAnumberOfSeverity1', 1);
+    sinon.assert.calledWithExactly(exportVariableStub, 'SCAnumberOfSeverity1', 1);
     sinon.assert.notCalled(warningStub);
   });
 
@@ -78,7 +78,7 @@ describe('CodeQLService', function () {
       message: '401 error message',
     });
 
-    await CodeQLService.setCodeQLFindings(GitHub_Tools.CODEQL, octokitMock, 'owner', 'repo');
+    await DependabotService.setDependabotFindings(GitHub_Tools.DEPENDABOT, octokitMock, 'owner', 'repo');
     sinon.assert.calledOnce(warningStub);
   });
 
@@ -88,7 +88,7 @@ describe('CodeQLService', function () {
       message: '403 error message',
     });
 
-    await CodeQLService.setCodeQLFindings(GitHub_Tools.CODEQL, octokitMock, 'owner', 'repo');
+    await DependabotService.setDependabotFindings(GitHub_Tools.DEPENDABOT, octokitMock, 'owner', 'repo');
     sinon.assert.calledOnce(warningStub);
   });
 
@@ -98,7 +98,7 @@ describe('CodeQLService', function () {
       message: '404 error message',
     });
 
-    await CodeQLService.setCodeQLFindings(GitHub_Tools.CODEQL, octokitMock, 'owner', 'repo');
+    await DependabotService.setDependabotFindings(GitHub_Tools.DEPENDABOT, octokitMock, 'owner', 'repo');
     sinon.assert.calledOnce(warningStub);
   });
 
@@ -108,7 +108,7 @@ describe('CodeQLService', function () {
       message: 'Default error case',
     });
 
-    await CodeQLService.setCodeQLFindings(GitHub_Tools.CODEQL, octokitMock, 'owner', 'repo');
+    await DependabotService.setDependabotFindings(GitHub_Tools.DEPENDABOT, octokitMock, 'owner', 'repo');
     sinon.assert.calledOnce(noticeStub);
     sinon.assert.notCalled(warningStub);
   });
