@@ -30,4 +30,9 @@ describe('SastService', () => {
     await SastService.getStateOfSastTool(GitHub_Tools.CODEQL, octokitMock, 'owner', 'repo');
     sinon.assert.calledOnce(setCodeQLFindingsStub);
   });
+
+  it('should only export variable "sastTool" if tool is not supported', async () => {
+    await SastService.getStateOfSastTool('unsupported tool', octokitMock, 'owner', 'repo');
+    sinon.assert.calledOnceWithExactly(exportVariableStub, 'sastTool', 'unsupported tool');
+  });
 });

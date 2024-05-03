@@ -20,8 +20,13 @@ export class SastService {
       return;
     }
     console.log(`Tool:`, `${sast}`);
-    if (sast.toLowerCase() === GitHub_Tools.CODEQL.toLowerCase()) {
-      await CodeQLService.setCodeQLFindings(sast, octokit, owner, repo);
+    switch (sast.toLowerCase()) {
+      case GitHub_Tools.CODEQL.toLowerCase():
+        await CodeQLService.setCodeQLFindings(sast, octokit, owner, repo);
+        break;
+      default:
+        core.exportVariable('sastTool', sast);
+        break;
     }
     console.log();
   }

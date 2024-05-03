@@ -20,8 +20,13 @@ export class ScaService {
       return;
     }
     console.log(`Tool:`, `${sca}`);
-    if (sca.toLowerCase() === GitHub_Tools.DEPENDABOT.toLowerCase()) {
-      await DependabotService.setDependabotFindings(sca, octokit, owner, repo);
+    switch (sca.toLowerCase()) {
+      case GitHub_Tools.DEPENDABOT.toLowerCase():
+        await DependabotService.setDependabotFindings(sca, octokit, owner, repo);
+        break;
+      default:
+        core.exportVariable('scaTool', sca);
+        break;
     }
     console.log();
   }
