@@ -24,7 +24,7 @@ export class IdentitiesInRepoService {
           owner: owner,
           repo: repo,
           per_page: 100,
-          affiliation: 'direct',
+          affiliation: 'all',
         });
 
       let numberOfAdmins: number = 0;
