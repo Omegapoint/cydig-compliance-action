@@ -28,15 +28,13 @@ export class SecretScanningService {
       core.exportVariable('numberOfExposedSecrets', numberOfExposedSecrets);
     } catch (error) {
       core.info('Failed to get number of exposed secrets');
+      // Removes link to REST API endpoint
+      const errorMessage: string = error.message.split('-')[0].trim();
       if (error.status === 401) {
-        // Removes link to REST API endpoint
-        const errorMessage: string = error.message.split('-')[0];
         core.warning(errorMessage, {
           title: 'Number of exposed secrets control failed',
         });
       } else if (error.status === 404) {
-        // Removes link to REST API endpoint
-        const errorMessage: string = error.message.split('-')[0];
         if (errorMessage === 'Secret scanning is disabled on this repository') {
           core.warning(errorMessage, {
             title: 'Number of exposed secrets control failed',

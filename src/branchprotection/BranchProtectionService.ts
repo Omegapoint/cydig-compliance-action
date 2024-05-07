@@ -29,17 +29,16 @@ export class BranchProtectionService {
 
       core.exportVariable('numberOfReviewers', numberOfReviewers);
     } catch (error) {
+      const errorMessage: string = error.message.split('-')[0].trim();
       if (error.status === 401) {
         core.info('Failed to get branch protection');
         // Removes link to REST API endpoint
-        const errorMessage: string = error.message.split('-')[0];
         core.warning(errorMessage, {
           title: 'Branch protection control failed',
         });
       } else if (error.status === 404) {
-        console.log(error.message);
-        if (error.message === 'Branch not protected') {
-          core.notice(error.message, {
+        if (errorMessage === 'Branch not protected') {
+          core.notice(errorMessage, {
             title: 'Branch protection control',
           });
           core.exportVariable('numberOfReviewers', 0);
