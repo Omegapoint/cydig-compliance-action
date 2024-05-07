@@ -37,6 +37,7 @@ export class BranchProtectionService {
           title: 'Branch protection control failed',
         });
       } else if (error.status === 404) {
+        console.log(error.message);
         if (error.message === 'Branch not protected') {
           core.notice(error.message, {
             title: 'Branch protection control',
