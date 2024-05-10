@@ -49,10 +49,18 @@ export class BranchProtectionService {
           });
         }
       } else {
-        core.info('Failed to get branch protection');
-        core.notice(errorMessage, {
-          title: 'Branch protection control failed',
-        });
+        switch (errorMessage) {
+          case 'Upgrade to GitHub Pro or make this repository public to enable this feature.':
+            core.exportVariable('numberOfReviewers', 0);
+            break;
+
+          default:
+            core.info('Failed to get branch protection');
+            core.notice(errorMessage, {
+              title: 'Branch protection control failed',
+            });
+            break;
+        }
       }
     }
     console.log();
