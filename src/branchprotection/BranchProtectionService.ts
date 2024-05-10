@@ -51,6 +51,7 @@ export class BranchProtectionService {
       } else {
         switch (errorMessage) {
           case 'Upgrade to GitHub Pro or make this repository public to enable this feature.':
+            console.log('Branch protection is not enabled for repository:', repo);
             core.exportVariable('numberOfReviewers', 0);
             break;
 
