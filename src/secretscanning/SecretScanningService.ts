@@ -35,14 +35,19 @@ export class SecretScanningService {
           title: 'Number of exposed secrets control failed',
         });
       } else if (error.status === 404) {
-        if (errorMessage === 'Secret scanning is disabled on this repository') {
-          core.warning(errorMessage, {
-            title: 'Number of exposed secrets control failed',
-          });
-        } else {
-          core.warning('Credentials probably lack necessary permissions', {
-            title: 'Number of exposed secrets control failed',
-          });
+        switch (errorMessage) {
+          case 'Secret scanning is disabled on this repository':
+            core.warning(errorMessage, {
+              title: 'Number of exposed secrets control failed',
+            });
+            break;
+
+          default:
+            console.log(error);
+            core.warning('Credentials probably lack necessary permissions', {
+              title: 'Number of exposed secrets control failed',
+            });
+            break;
         }
       } else {
         core.notice(error.message, {
