@@ -50,7 +50,7 @@ export class BranchProtectionService {
         }
       } else {
         core.info('Failed to get branch protection');
-        core.notice(error.message, {
+        core.notice(errorMessage, {
           title: 'Branch protection control failed',
         });
       }
