@@ -11,6 +11,7 @@
 ![numberOfExposedSecrets](https://img.shields.io/endpoint?url=https%3A%2F%2Ffunc-cydig-badge-service-prod.azurewebsites.net%2Fapi%2Fteams%2FCyDig%2Fsources%2FGitHub%2Fprojects%2Fnot-specified%2Frepositories%2Fcydig-compliance-action%2Fcontrols%2FnumberOfExposedSecrets%3Fcode%3DxaEvCDsaK01y2Z6SBivwOKndN4o915lpOTt1VkmULgsxgsjkml7u1DOhgULzmAPX)<br/>
 ![codeQualityTool](https://img.shields.io/endpoint?url=https%3A%2F%2Ffunc-cydig-badge-service-prod.azurewebsites.net%2Fapi%2Fteams%2FCyDig%2Fsources%2FGitHub%2Fprojects%2Fnot-specified%2Frepositories%2Fcydig-compliance-action%2Fcontrols%2FcodeQualityTool%3Fcode%3DxaEvCDsaK01y2Z6SBivwOKndN4o915lpOTt1VkmULgsxgsjkml7u1DOhgULzmAPX)<br/>
 ![usersInProduction](https://img.shields.io/endpoint?url=https%3A%2F%2Ffunc-cydig-badge-service-prod.azurewebsites.net%2Fapi%2Fteams%2FCyDig%2Fsources%2FGitHub%2Fprojects%2Fnot-specified%2Frepositories%2Fcydig-compliance-action%2Fcontrols%2FusersInProduction%3Fcode%3DxaEvCDsaK01y2Z6SBivwOKndN4o915lpOTt1VkmULgsxgsjkml7u1DOhgULzmAPX)<br/>
+![userAccessToCode](https://img.shields.io/endpoint?url=https%3A%2F%2Ffunc-cydig-badge-service-prod.azurewebsites.net%2Fapi%2Fteams%2FCyDig%2Fsources%2FGitHub%2Fprojects%2Fnot-specified%2Frepositories%2Fcydig-compliance-action%2Fcontrols%2FentitiesInCode%3Fcode%3DxaEvCDsaK01y2Z6SBivwOKndN4o915lpOTt1VkmULgsxgsjkml7u1DOhgULzmAPX)<br/>
 
 # CyDig Compliance Action
 
