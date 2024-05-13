@@ -4,15 +4,9 @@ import { Octokit } from '@octokit/rest';
 import { GetResponseDataTypeFromEndpointMethod, OctokitResponse } from '@octokit/types';
 
 export class IdentitiesInRepoService {
-  public static async setIdentitiesInRepoFindings(): Promise<void> {
+  public static async setIdentitiesInRepoFindings(octokit: Octokit, owner: string, repo: string): Promise<void> {
     try {
       console.log('--- Identities In Repo Control ---');
-      const { owner, repo }: { owner: string; repo: string } = github.context.repo;
-      const token: string = core.getInput('PAT-token');
-
-      const octokit: Octokit = new Octokit({
-        auth: token,
-      });
 
       type listCollaboratorsForRepoResponseDataType = GetResponseDataTypeFromEndpointMethod<
         typeof octokit.repos.listCollaborators

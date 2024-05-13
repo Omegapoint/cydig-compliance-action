@@ -5,6 +5,9 @@ export type CyDigConfig = {
     date: string;
     boardsTag: string;
   };
+  secretScanning: {
+    nameOfTool: string;
+  };
   pentest: {
     date: string;
     boardsTag: string;

@@ -3,9 +3,14 @@ import { Octokit } from '@octokit/rest';
 import { SecretAlertsForRepoResponseDataType } from '../types/OctokitResponses';
 
 export class SecretScanningService {
-  public static async getStateOfExposedSecrets(octokit: Octokit, owner: string, repo: string): Promise<void> {
+  public static async getStateOfExposedSecrets(nameOfTool: string, octokit: Octokit, owner: string, repo: string): Promise<void> {
     try {
       console.log('--- Exposed secrets control ---');
+
+      if(nameOfTool === null || nameOfTool === 'name-of-tool'){
+        core.warning('Secret Scanning Tool is not set!');
+        return;
+      }
 
       // https://www.npmjs.com/package/octokit#pagination
       const iterator: AsyncIterableIterator<SecretAlertsForRepoResponseDataType> = octokit.paginate.iterator(
