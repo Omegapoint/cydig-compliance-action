@@ -14,7 +14,7 @@ export class SecretScanningService {
       case GitHub_Tools.GitHub_SECRET_SCANNING.toLowerCase():
         GithubSecretScanningService.getStateOfExposedSecrets(octokit, owner, repo);
       default:
-        core.notice("Given secret scanning tool is not implemented")
+        core.notice("Given secret scanning tool is not implemented: " + nameOfTool)
         core.exportVariable('secretScanningTool', nameOfTool);
     }
 
