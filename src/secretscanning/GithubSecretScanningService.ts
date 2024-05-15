@@ -6,7 +6,7 @@ import GitHub_Tools from '../types/GitHubTools';
 export class GithubSecretScanningService {
   public static async getStateOfExposedSecrets(octokit: Octokit, owner: string, repo: string): Promise<void> {
     try {
-      console.log('--- Exposed secrets control ---');
+      console.log('Tool: Github Secret Scanning');
 
       // https://www.npmjs.com/package/octokit#pagination
       const iterator: AsyncIterableIterator<SecretAlertsForRepoResponseDataType> = octokit.paginate.iterator(
