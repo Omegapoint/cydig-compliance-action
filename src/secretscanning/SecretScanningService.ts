@@ -16,11 +16,13 @@ export class SecretScanningService {
     switch (nameOfTool.toLowerCase()){
       case GitHub_Tools.GitHub_SECRET_SCANNING.toLowerCase():
         await GithubSecretScanningService.getStateOfExposedSecrets(octokit, owner, repo);
+        break;
       default:
         core.notice("Given secret scanning tool is not implemented: " + nameOfTool, {
           title: 'Number of exposed secrets control failed',
         })
         core.exportVariable('secretScanningTool', nameOfTool);
+        break;
     }
 
     console.log();
