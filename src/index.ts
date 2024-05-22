@@ -34,7 +34,7 @@ export async function run(): Promise<void> {
     await SastService.getStateOfSastTool(cydigConfig.sastTool.nameOfTool, octokit, owner, repo);
     await ScaService.getStateOfScaTool(cydigConfig.scaTool.nameOfTool, octokit, owner, repo);
     await SecretScanningService.getStateOfExposedSecrets(
-      cydigConfig.secretScanningTool.nameOfTool,
+      cydigConfig.secretScanningTool?.nameOfTool,
       octokit,
       owner,
       repo

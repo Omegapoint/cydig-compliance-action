@@ -12,7 +12,7 @@ export class SecretScanningService {
   ): Promise<void> {
     console.log('--- Secret Scanning control ---');
 
-    if (nameOfTool === null || nameOfTool === 'name-of-tool') {
+    if (nameOfTool === null || nameOfTool === undefined || nameOfTool === 'name-of-tool') {
       core.warning('Secret Scanning Tool is not set!');
       return;
     }
