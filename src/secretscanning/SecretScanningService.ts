@@ -13,7 +13,8 @@ export class SecretScanningService {
     console.log('--- Secret Scanning control ---');
 
     if (nameOfTool === null || nameOfTool === undefined || nameOfTool === 'name-of-tool') {
-      core.warning('Secret Scanning Tool is not set!');
+      core.warning('Secret Scanning Tool is not set! Will continue with GitHub Secret Scanning tool:');
+      await GithubSecretScanningService.getStateOfExposedSecrets(octokit, owner, repo);
       return;
     }
 
