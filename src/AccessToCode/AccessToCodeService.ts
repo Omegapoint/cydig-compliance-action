@@ -1,12 +1,11 @@
 import * as core from '@actions/core';
-import * as github from '@actions/github';
 import { Octokit } from '@octokit/rest';
 import { GetResponseDataTypeFromEndpointMethod, OctokitResponse } from '@octokit/types';
 
-export class IdentitiesInRepoService {
-  public static async setIdentitiesInRepoFindings(octokit: Octokit, owner: string, repo: string): Promise<void> {
+export class AccessToCodeService {
+  public static async setAccessToCodeFindings(octokit: Octokit, owner: string, repo: string): Promise<void> {
     try {
-      console.log('--- Identities In Repo Control ---');
+      console.log('--- Access To CodeService Control ---');
 
       type listCollaboratorsForRepoResponseDataType = GetResponseDataTypeFromEndpointMethod<
         typeof octokit.repos.listCollaborators
@@ -47,12 +46,12 @@ export class IdentitiesInRepoService {
       core.exportVariable('numberOfCodeWriters', numberOfWriters);
       core.exportVariable('numberOfCodeReaders', numberOfReaders);
     } catch (error) {
-      core.info('Failed to fetch identities for repo');
+      core.info('Failed to fetch access to code for repo');
       if (error.status === 401 || error.status === 403) {
         // Removes link to REST API endpoint
         const errorMessage: string = error.message.split('-')[0].trim();
         core.warning(errorMessage, {
-          title: 'Failed to fetch identities for repo',
+          title: 'Failed to fetch acces to code for repo',
         });
       } else {
         core.info(error.message);

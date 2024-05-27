@@ -10,7 +10,7 @@ import { PentestService } from './pentest/PentestService';
 import { SastService } from './sasttools/SastService';
 import { ScaService } from './scatools/ScaService';
 import { SecretScanningService } from './secretscanning/SecretScanningService';
-import { IdentitiesInRepoService } from './identitiesInRepo/identitiesInRepoService';
+import { AccessToCodeService } from './AccessToCode/AccessToCodeService';
 import { ThreatModelingService } from './threatmodeling/ThreatModelingService';
 import { CyDigConfig } from './types/CyDigConfig';
 
@@ -40,7 +40,7 @@ export async function run(): Promise<void> {
       repo
     );
     await BranchProtectionService.getStateOfBranchProtection(octokit, owner, repo);
-    await IdentitiesInRepoService.setIdentitiesInRepoFindings(octokit, owner, repo);
+    await AccessToCodeService.setAccessToCodeFindings(octokit, owner, repo);
     await PentestService.getStateOfPentest(cydigConfig.pentest);
     await ThreatModelingService.getStateOfThreatModeling(cydigConfig.threatModeling);
     await AzureDevOpsBoardService.getStateOfAzureDevOpsBoards(cydigConfig);
