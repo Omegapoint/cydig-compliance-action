@@ -1,20 +1,18 @@
 import * as core from '@actions/core';
-import * as github from '@actions/github';
 import { Octokit } from '@octokit/rest';
-import { OctokitResponse } from '@octokit/types';
+import GitHub_Tool_Severity_Level from '../types/GithubToolSeverityLevel';
+import { DependabotAlertsForRepoResponseDataType } from '../types/OctokitResponses';
 
 export class DependabotService {
-  public static async setDependabotFindings(): Promise<void> {
+  public static async setDependabotFindings(
+    nameOfTool: string,
+    octokit: Octokit,
+    owner: string,
+    repo: string
+  ): Promise<void> {
     try {
-      const { owner, repo }: { owner: string; repo: string } = github.context.repo;
-      const token: string = core.getInput('PAT-token');
-
-      const octokit: Octokit = new Octokit({
-        auth: token,
-      });
-
       // https://www.npmjs.com/package/octokit#pagination
-      const iterator: AsyncIterableIterator<OctokitResponse<any>> = octokit.paginate.iterator(
+      const iterator: AsyncIterableIterator<DependabotAlertsForRepoResponseDataType> = octokit.paginate.iterator(
         octokit.dependabot.listAlertsForRepo,
         {
           owner: owner,
@@ -32,37 +30,45 @@ export class DependabotService {
       for await (const { data: alerts } of iterator) {
         for (const alert of alerts) {
           switch (alert.security_vulnerability.severity) {
-            case 'low':
+            case GitHub_Tool_Severity_Level.LOW:
               scaNumberOfSeverity1++;
               break;
-            case 'medium':
+            case GitHub_Tool_Severity_Level.MEDIUM:
               scaNumberOfSeverity2++;
               break;
-            case 'high':
+            case GitHub_Tool_Severity_Level.HIGH:
               scaNumberOfSeverity3++;
               break;
-            case 'critical':
+            case GitHub_Tool_Severity_Level.CRITICAL:
               scaNumberOfSeverity4++;
               break;
           }
         }
       }
 
-      console.log('SCAnumberOfSeverityLow: ' + scaNumberOfSeverity1);
-      console.log('SCAnumberOfSeverityMedium: ' + scaNumberOfSeverity2);
-      console.log('SCAnumberOfSeverityHigh: ' + scaNumberOfSeverity3);
-      console.log('SCAnumberOfSeverityCritical: ' + scaNumberOfSeverity4);
+      console.log('Low: ' + scaNumberOfSeverity1);
+      console.log('Medium: ' + scaNumberOfSeverity2);
+      console.log('High: ' + scaNumberOfSeverity3);
+      console.log('Critical: ' + scaNumberOfSeverity4);
 
+      core.exportVariable('scaTool', nameOfTool);
       core.exportVariable('SCAnumberOfSeverity1', scaNumberOfSeverity1);
       core.exportVariable('SCAnumberOfSeverity2', scaNumberOfSeverity2);
       core.exportVariable('SCAnumberOfSeverity3', scaNumberOfSeverity3);
       core.exportVariable('SCAnumberOfSeverity4', scaNumberOfSeverity4);
     } catch (error) {
-      core.warning('Could not set Dependabot severities');
-      core.exportVariable('SCAnumberOfSeverity1', 0);
-      core.exportVariable('SCAnumberOfSeverity2', 0);
-      core.exportVariable('SCAnumberOfSeverity3', 0);
-      core.exportVariable('SCAnumberOfSeverity4', 0);
+      core.info('Failed to get Dependabot severities');
+      if (error.status === 401 || error.status === 403 || error.status === 404) {
+        // Removes link to REST API endpoint
+        const errorMessage: string = error.message.split('-')[0].trim();
+        core.warning(errorMessage, {
+          title: 'SCA tool control failed',
+        });
+      } else {
+        core.notice(error.message, {
+          title: 'SCA tool control failed',
+        });
+      }
     }
   }
 }
