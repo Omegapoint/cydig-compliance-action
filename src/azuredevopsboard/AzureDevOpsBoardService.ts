@@ -44,7 +44,9 @@ export class AzureDevOpsBoardService {
         }
       } catch (error) {
         core.warning('Error getting tickets for Azure DevOps Board!');
-        console.log('Error:', error.message);
+        console.log(
+          'There is probably somethine wrong with your token, check that it has not expired or been revoked. Please check that you have the correct permissions (Work items: Read)'
+        );
       }
       console.log();
     }
