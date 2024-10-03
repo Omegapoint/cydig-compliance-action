@@ -9,6 +9,8 @@ updates:
     directory: '/' # Location of package manifests
     schedule:
       interval: 'daily'
+    # Config to only set patch-labels for dependabot PRs
+    # OBS - For this to happen it also requires that a skip-release label is added on the repository level  
     labels:
       - 'patch'
 
@@ -18,5 +20,7 @@ updates:
     directory: '/'
     schedule:
       interval: 'daily'
+    # Config to only set patch-labels for dependabot PRs
+    # OBS - For this to happen it also requires that a skip-release label is added on the repository level  
     labels:
       - 'patch'
