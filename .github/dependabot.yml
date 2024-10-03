@@ -10,7 +10,7 @@ updates:
     schedule:
       interval: 'daily'
     # Config to only set patch-labels for dependabot PRs
-    # OBS - For this to happen it also requires that a skip-release label is added on the repository level  
+    # OBS - For this to happen it also requires that a skip-release label is added on the repository level
     labels:
       - 'patch'
 
@@ -21,6 +21,6 @@ updates:
     schedule:
       interval: 'daily'
     # Config to only set patch-labels for dependabot PRs
-    # OBS - For this to happen it also requires that a skip-release label is added on the repository level  
+    # OBS - For this to happen it also requires that a skip-release label is added on the repository level
     labels:
       - 'patch'
