@@ -15,6 +15,10 @@ inputs:
     description: 'Personal access token for Azure DevOps with scope Work Items:read'
     required: false
     default: 'Not working'
+  slackAccessToken:
+    description: 'Bot Slack Token'
+    required: false
+    default: 'Not working'
 runs:
   using: node20
   main: dist/index.js

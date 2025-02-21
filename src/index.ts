@@ -13,6 +13,7 @@ import { SecretScanningService } from './secretscanning/SecretScanningService';
 import { AccessToCodeService } from './AccessToCode/AccessToCodeService';
 import { ThreatModelingService } from './threatmodeling/ThreatModelingService';
 import { CyDigConfig } from './types/CyDigConfig';
+import { CommunicationService } from './communication/CommunicationService';
 
 /**
  * The main function for the action.
@@ -44,6 +45,10 @@ export async function run(): Promise<void> {
     await PentestService.getStateOfPentest(cydigConfig.pentest);
     await ThreatModelingService.getStateOfThreatModeling(cydigConfig.threatModeling);
     await AzureDevOpsBoardService.getStateOfAzureDevOpsBoards(cydigConfig);
+    //TODO: When we can use access to code for all teams, remove the if-statement
+    if(cydigConfig.teamName.toLowerCase() === 'cydig'){
+      await CommunicationService.getStateOfCommunication(cydigConfig)
+    }
   } catch (error) {
     // Fail the workflow run if an error occurs
     if (error instanceof Error) setFailed(error.message);

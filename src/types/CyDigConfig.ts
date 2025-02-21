@@ -29,4 +29,11 @@ export type CyDigConfig = {
   codeQualityTool: {
     nameOfTool: string;
   };
+  communicationTool: {
+    nameOfTool: string;
+    slack: {
+      channelName: string;
+      isPrivate: boolean;
+    }
+  };
 };

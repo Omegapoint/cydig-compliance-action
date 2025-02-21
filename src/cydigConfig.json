@@ -25,5 +25,12 @@
   },
   "codeQualityTool": {
     "nameOfTool": "not specified"
+  },
+  "communicationTool": {
+    "nameOfTool": "slack",
+    "slack": {
+      "channelName": "cydig-stars",
+      "isPrivate": true
+    }
   }
 }
