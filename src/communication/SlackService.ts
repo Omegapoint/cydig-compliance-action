@@ -13,7 +13,7 @@ export class SlackService {
         console.log('\n Running Slack control');
         const accessToken: string = core.getInput('slackAccessToken');
         const webClient: WebClient = new WebClient(accessToken);
-        console.log(webClient)
+        console.log(webClient);
         const numberOfSlackChannelMembers: string = await this.getNumberOfSlackChannelMembers(
             webClient,
             this.cydigConfig.communicationTool.slack.channelName,
@@ -27,7 +27,7 @@ export class SlackService {
 
     private async getNumberOfSlackChannelMembers(webClient: WebClient, channelName: string): Promise<string> {
         const slackChannelId: string = await this.getSlackChannelId(webClient, channelName);
-        console.log(slackChannelId)
+        console.log(slackChannelId);
         try {
             const response: ConversationsInfoResponse = await webClient.conversations.info({
                 channel: slackChannelId,
