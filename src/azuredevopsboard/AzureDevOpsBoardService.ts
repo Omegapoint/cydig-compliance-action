@@ -47,7 +47,7 @@ export class AzureDevOpsBoardService {
                 console.log(
                     'There is probably somethine wrong with your token, check that it has not expired or been revoked. Please check that you have the correct permissions (Work items: Read)',
                 );
-                console.log(error)
+                console.log(error);
             }
             console.log();
         }
