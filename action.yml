@@ -3,18 +3,22 @@ description: 'Cydig compliance action'
 author: 'Omegapoint'
 
 inputs:
-  cydigConfigPath:
-    description: 'The path to the json-file containing configuration for CyDig'
-    required: true
-    default: 'Not working'
-  PAT-token:
-    description: 'Automatic token from Github workflow'
-    required: true
-    default: 'Not working'
-  accessTokenAzureDevOps:
-    description: 'Personal access token for Azure DevOps with scope Work Items:read'
-    required: false
-    default: 'Not working'
+    cydigConfigPath:
+        description: 'The path to the json-file containing configuration for CyDig'
+        required: true
+        default: 'Not working'
+    PAT-token:
+        description: 'Automatic token from Github workflow'
+        required: true
+        default: 'Not working'
+    accessTokenAzureDevOps:
+        description: 'Personal access token for Azure DevOps with scope Work Items:read'
+        required: false
+        default: 'Not working'
+    slackAccessToken:
+        description: 'Bot Slack Token'
+        required: false
+        default: 'Not working'
 runs:
-  using: node20
-  main: dist/index.js
+    using: node20
+    main: dist/index.js

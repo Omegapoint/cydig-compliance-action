@@ -1,51 +1,52 @@
 {
-  "name": "cydig-compliance-action",
-  "description": "Action for cydig compliance controls",
-  "version": "1.0.0",
-  "author": "",
-  "keywords": [],
-  "exports": {
-    ".": "./dist/index.js"
-  },
-  "engines": {
-    "node": ">=16"
-  },
-  "main": "dist/index.js",
-  "scripts": {
-    "build": "ncc build src/index.ts",
-    "test": "tsc && mocha dist/tests/",
-    "testScript": "tsc && mocha dist/tests/ --reporter xunit --reporter-option output=ResultsFile.xml",
-    "prepare": "husky install",
-    "lint": "eslint . --ext .ts",
-    "lint:fix": "eslint . --fix --ext .ts",
-    "format:write": "npx prettier -w .",
-    "format:check": "npx prettier -c ."
-  },
-  "license": "MIT",
-  "dependencies": {
-    "@actions/core": "^1.11.1",
-    "@actions/github": "^6.0.0",
-    "@octokit/plugin-retry": "^6.0.1",
-    "@octokit/rest": "^20.1.1",
-    "@vercel/ncc": "^0.36.1",
-    "azure-devops-node-api": "^14.1.0"
-  },
-  "devDependencies": {
-    "@octokit/types": "^13.5.0",
-    "@types/chai": "^4.3.6",
-    "@types/mocha": "^10.0.6",
-    "@types/node": "^22.7.4",
-    "@types/sinon": "^17.0.3",
-    "@types/sinon-chai": "^3.2.12",
-    "@typescript-eslint/eslint-plugin": "^5.62.0",
-    "@typescript-eslint/parser": "^5.62.0",
-    "chai": "^4.4.1",
-    "eslint": "^8.49.0",
-    "husky": "^9.1.7",
-    "mocha": "^10.4.0",
-    "prettier": "^2.8.8",
-    "sinon": "^19.0.2",
-    "sinon-chai": "^3.7.0",
-    "typescript": "^5.4.5"
-  }
+    "name": "cydig-compliance-action",
+    "description": "Action for cydig compliance controls",
+    "version": "1.0.0",
+    "author": "",
+    "keywords": [],
+    "exports": {
+        ".": "./dist/index.js"
+    },
+    "engines": {
+        "node": ">=16"
+    },
+    "main": "dist/index.js",
+    "scripts": {
+        "build": "ncc build src/index.ts",
+        "test": "tsc && mocha dist/tests/",
+        "testScript": "tsc && mocha dist/tests/ --reporter xunit --reporter-option output=ResultsFile.xml",
+        "prepare": "husky install",
+        "lint": "eslint . --ext .ts",
+        "lint:fix": "eslint . --fix --ext .ts",
+        "format:write": "npx prettier -w .",
+        "format:check": "npx prettier -c ."
+    },
+    "license": "MIT",
+    "dependencies": {
+        "@actions/core": "^1.11.1",
+        "@actions/github": "^6.0.0",
+        "@octokit/plugin-retry": "^6.0.1",
+        "@octokit/rest": "^20.1.1",
+        "@slack/web-api": "^7.8.0",
+        "@vercel/ncc": "^0.36.1",
+        "azure-devops-node-api": "^14.1.0"
+    },
+    "devDependencies": {
+        "@octokit/types": "^13.8.0",
+        "@types/chai": "^5.0.1",
+        "@types/mocha": "^10.0.10",
+        "@types/node": "^22.13.4",
+        "@types/sinon": "^17.0.3",
+        "@types/sinon-chai": "^4.0.0",
+        "@typescript-eslint/eslint-plugin": "^8.24.1",
+        "@typescript-eslint/parser": "^8.24.1",
+        "chai": "^5.2.0",
+        "eslint": "^8.57.0",
+        "husky": "^9.1.7",
+        "mocha": "^11.1.0",
+        "prettier": "^3.5.1",
+        "sinon": "^19.0.2",
+        "sinon-chai": "^4.0.0",
+        "typescript": "^5.7.3"
+    }
 }
