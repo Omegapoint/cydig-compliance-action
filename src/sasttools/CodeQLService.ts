@@ -12,7 +12,7 @@ export class CodeQLService {
     ): Promise<void> {
         try {
             // https://www.npmjs.com/package/octokit#pagination
-            const iterator: AsyncIterableIterator<CodeScanningAlertsForRepoResponseDataType> =
+            const iterator: AsyncIterable<CodeScanningAlertsForRepoResponseDataType> =
                 octokit.paginate.iterator(octokit.codeScanning.listAlertsForRepo, {
                     owner: owner,
                     repo: repo,
