@@ -12,7 +12,7 @@ export class AccessToCodeService {
             >;
 
             // https://www.npmjs.com/package/octokit#pagination
-            const iterator: AsyncIterableIterator<OctokitResponse<listCollaboratorsForRepoResponseDataType>> =
+            const iterator: AsyncIterable<OctokitResponse<listCollaboratorsForRepoResponseDataType>> =
                 octokit.paginate.iterator(octokit.repos.listCollaborators, {
                     owner: owner,
                     repo: repo,
