@@ -7,3 +7,6 @@ on:
 jobs:
     call-release-workflow:
         uses: omegapoint/cydig-reusable-workflows/.github/workflows/release.yml@main
+        permissions:
+            pull-requests: read
+            contents: write
