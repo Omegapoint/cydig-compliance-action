@@ -9,7 +9,7 @@ export class GithubSecretScanningService {
             console.log('Tool: Github Secret Scanning');
 
             // https://www.npmjs.com/package/octokit#pagination
-            const iterator: AsyncIterableIterator<SecretAlertsForRepoResponseDataType> = octokit.paginate.iterator(
+            const iterator: AsyncIterable<SecretAlertsForRepoResponseDataType> = octokit.paginate.iterator(
                 octokit.secretScanning.listAlertsForRepo,
                 {
                     owner: owner,

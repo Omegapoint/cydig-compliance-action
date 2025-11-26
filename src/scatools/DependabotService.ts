@@ -12,7 +12,7 @@ export class DependabotService {
     ): Promise<void> {
         try {
             // https://www.npmjs.com/package/octokit#pagination
-            const iterator: AsyncIterableIterator<DependabotAlertsForRepoResponseDataType> = octokit.paginate.iterator(
+            const iterator: AsyncIterable<DependabotAlertsForRepoResponseDataType> = octokit.paginate.iterator(
                 octokit.dependabot.listAlertsForRepo,
                 {
                     owner: owner,
