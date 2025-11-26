@@ -1,0 +1,27 @@
+name: Remove Dependabot Version Labels
+
+on:
+    pull_request:
+        types: [opened, synchronize]
+
+jobs:
+    remove-labels:
+        if: github.actor == 'dependabot[bot]'
+        runs-on: ubuntu-latest
+        permissions:
+            pull-requests: write
+        steps:
+            - uses: actions/github-script@v8
+              with:
+                  script: |
+                      const labels = context.payload.pull_request.labels.map(l => l.name);
+                      const toRemove = labels.filter(l => ['major', 'minor'].includes(l));
+
+                      if (toRemove.length > 0) {
+                        github.rest.issues.removeLabel({
+                          owner: context.repo.owner,
+                          repo: context.repo.repo,
+                          issue_number: context.issue.number,
+                          name: toRemove[0]
+                        });
+                      }
