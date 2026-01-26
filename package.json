@@ -15,9 +15,9 @@
         "build": "ncc build src/index.ts",
         "test": "tsc && mocha dist/tests/",
         "testScript": "tsc && mocha dist/tests/ --reporter xunit --reporter-option output=ResultsFile.xml",
-        "prepare": "husky install",
-        "lint": "eslint . --ext .ts",
-        "lint:fix": "eslint . --fix --ext .ts",
+        "prepare": "husky",
+        "lint": "npx eslint .",
+        "lint:fix": "npx eslint . --fix",
         "format:write": "npx prettier -w .",
         "format:check": "npx prettier -c ."
     },
@@ -25,28 +25,28 @@
     "dependencies": {
         "@actions/core": "^1.11.1",
         "@actions/github": "^6.0.0",
-        "@octokit/plugin-retry": "^6.0.1",
-        "@octokit/rest": "^20.1.1",
+        "@octokit/plugin-retry": "^8.0.3",
+        "@octokit/rest": "^22.0.1",
         "@slack/web-api": "^7.8.0",
         "@vercel/ncc": "^0.36.1",
         "azure-devops-node-api": "^15.1.1"
     },
     "devDependencies": {
-        "@octokit/types": "^13.8.0",
+        "@eslint/js": "^9.39.2",
+        "@octokit/types": "^16.0.0",
         "@types/chai": "^5.0.1",
         "@types/mocha": "^10.0.10",
         "@types/node": "^24.10.1",
         "@types/sinon": "^21.0.0",
         "@types/sinon-chai": "^4.0.0",
-        "@typescript-eslint/eslint-plugin": "^8.26.0",
-        "@typescript-eslint/parser": "^8.25.0",
         "chai": "^6.2.1",
-        "eslint": "^8.57.0",
+        "eslint": "^9.39.2",
         "husky": "^9.1.7",
         "mocha": "^11.1.0",
         "prettier": "^3.7.1",
         "sinon": "^21.0.0",
         "sinon-chai": "^4.0.0",
-        "typescript": "^5.7.3"
+        "typescript": "^5.9.3",
+        "typescript-eslint": "^8.53.1"
     }
 }
