@@ -24,7 +24,7 @@
     "license": "MIT",
     "dependencies": {
         "@actions/core": "^2.0.2",
-        "@actions/github": "^7.0.0",
+        "@actions/github": "^8.0.0",
         "@octokit/plugin-retry": "^8.0.3",
         "@octokit/rest": "^22.0.1",
         "@slack/web-api": "^7.8.0",
