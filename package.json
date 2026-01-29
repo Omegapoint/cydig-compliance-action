@@ -24,11 +24,11 @@
     "license": "MIT",
     "dependencies": {
         "@actions/core": "^2.0.3",
-        "@actions/github": "^7.0.0",
+        "@actions/github": "8.0.1",
         "@octokit/plugin-retry": "^8.0.3",
         "@octokit/rest": "^22.0.1",
         "@slack/web-api": "^7.8.0",
-        "@vercel/ncc": "^0.36.1",
+        "@vercel/ncc": "^0.38.4",
         "azure-devops-node-api": "^15.1.1"
     },
     "devDependencies": {
