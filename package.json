@@ -36,7 +36,7 @@
         "@octokit/types": "^16.0.0",
         "@types/chai": "^5.0.1",
         "@types/mocha": "^10.0.10",
-        "@types/node": "^25.0.10",
+        "@types/node": "^25.1.0",
         "@types/sinon": "^21.0.0",
         "@types/sinon-chai": "^4.0.0",
         "chai": "^6.2.1",
