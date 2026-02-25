@@ -1,6 +1,16 @@
-import * as core from '@actions/core';
+import mockRequire from 'mock-require';
 import sinon, { SinonStub } from 'sinon';
-import { BranchProtectionService } from '../src/branchprotection/BranchProtectionService';
+
+const core = {
+    warning: (): void => undefined,
+    notice: (): void => undefined,
+    info: (): void => undefined,
+    exportVariable: (): void => undefined,
+};
+
+mockRequire('@actions/core', core);
+
+const { BranchProtectionService } = require('../src/branchprotection/BranchProtectionService');
 
 describe('BranchProtectionService', function () {
     let warningStub: SinonStub;

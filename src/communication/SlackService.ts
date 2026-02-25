@@ -44,7 +44,7 @@ export class SlackService {
                 throw new Error(`Cannot find channel or members of channel`);
             }
         } catch (error) {
-            throw new Error(error);
+            throw new Error('Failed to get number of Slack channel members', { cause: error });
         }
     }
 
@@ -75,7 +75,7 @@ export class SlackService {
                 throw new Error(`${response.error}`);
             }
         } catch (error) {
-            throw new Error(error);
+            throw new Error('Failed to get Slack channel ID', { cause: error });
         }
     }
 }
