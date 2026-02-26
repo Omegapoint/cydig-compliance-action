@@ -1,8 +1,18 @@
-import * as core from '@actions/core';
+import mockRequire from 'mock-require';
 import sinon, { SinonStub } from 'sinon';
-import { CodeQLService } from '../src/sasttools/CodeQLService';
-import { SastService } from '../src/sasttools/SastService';
 import GitHub_Tools from '../src/types/GitHubTools';
+
+const core = {
+    warning: (): void => undefined,
+    notice: (): void => undefined,
+    info: (): void => undefined,
+    exportVariable: (): void => undefined,
+};
+
+mockRequire('@actions/core', core);
+
+const { CodeQLService } = require('../src/sasttools/CodeQLService');
+const { SastService } = require('../src/sasttools/SastService');
 
 describe('SastService', function () {
     let warningStub: SinonStub;

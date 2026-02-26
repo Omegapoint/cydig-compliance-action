@@ -1,7 +1,17 @@
-import * as core from '@actions/core';
+import mockRequire from 'mock-require';
 import sinon, { SinonStub } from 'sinon';
-import { DependabotService } from '../src/scatools/DependabotService';
 import GitHub_Tools from '../src/types/GitHubTools';
+
+const core = {
+    warning: (): void => undefined,
+    notice: (): void => undefined,
+    info: (): void => undefined,
+    exportVariable: (): void => undefined,
+};
+
+mockRequire('@actions/core', core);
+
+const { DependabotService } = require('../src/scatools/DependabotService');
 
 describe('CodeQLService', function () {
     let warningStub: SinonStub;
