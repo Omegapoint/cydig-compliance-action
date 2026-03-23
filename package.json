@@ -48,7 +48,7 @@
         "mock-require": "^3.0.3",
         "mocha": "^11.1.0",
         "prettier": "^3.8.1",
-        "rollup": "^4.0.0",
+        "rollup": "^4.60.0",
         "sinon": "^21.0.3",
         "sinon-chai": "^4.0.0",
         "typescript": "^5.9.3",
