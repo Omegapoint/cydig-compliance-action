@@ -43,7 +43,7 @@
         "@types/sinon": "^21.0.0",
         "@types/sinon-chai": "^4.0.0",
         "chai": "^6.2.1",
-        "eslint": "^10.0.3",
+        "eslint": "^10.1.0",
         "husky": "^9.1.7",
         "mock-require": "^3.0.3",
         "mocha": "^11.1.0",
@@ -52,6 +52,6 @@
         "sinon": "^21.0.3",
         "sinon-chai": "^4.0.0",
         "typescript": "^5.9.3",
-        "typescript-eslint": "^8.57.0"
+        "typescript-eslint": "^8.57.1"
     }
 }
